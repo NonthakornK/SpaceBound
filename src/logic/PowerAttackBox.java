@@ -9,8 +9,8 @@ public class PowerAttackBox extends Items {
 
 	public PowerAttackBox(double x) {
 		super(ThreadLocalRandom.current().nextDouble(1, 5));
-		this.width = RenderableHolder.randomBox.getWidth();
-		this.height = RenderableHolder.randomBox.getHeight();
+		this.width = RenderableHolder.powerattackBox.getWidth();
+		this.height = RenderableHolder.powerattackBox.getHeight();
 		this.visible = true;
 		this.destroyed = false;
 		this.x = x;
@@ -21,7 +21,7 @@ public class PowerAttackBox extends Items {
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		gc.drawImage(RenderableHolder.randomBox, x, y);
+		gc.drawImage(RenderableHolder.powerattackBox, x, y);
 	}
 
 	@Override

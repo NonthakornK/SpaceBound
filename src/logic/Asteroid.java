@@ -10,6 +10,7 @@ import renderer.RenderableHolder;
 
 public class Asteroid extends Enemy {
 
+	public static final double weight = 1;
 	Image variation;
 	
 	public Asteroid(double x, Image i) {
@@ -48,6 +49,10 @@ public class Asteroid extends Enemy {
 		bound.setWidth(width);
 		bound.setHeight(height);
 		return bound;
+	}
+
+	public double getWeight() {
+		return weight;
 	}
 
 }

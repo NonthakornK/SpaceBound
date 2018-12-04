@@ -12,9 +12,10 @@ public class EBoss extends Enemy {
 	private int originalHp;
 	private GameLogic gameLogic;
 	private int bulletDelayTick = 0;
+	public static final double weight = 8;
 
 	public EBoss(GameLogic gameLogic) {
-		super(4000, 0.1);
+		super(4500, 0.1);
 		this.originalHp = 4000;
 		this.width = RenderableHolder.eBoss.getWidth();
 		this.height = RenderableHolder.eBoss.getHeight();
@@ -34,7 +35,7 @@ public class EBoss extends Enemy {
 
 		
 		long now = System.nanoTime();
-		this.x = Math.sin(5 * now * 1e-9 + Math.toRadians(90)) * ((SceneManager.SCENE_WIDTH - this.width) / 2)
+		this.x = Math.sin(5 * now * 8e-10 + Math.toRadians(90)) * ((SceneManager.SCENE_WIDTH - this.width) / 2)
 				+ (SceneManager.SCENE_WIDTH - this.width) / 2.0;
 		if (this.y < 40) {
 			this.y += this.speed;
@@ -64,7 +65,7 @@ public class EBoss extends Enemy {
 	private void drawHpBar(GraphicsContext gc) {
 		double percentHp = this.hp / this.originalHp;
 		gc.setFill(Color.RED);
-		gc.fillRect(this.x + this.width / 2 - this.width / 4 * percentHp, this.y - 20, this.width / 2 * percentHp, 10);
+		gc.fillRect(this.x, this.y + this.height + 20, this.width * percentHp, 10);
 
 	}
 
@@ -76,6 +77,10 @@ public class EBoss extends Enemy {
 		bound.setCenterY(y + height / 2);
 		bound.setRadius(width / 2);
 		return bound;
+	}
+
+	public double getWeight() {
+		return weight;
 	}
 
 }

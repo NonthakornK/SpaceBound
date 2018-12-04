@@ -36,37 +36,37 @@ public class Bullet extends Unit {
 			this.height = RenderableHolder.bullet.getHeight();
 			this.width = RenderableHolder.bullet.getWidth();
 			bulletSprite = RenderableHolder.bullet;
-			this.collideDamage = 30;
+			this.collideDamage = 25 + 5 * Player.atkLvl;
 		} else if (type == 1) {
 			this.height = RenderableHolder.bossBullet.getHeight();
 			this.width = RenderableHolder.bossBullet.getWidth();
 			bulletSprite = RenderableHolder.bossBullet;
-			this.collideDamage = 50;
+			this.collideDamage = 50 + Score.distance/20000;
 		} else if (type == 2) {
 			this.height = RenderableHolder.roundBulletB.getHeight();
 			this.width = RenderableHolder.roundBulletB.getWidth();
 			bulletSprite = RenderableHolder.roundBulletB;
-			this.collideDamage = 15;
+			this.collideDamage = 25 + Score.distance/20000;
 		} else if (type == 3) {
 			this.height = RenderableHolder.roundBulletY.getHeight();
 			this.width = RenderableHolder.roundBulletY.getWidth();
 			bulletSprite = RenderableHolder.roundBulletY;
-			this.collideDamage = 15;
+			this.collideDamage = 20 + Score.distance/20000;
 		} else if (type == 4) {
 			this.height = RenderableHolder.roundBulletR.getHeight();
 			this.width = RenderableHolder.roundBulletR.getWidth();
 			bulletSprite = RenderableHolder.roundBulletR;
-			this.collideDamage = 15;
+			this.collideDamage = 30 + Score.distance/20000;
 		} else if (type == 5) {
 			this.height = RenderableHolder.roundBulletP.getHeight();
 			this.width = RenderableHolder.roundBulletP.getWidth();
 			bulletSprite = RenderableHolder.roundBulletP;
-			this.collideDamage = 15;
+			this.collideDamage = 25 + Score.distance/20000;
 		} else if (type == 6) {
 			this.height = RenderableHolder.powerAttack.getHeight();
 			this.width = RenderableHolder.powerAttack.getWidth();
 			bulletSprite = RenderableHolder.powerAttack;
-			this.collideDamage = 20;
+			this.collideDamage = 27 + 3 * Player.atkLvl;
 		}
 		if (side == 1) {
 			this.x = x + (e.width - this.width) / 2.0;
@@ -112,9 +112,9 @@ public class Bullet extends Unit {
 			type = 7;
 			this.x = x + (this.width / 2) - 150;
 			this.y = y - 145;
-			this.width = 300; // explosion area of effect
-			this.height = 300; // explosion area of effect
-			this.collideDamage = 250; // explode missile damage
+			this.width = 200; // explosion area of effect
+			this.height = 200; // explosion area of effect
+			this.collideDamage = 250 + 50 * Player.atkLvl; // explode missile damage
 			Explosion e = new Explosion(x - 50, y - 50 - 40, width + 100, height + 100, z);
 			e.playSfx();
 			RenderableHolder.getInstance().add(e);

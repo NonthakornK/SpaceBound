@@ -12,9 +12,10 @@ public class ESemiBoss extends Enemy {
 	private int bulletDelayTick = 0;
 	private double yOffset;
 	private GameLogic gameLogic;
+	public static final double weight = 5.5;
 
 	public ESemiBoss(GameLogic gameLogic) {
-		super(2000, 0.1);
+		super(2500, 0.1);
 		this.originalHp = 2000;
 		this.width = RenderableHolder.eSemiBoss.getWidth();
 		this.height = RenderableHolder.eSemiBoss.getHeight();
@@ -63,7 +64,7 @@ public class ESemiBoss extends Enemy {
 	private void drawHpBar(GraphicsContext gc) {
 		double percentHp = this.hp / this.originalHp;
 		gc.setFill(Color.RED);
-		gc.fillRect(this.x + this.width / 2 - this.width / 4 * percentHp, this.y - 20, this.width / 2 * percentHp, 10);
+		gc.fillRect(this.x + this.width / 5, this.y + this.height + 20, this.width * percentHp / 2, 10);
 
 	}
 
@@ -75,6 +76,10 @@ public class ESemiBoss extends Enemy {
 		bound.setCenterY(y + width / 2);
 		bound.setRadius(width / 2);
 		return bound;
+	}
+
+	public double getWeight() {
+		return weight;
 	}
 
 }

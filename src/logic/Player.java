@@ -19,6 +19,7 @@ import renderer.IRenderable;
 import renderer.RenderableHolder;
 import window.SceneManager;
 
+@SuppressWarnings("restriction")
 public class Player extends Unit implements IRenderable {
 	private Image playerImage = null;
 	GameLogic gameLogic;
@@ -26,10 +27,9 @@ public class Player extends Unit implements IRenderable {
 	private double maxHp;
 	private int maxShield;
 	private double shield;
-	private int shieldLvl = 1;
-	private double shieldRegen;
-	private int regenLvl = 1;
-	private long regenTimeOut = 0;
+	private int shieldLvl;
+	private int regenLvl;
+	private long regenTimeOut = 0;	
 	private boolean isDamaged;
 	private long TripleFireTimeOut = 0;
 	private int powerAttack = 0;
@@ -37,13 +37,17 @@ public class Player extends Unit implements IRenderable {
 	private boolean fullShield;
 	private final double shieldReduction = 0.35;
 
+	public static int atkLvl;
+	
 	public Player(GameLogic gameLogic) {
 		// TODO Auto-generated constructor stub
 		super(2500, 6);
 		this.maxHp = this.hp;
-		maxShield = 1250;
+		maxShield = 1200;
 		shield = maxShield;
-		shieldRegen = 3.2;
+		shieldLvl = 1;
+		regenLvl = 1;
+		atkLvl = 1;
 		isDamaged = false;
 
 		this.z = 0;
@@ -137,39 +141,45 @@ public class Player extends Unit implements IRenderable {
 		gc.setFont(RenderableHolder.inGameFontSmall);
 		FontLoader fontLoader = Toolkit.getToolkit().getFontLoader();
 		
+		gc.setFill(Color.RED);
+		String atkLevelDisplay = "Firepower Level : " + Integer.toString(Player.atkLvl);
+		double atkLevelDisplay_height = fontLoader.getFontMetrics(RenderableHolder.inGameFontSmall)
+				.getLineHeight();
+		gc.fillText(atkLevelDisplay, 10, 10 + atkLevelDisplay_height);
+		
 		gc.setFill(Color.DODGERBLUE);
 		String shieldLevelDisplay = "Shield Level : " + Integer.toString(this.shieldLvl);
 		double shieldLevelDisplay_height = fontLoader.getFontMetrics(RenderableHolder.inGameFontSmall)
 				.getLineHeight();
-		gc.fillText(shieldLevelDisplay, 10, 10 + shieldLevelDisplay_height);
+		gc.fillText(shieldLevelDisplay, 10, 30 + shieldLevelDisplay_height);
 		
 		gc.setFill(Color.SKYBLUE);
 		String regenLevelDisplay = "Regen Level : " + Integer.toString(this.regenLvl);
 		double regenLevelDisplay_height = fontLoader.getFontMetrics(RenderableHolder.inGameFontSmall)
 				.getLineHeight();
-		gc.fillText(regenLevelDisplay, 10, 30 + regenLevelDisplay_height);
+		gc.fillText(regenLevelDisplay, 10, 50 + regenLevelDisplay_height);
 		
 		gc.setFill(Color.GREENYELLOW);
 		if (powerAttack > 0 && fireMode == 1) {
 			String remainPowerAttack = "Power Attack: " + Integer.toString(this.powerAttack);
 			double remainPowerAttack_height = fontLoader.getFontMetrics(RenderableHolder.inGameFontSmall)
 					.getLineHeight();
-			gc.fillText(remainPowerAttack, 10, 60 + remainPowerAttack_height);
+			gc.fillText(remainPowerAttack, 10, 70 + remainPowerAttack_height);
 
 			String TripleFire = "Triple Fire: "
 					+ Long.toString((this.TripleFireTimeOut - System.nanoTime()) / 1000000000);
 			double TripleFire_height = fontLoader.getFontMetrics(RenderableHolder.inGameFontSmall).getLineHeight();
-			gc.fillText(TripleFire, 10, 60 + remainPowerAttack_height + TripleFire_height);
+			gc.fillText(TripleFire, 10, 70 + remainPowerAttack_height + TripleFire_height);
 		} else if (powerAttack > 0) {
 			String remainPowerAttack = "Power Attack: " + Integer.toString(this.powerAttack);
 			double remainPowerAttack_height = fontLoader.getFontMetrics(RenderableHolder.inGameFontSmall)
 					.getLineHeight();
-			gc.fillText(remainPowerAttack, 10, 60 + remainPowerAttack_height);
+			gc.fillText(remainPowerAttack, 10, 70 + remainPowerAttack_height);
 		} else if (fireMode == 1) {
 			String TripleFire = "Triple Fire: "
 					+ Long.toString((this.TripleFireTimeOut - System.nanoTime()) / 1000000000);
 			double TripleFire_height = fontLoader.getFontMetrics(RenderableHolder.inGameFontSmall).getLineHeight();
-			gc.fillText(TripleFire, 10, 60 + TripleFire_height);
+			gc.fillText(TripleFire, 10, 70 + TripleFire_height);
 		}
 	}
 
@@ -205,7 +215,19 @@ public class Player extends Unit implements IRenderable {
 		if (CharacterInput.getTriggeredCtrl().poll() == KeyCode.CONTROL) {
 
 			if (this.powerAttack > 0) {
-				gameLogic.addPendingBullet(new Bullet(x, y, 0, 30, 1, 6, this));
+				gameLogic.addPendingBullet(new Bullet(x, y + this.height, 0, 40, 1, 6, this));
+				
+				gameLogic.addPendingBullet(new Bullet(x, y + this.height, 0, -40, 1, 6, this));
+				gameLogic.addPendingBullet(new Bullet(x, y + this.height, 12, 0, 1, 6, this));
+				gameLogic.addPendingBullet(new Bullet(x, y + this.height, -12, 0, 1, 6, this));
+				gameLogic.addPendingBullet(new Bullet(x, y + this.height, 10, 20, 1, 6, this));
+				gameLogic.addPendingBullet(new Bullet(x, y + this.height, -10, -20, 1, 6, this));
+				gameLogic.addPendingBullet(new Bullet(x, y + this.height, 10, -20, 1, 6, this));
+				gameLogic.addPendingBullet(new Bullet(x, y + this.height, -10, 20, 1, 6, this));
+				gameLogic.addPendingBullet(new Bullet(x, y + this.height, 6, 35, 1, 6, this));
+				gameLogic.addPendingBullet(new Bullet(x, y + this.height, -6, 35, 1, 6, this));
+				gameLogic.addPendingBullet(new Bullet(x, y + this.height, 6, -35, 1, 6, this));
+				gameLogic.addPendingBullet(new Bullet(x, y + this.height, -6, -35, 1, 6, this));
 				RenderableHolder.powerAttackLaunch.play();
 				powerAttack--;
 
@@ -223,9 +245,9 @@ public class Player extends Unit implements IRenderable {
 				} else if (fireMode == 1) {
 					gameLogic.addPendingBullet(new Bullet(x, y, 0, 20, 1, 0, this));
 					RenderableHolder.fireBall.play();
-					gameLogic.addPendingBullet(new Bullet(x - 20, y, 0, 20, 1, 0, this));
+					gameLogic.addPendingBullet(new Bullet(x - 20, y, 1, 20, 1, 0, this));
 					RenderableHolder.fireBall.play();
-					gameLogic.addPendingBullet(new Bullet(x + 20, y, 0, 20, 1, 0, this));
+					gameLogic.addPendingBullet(new Bullet(x + 20, y, -1, 20, 1, 0, this));
 					RenderableHolder.fireBall.play();
 				}
 				prevbulletTick = bulletDelayTick;
@@ -243,7 +265,7 @@ public class Player extends Unit implements IRenderable {
 				this.isDamaged = false;
 			}
 		} else if (!fullShield) {
-			this.shield += this.shieldRegen;
+			this.shield += (this.regenLvl + 5) * this.maxShield / 2000;
 			if (this.shield > this.maxShield) {
 				this.shield = this.maxShield;
 				this.fullShield = true;
@@ -273,7 +295,7 @@ public class Player extends Unit implements IRenderable {
 			this.hp -= (other.collideDamage - damageReduced);
 			this.isDamaged = true;
 			this.fullShield = false;
-			this.regenTimeOut = System.nanoTime() + (25 - this.regenLvl) * 100000000l;
+			this.regenTimeOut = System.nanoTime() + (35 - this.regenLvl * 3) * 50000000l;
 		}
 
 		if (other instanceof HPBox) {
@@ -284,23 +306,29 @@ public class Player extends Unit implements IRenderable {
 		}
 		if (other instanceof TripleFireBox) {
 			this.fireMode = 1;
-			this.TripleFireTimeOut = System.nanoTime() + 10000000000l; // 10 seconds timeout
+			this.TripleFireTimeOut = System.nanoTime() + 12000000000l; // 10 seconds timeout
 		}
 		if (other instanceof PowerAttackBox) {
 			powerAttack++;
 		}
 		if (other instanceof ShieldMaxBox) {
 			this.maxShield += ((ShieldMaxBox) other).getShieldStorage();
+			this.shield += ((ShieldMaxBox) other).getShieldStorage();
 			shieldLvl++;
-			if(shieldLvl > 10) {
-				shieldLvl = 10;
+			if(shieldLvl > 5) {
+				shieldLvl = 5;
 			}
 		}
 		if (other instanceof ShieldRegenBox) {
-			this.shieldRegen += ((ShieldRegenBox) other).getRegenStorage();
 			regenLvl++;
-			if(regenLvl > 10) {
-				regenLvl = 10;
+			if(regenLvl > 5) {
+				regenLvl = 5;
+			}
+		}
+		if (other instanceof AttackBox) {
+			atkLvl++;
+			if(atkLvl > 5) {
+				atkLvl = 5;
 			}
 		}
 		// to be further discussed (sound effect etc)
@@ -349,6 +377,5 @@ public class Player extends Unit implements IRenderable {
 		bound.setRadius(width / 4);
 		return bound;
 	}
-
 
 }

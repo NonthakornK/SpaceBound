@@ -6,10 +6,9 @@ import javafx.scene.canvas.GraphicsContext;
 import renderer.RenderableHolder;
 
 public class ShieldRegenBox extends Items {
-	private final double regenStorage = 0.4;
 
 	public ShieldRegenBox(double x) {
-		super(ThreadLocalRandom.current().nextDouble(1, 5));
+		super(ThreadLocalRandom.current().nextDouble(2,4));
 		this.width = RenderableHolder.shieldregen.getWidth();
 		this.height = RenderableHolder.shieldregen.getHeight();
 		this.visible = true;
@@ -18,7 +17,7 @@ public class ShieldRegenBox extends Items {
 		this.y = -this.height - ThreadLocalRandom.current().nextDouble(500);
 		this.collideDamage = 0;
 	}
-
+	
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
@@ -31,10 +30,6 @@ public class ShieldRegenBox extends Items {
 		this.hp = 0;
 		this.destroyed = true;
 		this.visible = false;
-	}
-
-	public double getRegenStorage() {
-		return regenStorage;
 	}
 
 }

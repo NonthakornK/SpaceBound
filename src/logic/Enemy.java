@@ -25,26 +25,11 @@ public abstract class Enemy extends Unit {
 		this.hp -= others.collideDamage;
 		if (this.hp <= 0) {
 			if (!this.destroyed) {
-				//calculateScore(this);
-				if(this instanceof Asteroid) {
-					GameLogic.currentEnemyWeight -= 1;
-				}
-				else if(this instanceof EMachine) {
-					GameLogic.currentEnemyWeight -= 1.5;
-				}
-				else if(this instanceof EGhost) {
-					GameLogic.currentEnemyWeight -= 2;
-				}
-				else if(this instanceof ETree) {
-					GameLogic.currentEnemyWeight -= 2.5;
-				}
-				else if(this instanceof ESemiBoss) {
-					GameLogic.currentEnemyWeight -= 3.5;
-					GameLogic.relaxTime = System.nanoTime() + 18000000000l;
-					GameLogic.currentEnemyWeight += 32.4;
+				GameLogic.currentEnemyWeight -= this.getWeight();
+				if(this instanceof ESemiBoss) {
+					GameLogic.killedSemi = true;
 				}
 				else if(this instanceof EBoss) {
-					GameLogic.currentEnemyWeight -= 5;
 					GameLogic.killedBoss = true;
 				}
 				Explosion e = new Explosion(x, y, width, height, z);
@@ -54,49 +39,16 @@ public abstract class Enemy extends Unit {
 			this.destroyed = true;
 			this.visible = false;
 		}
-		// System.out.println(this.getClass() + " is collided! by player " + this.hp);
 	}
 
 	public boolean isOutOfScreen() {
 		if ((int) this.y > SceneManager.SCENE_HEIGHT) {
-			if(this instanceof Asteroid) {
-				GameLogic.currentEnemyWeight -= 1;
-			}
-			else if(this instanceof EMachine) {
-				GameLogic.currentEnemyWeight -= 1.5;
-			}
-			else if(this instanceof EGhost) {
-				GameLogic.currentEnemyWeight -= 2;
-			}
-			else if(this instanceof ETree) {
-				GameLogic.currentEnemyWeight -= 2.5;
-			}
+			GameLogic.currentEnemyWeight -= this.getWeight();
 			return true;
 		}
 		return false;
 	}
-
-//	private void calculateScore(Enemy e) {
-//		if (e instanceof EBoss) {
-//			Score.score += 30;
-//			GameLogic.isBossAlive = false;
-//			GameLogic.killedBoss = true;
-//		}
-//		if (e instanceof Asteroid) {
-//			Score.score += 1;
-//		}
-//		if (e instanceof EGhost) {
-//			Score.score += 5;
-//		}
-//		if (e instanceof EMachine) {
-//			Score.score += 3;
-//		}
-//		if (e instanceof ETree) {
-//			Score.score += 10;
-//		}
-//		if (e instanceof ESemiBoss) {
-//			Score.score += 15;
-//		}
-//	}
+	
+	public abstract double getWeight();
 
 }

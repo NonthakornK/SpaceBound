@@ -5,13 +5,12 @@ import java.util.concurrent.ThreadLocalRandom;
 import javafx.scene.canvas.GraphicsContext;
 import renderer.RenderableHolder;
 
-public class ShieldMaxBox extends Items {
-	private final int shieldStorage = 200;
+public class AttackBox extends Items {
 	
-	public ShieldMaxBox(double x) {
-		super(ThreadLocalRandom.current().nextDouble(2, 4));
-		this.width = RenderableHolder.shieldmax.getWidth();
-		this.height = RenderableHolder.shieldmax.getHeight();
+	public AttackBox(double x) {
+		super(ThreadLocalRandom.current().nextDouble(2,4));
+		this.width = RenderableHolder.attackBox.getWidth();
+		this.height = RenderableHolder.attackBox.getHeight();
 		this.visible = true;
 		this.destroyed = false;
 		this.x = x;
@@ -22,7 +21,7 @@ public class ShieldMaxBox extends Items {
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		gc.drawImage(RenderableHolder.shieldmax, x, y);
+		gc.drawImage(RenderableHolder.attackBox, x, y);
 	}
 
 	@Override
@@ -31,10 +30,6 @@ public class ShieldMaxBox extends Items {
 		this.hp = 0;
 		this.destroyed = true;
 		this.visible = false;
-	}
-
-	public int getShieldStorage() {
-		return shieldStorage;
 	}
 	
 }

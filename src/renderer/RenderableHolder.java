@@ -18,7 +18,7 @@ public class RenderableHolder {// the picture class maker and we use this to mak
 	// how it looks etc)
 	public static Image dragon, eSemiBoss, eBoss, eGhost, eSpiriteFire, eMachine, eTree, bullet, background,
 			backgroundMM, backgroundW, healthpack, bossBullet, roundBulletB, roundBulletY, roundBulletR, roundBulletP,
-			powerAttack, exploArr[], randomBox, asteroidArr[], shieldmax, shieldregen;
+			powerAttack, exploArr[], randomBox, asteroidArr[], shieldmax, shieldregen, attackBox, powerattackBox;
 	public static AudioClip bgm, fireBall, explosion, explosion2, gameOverMusic, mainMenuMusic, powerAttackLaunch,
 			gameWinnerMusic;
 	public static Font inGameFont, inGameFontSmall;
@@ -77,8 +77,11 @@ public class RenderableHolder {// the picture class maker and we use this to mak
 		backgroundMM = new Image(ClassLoader.getSystemResource("res/background/BgMainMenu.jpg").toString());
 		backgroundW = new Image(ClassLoader.getSystemResource("res/background/BgGameWinner.jpg").toString());
 		// background of 3 screen
-		randomBox = new Image(ClassLoader.getSystemResource("res/items/randomBox.png").toString());
+		randomBox = new Image(ClassLoader.getSystemResource("res/items/randombox.png").toString());
 		//healthpack = new Image(ClassLoader.getSystemResource("res/items/healthpack.gif").toString());
+		attackBox = new Image(ClassLoader.getSystemResource("res/bullet/fireball2.gif").toString());
+		
+		powerattackBox = new Image(ClassLoader.getSystemResource("res/items/powerattack.gif").toString());
 		healthpack = new Image(ClassLoader.getSystemResource("res/items/health.png").toString());
 		shieldmax = new Image(ClassLoader.getSystemResource("res/items/shieldmax.gif").toString());
 		shieldregen = new Image(ClassLoader.getSystemResource("res/items/shieldregen.gif").toString());
