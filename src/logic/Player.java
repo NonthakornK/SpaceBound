@@ -23,18 +23,31 @@ public class Player extends Unit implements IRenderable {
 	private Image playerImage = null;
 	GameLogic gameLogic;
 	private int bulletDelayTick = 0, prevbulletTick = 0;
-	private double originalHp;
+	private double maxHp;
+	private int maxShield;
+	private double shield;
+	private int shieldLvl;
+	private double shieldRegen;
+	private int regenLvl;
+	private long regenTimeOut = 0;
+	private boolean isDamaged;
 	private long TripleFireTimeOut = 0;
 	private int powerAttack = 0;
 	private int fireMode = 0;
+	private boolean fullShield;
+	private final double shieldReduction = 0.35;
 
 	public Player(GameLogic gameLogic) {
 		// TODO Auto-generated constructor stub
 		super(2500, 6);
-		this.originalHp = this.hp;
+		this.maxHp = this.hp;
+		maxShield = 750;
+		shield = maxShield;
+		shieldRegen = 1.5;
+		isDamaged = false;
+
 		this.z = 0;
 
-		
 		playerImage = RenderableHolder.dragon;
 
 		this.gameLogic = gameLogic;
@@ -45,7 +58,7 @@ public class Player extends Unit implements IRenderable {
 			// System.out.println(imageWidth + " " + imageHeight);
 			this.x = SceneManager.SCENE_WIDTH / 2 - this.width / 2;
 			this.y = (SceneManager.SCENE_HEIGHT - this.height) - 60;
-			//this.speed = 3;
+			// this.speed = 3;
 			this.side = 1;
 			this.collideDamage = 10; // test
 		} else {
@@ -55,7 +68,7 @@ public class Player extends Unit implements IRenderable {
 	}
 
 	private void drawHpBar(GraphicsContext gc) {
-		double percentHp = this.hp / this.originalHp;
+		double percentHp = this.hp / this.maxHp;
 		if (percentHp >= 0.65) {
 			// gc.setFill(Color.LAWNGREEN);
 			LinearGradient linearGrad = new LinearGradient(0, // start X
@@ -78,7 +91,45 @@ public class Player extends Unit implements IRenderable {
 					new Stop(0.1f, Color.RED), new Stop(1.0f, Color.BLACK));
 			gc.setFill(linearGrad);
 		}
-		gc.fillRect(SceneManager.SCENE_WIDTH / 2 - 200 * percentHp, 750, 2 * 200 * percentHp, 20);
+		//gc.fillRect(SceneManager.SCENE_WIDTH / 2 - 200 * percentHp, 750, 2 * 200 * percentHp, 20);
+		gc.fillRect(SceneManager.SCENE_WIDTH / 2 - 200, 730, 400 * percentHp, 20);
+		
+		gc.setFill(Color.WHITE);
+		gc.fillRect(SceneManager.SCENE_WIDTH / 2 - 202, 730, 2, 20);
+		gc.fillRect(SceneManager.SCENE_WIDTH / 2 + 200, 730, 2, 20);
+
+	}
+
+	private void drawShieldBar(GraphicsContext gc) {
+		double percentShield = this.shield / this.maxShield;
+		if (percentShield >= 0.65) {
+			// gc.setFill(Color.LAWNGREEN);
+			LinearGradient linearGrad = new LinearGradient(0, // start X
+					0, // start Y
+					0, // end X
+					1, // end Y
+					true, // proportional
+					CycleMethod.NO_CYCLE, // cycle colors
+					// stops
+					new Stop(0.1f, Color.ROYALBLUE), new Stop(1.0f, Color.BLUE));
+			gc.setFill(linearGrad);
+		} else if (percentShield >= 0.25) {
+			LinearGradient linearGrad = new LinearGradient(0, 0, 0, 1, true, CycleMethod.NO_CYCLE,
+					// stops
+					new Stop(0.1f, Color.DEEPSKYBLUE), new Stop(1.0f, Color.DODGERBLUE));
+			gc.setFill(linearGrad);
+		} else {
+			LinearGradient linearGrad = new LinearGradient(0, 0, 0, 1, true, CycleMethod.NO_CYCLE,
+					// stops
+					new Stop(0.1f, Color.LIGHTBLUE), new Stop(1.0f, Color.STEELBLUE));
+			gc.setFill(linearGrad);
+		}
+		//gc.fillRect(SceneManager.SCENE_WIDTH / 2 - 200 * percentShield, 775, 2 * 200 * percentShield, 20);
+		gc.fillRect(SceneManager.SCENE_WIDTH / 2 - 200, 760, 400 * percentShield, 20);
+		
+		gc.setFill(Color.WHITE);
+		gc.fillRect(SceneManager.SCENE_WIDTH / 2 - 202, 760, 2, 20);
+		gc.fillRect(SceneManager.SCENE_WIDTH / 2 + 200, 760, 2, 20);
 
 	}
 
@@ -88,18 +139,22 @@ public class Player extends Unit implements IRenderable {
 		FontLoader fontLoader = Toolkit.getToolkit().getFontLoader();
 		if (powerAttack > 0 && fireMode == 1) {
 			String remainPowerAttack = "Power Attack: " + Integer.toString(this.powerAttack);
-			double remainPowerAttack_height = fontLoader.getFontMetrics(RenderableHolder.inGameFontSmall).getLineHeight();
+			double remainPowerAttack_height = fontLoader.getFontMetrics(RenderableHolder.inGameFontSmall)
+					.getLineHeight();
 			gc.fillText(remainPowerAttack, 10, 10 + remainPowerAttack_height);
 
-			String TripleFire = "Triple Fire: " + Long.toString((this.TripleFireTimeOut - System.nanoTime()) / 1000000000);
+			String TripleFire = "Triple Fire: "
+					+ Long.toString((this.TripleFireTimeOut - System.nanoTime()) / 1000000000);
 			double TripleFire_height = fontLoader.getFontMetrics(RenderableHolder.inGameFontSmall).getLineHeight();
 			gc.fillText(TripleFire, 10, 20 + remainPowerAttack_height + TripleFire_height);
 		} else if (powerAttack > 0) {
 			String remainPowerAttack = "Power Attack: " + Integer.toString(this.powerAttack);
-			double remainPowerAttack_height = fontLoader.getFontMetrics(RenderableHolder.inGameFontSmall).getLineHeight();
+			double remainPowerAttack_height = fontLoader.getFontMetrics(RenderableHolder.inGameFontSmall)
+					.getLineHeight();
 			gc.fillText(remainPowerAttack, 10, 10 + remainPowerAttack_height);
 		} else if (fireMode == 1) {
-			String TripleFire = "Triple Fire: " + Long.toString((this.TripleFireTimeOut - System.nanoTime()) / 1000000000);
+			String TripleFire = "Triple Fire: "
+					+ Long.toString((this.TripleFireTimeOut - System.nanoTime()) / 1000000000);
 			double TripleFire_height = fontLoader.getFontMetrics(RenderableHolder.inGameFontSmall).getLineHeight();
 			gc.fillText(TripleFire, 10, 10 + TripleFire_height);
 		}
@@ -110,6 +165,7 @@ public class Player extends Unit implements IRenderable {
 		// TODO Auto-generated method stub
 		gc.drawImage(playerImage, x, y);
 		drawHpBar(gc);
+		drawShieldBar(gc);
 		drawItemsStatus(gc);
 
 	}
@@ -137,7 +193,7 @@ public class Player extends Unit implements IRenderable {
 
 			if (this.powerAttack > 0) {
 				gameLogic.addPendingBullet(new Bullet(x, y, 0, 30, 1, 6, this));
-				RenderableHolder. powerAttackLaunch.play();
+				RenderableHolder.powerAttackLaunch.play();
 				powerAttack--;
 
 			}
@@ -169,24 +225,62 @@ public class Player extends Unit implements IRenderable {
 			fireMode = 0;
 		}
 
+		if (isDamaged) {
+			if (this.regenTimeOut <= System.nanoTime()) {
+				this.isDamaged = false;
+			}
+		} else if (!fullShield) {
+			this.shield += this.shieldRegen;
+			if (this.shield > this.maxShield) {
+				this.shield = this.maxShield;
+				this.fullShield = true;
+			}
+		}
+
 	}
 
 	@Override
-	public void onCollision(Unit others) {
+	public void onCollision(Unit other) {
 		// TODO Auto-generated method stub
-		this.hp -= others.collideDamage;
-		if (others instanceof HPBox) {
-			this.hp += ((HPBox) others).getHPStorage();
-			if (this.hp > this.originalHp) {
-				this.hp = this.originalHp;
+		// this.hp -= other.collideDamage;
+
+		if (other instanceof Enemy || other instanceof Bullet) {
+			double damageReduced;
+			if (other instanceof Enemy) {
+				damageReduced = other.collideDamage * this.shieldReduction;
+			} else {
+				damageReduced = other.collideDamage;
+			}
+			if (damageReduced > this.shield) {
+				damageReduced = this.shield;
+				this.shield = 0;
+			} else {
+				this.shield -= damageReduced;
+			}
+			this.hp -= (other.collideDamage - damageReduced);
+			this.isDamaged = true;
+			this.fullShield = false;
+			this.regenTimeOut = System.nanoTime() + 3000000000l;
+		}
+
+		if (other instanceof HPBox) {
+			this.hp += ((HPBox) other).getHPStorage();
+			if (this.hp > this.maxHp) {
+				this.hp = this.maxHp;
 			}
 		}
-		if (others instanceof TripleFireBox) {
+		if (other instanceof TripleFireBox) {
 			this.fireMode = 1;
 			this.TripleFireTimeOut = System.nanoTime() + 10000000000l; // 10 seconds timeout
 		}
-		if (others instanceof PowerAttackBox) {
+		if (other instanceof PowerAttackBox) {
 			powerAttack++;
+		}
+		if (other instanceof ShieldMaxBox) {
+			this.maxShield += ((ShieldMaxBox) other).getShieldStorage();
+		}
+		if (other instanceof ShieldRegenBox) {
+			this.shieldRegen += ((ShieldRegenBox) other).getRegenStorage();
 		}
 		// to be further discussed (sound effect etc)
 		if (this.hp <= 0) {
@@ -233,6 +327,34 @@ public class Player extends Unit implements IRenderable {
 		bound.setCenterY(y + height / 2);
 		bound.setRadius(width / 4);
 		return bound;
+	}
+
+	public boolean isDamaged() {
+		return isDamaged;
+	}
+
+	public double getShield() {
+		return shield;
+	}
+
+	public void setShield(int shield) {
+		this.shield = shield;
+	}
+
+	public double getShieldRegen() {
+		return shieldRegen;
+	}
+
+	public void setShieldRegen(double shieldRegen) {
+		this.shieldRegen = shieldRegen;
+	}
+
+	public int getMaxShield() {
+		return maxShield;
+	}
+
+	public void setMaxShield(int maxShield) {
+		this.maxShield = maxShield;
 	}
 
 }

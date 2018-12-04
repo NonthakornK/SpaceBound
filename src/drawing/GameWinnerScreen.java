@@ -17,9 +17,9 @@ import window.SceneManager;
 
 public class GameWinnerScreen extends Canvas {
 	private static final Font TITLE_FONT = Font
-			.loadFont(ClassLoader.getSystemResource("font/Winner.otf").toString(), 70);
+			.loadFont(ClassLoader.getSystemResource("res/font/Winner.otf").toString(), 70);
 	private static final Font SCORE_FONT = Font
-			.loadFont(ClassLoader.getSystemResource("font/Winner.otf").toString(), 40);
+			.loadFont(ClassLoader.getSystemResource("res/font/Winner.otf").toString(), 40);
 	private AudioClip music = RenderableHolder.gameWinnerMusic;
 
 	public GameWinnerScreen() {
@@ -33,8 +33,8 @@ public class GameWinnerScreen extends Canvas {
 		gc.fillText("YOU WIN", SceneManager.SCENE_WIDTH / 2, SceneManager.SCENE_HEIGHT / 4);
 		gc.setFont(SCORE_FONT);
 		gc.setFill(Color.DARKORANGE);
-		String score = "Your score is : " + Score.score;
-		gc.fillText(score, SceneManager.SCENE_WIDTH / 2, SceneManager.SCENE_HEIGHT * 2 / 4);
+		String distance = "Your distance is : " + Score.distance + " ly";
+		gc.fillText(distance, SceneManager.SCENE_WIDTH / 2, SceneManager.SCENE_HEIGHT * 2 / 4);
 		gc.setFill(Color.DODGERBLUE);
 		gc.fillText("Press Enter to New Game", SceneManager.SCENE_WIDTH / 2, SceneManager.SCENE_HEIGHT * 3 / 4);
 		this.addKeyEventHandler();

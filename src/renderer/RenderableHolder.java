@@ -18,7 +18,7 @@ public class RenderableHolder {// the picture class maker and we use this to mak
 	// how it looks etc)
 	public static Image dragon, eSemiBoss, eBoss, eGhost, eSpiriteFire, eMachine, eTree, bullet, background,
 			backgroundMM, backgroundW, healthpack, bossBullet, roundBulletB, roundBulletY, roundBulletR, roundBulletP,
-			powerAttack, exploArr[], randomBox, asteroidArr[];
+			powerAttack, exploArr[], randomBox, asteroidArr[], shieldmax, shieldregen;
 	public static AudioClip bgm, fireBall, explosion, explosion2, gameOverMusic, mainMenuMusic, powerAttackLaunch,
 			gameWinnerMusic;
 	public static Font inGameFont, inGameFontSmall;
@@ -78,7 +78,10 @@ public class RenderableHolder {// the picture class maker and we use this to mak
 		backgroundW = new Image(ClassLoader.getSystemResource("res/background/BgGameWinner.jpg").toString());
 		// background of 3 screen
 		randomBox = new Image(ClassLoader.getSystemResource("res/items/randomBox.png").toString());
-		healthpack = new Image(ClassLoader.getSystemResource("res/items/healthpack.gif").toString());
+		//healthpack = new Image(ClassLoader.getSystemResource("res/items/healthpack.gif").toString());
+		healthpack = new Image(ClassLoader.getSystemResource("res/items/health.png").toString());
+		shieldmax = new Image(ClassLoader.getSystemResource("res/items/shieldmax.png").toString());
+		shieldregen = new Image(ClassLoader.getSystemResource("res/items/shieldregen.png").toString());
 		// item box picture
 		bgm = new AudioClip(ClassLoader.getSystemResource("res/song/GameScene.mp3").toExternalForm());
 		fireBall = new AudioClip(ClassLoader.getSystemResource("res/song/Fire_Ball.mp3").toExternalForm());

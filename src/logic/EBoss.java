@@ -32,6 +32,7 @@ public class EBoss extends Enemy {
 	public void update() {
 		// TODO Auto-generated method stub
 
+		
 		long now = System.nanoTime();
 		this.x = Math.sin(5 * now * 1e-9 + Math.toRadians(90)) * ((SceneManager.SCENE_WIDTH - this.width) / 2)
 				+ (SceneManager.SCENE_WIDTH - this.width) / 2.0;
@@ -42,6 +43,7 @@ public class EBoss extends Enemy {
 			this.visible = false;
 			this.destroyed = true;
 			GameLogic.isBossAlive = false;
+			GameLogic.killedBoss = true;
 		}
 		if (bulletDelayTick % 30 == 0) {
 			gameLogic.addPendingBullet(new Bullet(x, y, 0, 20, -1, 1, this));

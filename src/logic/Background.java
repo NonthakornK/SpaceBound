@@ -14,6 +14,7 @@ public class Background implements IRenderable {
 	private int screenWidth = 600;// can be changed later (according to our game screen size)
 	private int screenHeight = 3166;
 	private double scrollSpeed = 2.1;
+	private double scrollModifier = 1;
 
 	public Background() {
 		// TODO Auto-generated constructor stub
@@ -36,6 +37,10 @@ public class Background implements IRenderable {
 	}
 
 	public void updateBackground() {
+		if (Score.distance >= (scrollSpeed + scrollModifier) * 100) {
+			scrollSpeed += 0.1;
+			scrollModifier *= 1.2;
+		}
 		currentY += scrollSpeed;
 		if (currentY >= screenHeight) {
 			// System.out.println("bound check");

@@ -19,16 +19,34 @@ public abstract class Enemy extends Unit {
 		}
 
 
-		GameLogic.currentEnemyNum++;
-
 	}
 
 	public void onCollision(Unit others) {
 		this.hp -= others.collideDamage;
 		if (this.hp <= 0) {
 			if (!this.destroyed) {
-				calculateScore(this);
-				GameLogic.currentEnemyNum--;
+				//calculateScore(this);
+				if(this instanceof Asteroid) {
+					GameLogic.currentEnemyWeight -= 1;
+				}
+				else if(this instanceof EMachine) {
+					GameLogic.currentEnemyWeight -= 1.5;
+				}
+				else if(this instanceof EGhost) {
+					GameLogic.currentEnemyWeight -= 2;
+				}
+				else if(this instanceof ETree) {
+					GameLogic.currentEnemyWeight -= 2.5;
+				}
+				else if(this instanceof ESemiBoss) {
+					GameLogic.currentEnemyWeight -= 3.5;
+					GameLogic.relaxTime = System.nanoTime() + 18000000001L;
+					GameLogic.currentEnemyWeight += 32.4;
+				}
+				else if(this instanceof EBoss) {
+					GameLogic.currentEnemyWeight -= 5;
+					GameLogic.killedBoss = true;
+				}
 				Explosion e = new Explosion(x, y, width, height, z);
 				e.playSfx();
 				RenderableHolder.getInstance().add(e);
@@ -41,33 +59,44 @@ public abstract class Enemy extends Unit {
 
 	public boolean isOutOfScreen() {
 		if ((int) this.y > SceneManager.SCENE_HEIGHT) {
-			GameLogic.currentEnemyNum--;
+			if(this instanceof Asteroid) {
+				GameLogic.currentEnemyWeight -= 1;
+			}
+			else if(this instanceof EMachine) {
+				GameLogic.currentEnemyWeight -= 1.5;
+			}
+			else if(this instanceof EGhost) {
+				GameLogic.currentEnemyWeight -= 2;
+			}
+			else if(this instanceof ETree) {
+				GameLogic.currentEnemyWeight -= 2.5;
+			}
 			return true;
 		}
 		return false;
 	}
 
-	private void calculateScore(Enemy e) {
-		if (e instanceof EBoss) {
-			Score.score += 30;
-			GameLogic.isBossAlive = false;
-			GameLogic.killedBoss = true;
-		}
-		if (e instanceof Asteroid) {
-			Score.score += 1;
-		}
-		if (e instanceof EGhost) {
-			Score.score += 5;
-		}
-		if (e instanceof EMachine) {
-			Score.score += 3;
-		}
-		if (e instanceof ETree) {
-			Score.score += 10;
-		}
-		if (e instanceof ESemiBoss) {
-			Score.score += 15;
-		}
-	}
+//	private void calculateScore(Enemy e) {
+//		if (e instanceof EBoss) {
+//			Score.score += 30;
+//			GameLogic.isBossAlive = false;
+//			GameLogic.killedBoss = true;
+//		}
+//		if (e instanceof Asteroid) {
+//			Score.score += 1;
+//		}
+//		if (e instanceof EGhost) {
+//			Score.score += 5;
+//		}
+//		if (e instanceof EMachine) {
+//			Score.score += 3;
+//		}
+//		if (e instanceof ETree) {
+//			Score.score += 10;
+//		}
+//		if (e instanceof ESemiBoss) {
+//			Score.score += 15;
+//		}
+//	}
 
 }

@@ -32,6 +32,7 @@ public class ESemiBoss extends Enemy {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
+		
 		yOffset += this.speed;
 		long now = System.nanoTime();
 		this.x = Math.sin(2 * now * 1e-9) * ((SceneManager.SCENE_WIDTH - this.width) / 2)

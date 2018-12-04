@@ -14,7 +14,7 @@ public class Asteroid extends Enemy {
 	
 	public Asteroid(double x, Image i) {
 		// TODO Auto-generated constructor stub
-		super(100, 2);
+		super(150 + Score.distance/500, ThreadLocalRandom.current().nextDouble(3,6.5));
 		this.variation = i;
 		this.width = this.variation.getWidth();
 		this.height = this.variation.getHeight();
