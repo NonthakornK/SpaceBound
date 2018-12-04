@@ -178,18 +178,18 @@ public class GameLogic {
 		this.maxEnemyCap = 6 + stageLevel;
 		// check distance to spawn boss first
 		//if didn't check it will spawn a lot of boss
-		if (Score.distance >= 2000 && !isSemiAlive) {
+		if (Score.distance >= 5000 && !isSemiAlive) {
 			esemi = new ESemiBoss(this);
 			addNewObject(esemi);
 			GameLogic.currentEnemyWeight += 3.5;
 		}
-		if (Score.distance >= 30000 && !isBossAlive) {
+		if (Score.distance >= 40000 && !isBossAlive) {
 			eboss = new EBoss(this);
 			addNewObject(eboss);
 			GameLogic.currentEnemyWeight += 5;
 		}
 		
-		if (Score.distance >= 400 * stageLevel * stageLevel) {
+		if (Score.distance >= 500 * stageLevel * stageLevel) {
 			stageLevel++;
 		}
 
@@ -197,7 +197,7 @@ public class GameLogic {
 		// this.currentEnemyWeight);
 
 		if (GameLogic.currentEnemyWeight < this.maxEnemyCap) {
-			int chance = r.nextInt(100) - 30000 / (Score.distance + 1); // difficulty factor , +1 to prevent zero when start
+			int chance = r.nextInt(100) - 40000 / (Score.distance + 1); // difficulty factor , +1 to prevent zero when start
 																	// new game
 			// System.out.println(" chance " + chance);
 			if (chance < 55) {

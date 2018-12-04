@@ -26,9 +26,9 @@ public class Player extends Unit implements IRenderable {
 	private double maxHp;
 	private int maxShield;
 	private double shield;
-	private int shieldLvl;
+	private int shieldLvl = 1;
 	private double shieldRegen;
-	private int regenLvl;
+	private int regenLvl = 1;
 	private long regenTimeOut = 0;
 	private boolean isDamaged;
 	private long TripleFireTimeOut = 0;
@@ -41,9 +41,9 @@ public class Player extends Unit implements IRenderable {
 		// TODO Auto-generated constructor stub
 		super(2500, 6);
 		this.maxHp = this.hp;
-		maxShield = 750;
+		maxShield = 1250;
 		shield = maxShield;
-		shieldRegen = 1.5;
+		shieldRegen = 3.2;
 		isDamaged = false;
 
 		this.z = 0;
@@ -135,28 +135,41 @@ public class Player extends Unit implements IRenderable {
 
 	private void drawItemsStatus(GraphicsContext gc) {
 		gc.setFont(RenderableHolder.inGameFontSmall);
-		gc.setFill(Color.GREENYELLOW);
 		FontLoader fontLoader = Toolkit.getToolkit().getFontLoader();
+		
+		gc.setFill(Color.DODGERBLUE);
+		String shieldLevelDisplay = "Shield Level : " + Integer.toString(this.shieldLvl);
+		double shieldLevelDisplay_height = fontLoader.getFontMetrics(RenderableHolder.inGameFontSmall)
+				.getLineHeight();
+		gc.fillText(shieldLevelDisplay, 10, 10 + shieldLevelDisplay_height);
+		
+		gc.setFill(Color.SKYBLUE);
+		String regenLevelDisplay = "Regen Level : " + Integer.toString(this.regenLvl);
+		double regenLevelDisplay_height = fontLoader.getFontMetrics(RenderableHolder.inGameFontSmall)
+				.getLineHeight();
+		gc.fillText(regenLevelDisplay, 10, 30 + regenLevelDisplay_height);
+		
+		gc.setFill(Color.GREENYELLOW);
 		if (powerAttack > 0 && fireMode == 1) {
 			String remainPowerAttack = "Power Attack: " + Integer.toString(this.powerAttack);
 			double remainPowerAttack_height = fontLoader.getFontMetrics(RenderableHolder.inGameFontSmall)
 					.getLineHeight();
-			gc.fillText(remainPowerAttack, 10, 10 + remainPowerAttack_height);
+			gc.fillText(remainPowerAttack, 10, 60 + remainPowerAttack_height);
 
 			String TripleFire = "Triple Fire: "
 					+ Long.toString((this.TripleFireTimeOut - System.nanoTime()) / 1000000000);
 			double TripleFire_height = fontLoader.getFontMetrics(RenderableHolder.inGameFontSmall).getLineHeight();
-			gc.fillText(TripleFire, 10, 20 + remainPowerAttack_height + TripleFire_height);
+			gc.fillText(TripleFire, 10, 60 + remainPowerAttack_height + TripleFire_height);
 		} else if (powerAttack > 0) {
 			String remainPowerAttack = "Power Attack: " + Integer.toString(this.powerAttack);
 			double remainPowerAttack_height = fontLoader.getFontMetrics(RenderableHolder.inGameFontSmall)
 					.getLineHeight();
-			gc.fillText(remainPowerAttack, 10, 10 + remainPowerAttack_height);
+			gc.fillText(remainPowerAttack, 10, 60 + remainPowerAttack_height);
 		} else if (fireMode == 1) {
 			String TripleFire = "Triple Fire: "
 					+ Long.toString((this.TripleFireTimeOut - System.nanoTime()) / 1000000000);
 			double TripleFire_height = fontLoader.getFontMetrics(RenderableHolder.inGameFontSmall).getLineHeight();
-			gc.fillText(TripleFire, 10, 10 + TripleFire_height);
+			gc.fillText(TripleFire, 10, 60 + TripleFire_height);
 		}
 	}
 
@@ -260,7 +273,7 @@ public class Player extends Unit implements IRenderable {
 			this.hp -= (other.collideDamage - damageReduced);
 			this.isDamaged = true;
 			this.fullShield = false;
-			this.regenTimeOut = System.nanoTime() + 3000000000l;
+			this.regenTimeOut = System.nanoTime() + 2500000000l;
 		}
 
 		if (other instanceof HPBox) {
@@ -278,9 +291,11 @@ public class Player extends Unit implements IRenderable {
 		}
 		if (other instanceof ShieldMaxBox) {
 			this.maxShield += ((ShieldMaxBox) other).getShieldStorage();
+			shieldLvl++;
 		}
 		if (other instanceof ShieldRegenBox) {
 			this.shieldRegen += ((ShieldRegenBox) other).getRegenStorage();
+			regenLvl++;
 		}
 		// to be further discussed (sound effect etc)
 		if (this.hp <= 0) {
@@ -329,32 +344,5 @@ public class Player extends Unit implements IRenderable {
 		return bound;
 	}
 
-	public boolean isDamaged() {
-		return isDamaged;
-	}
-
-	public double getShield() {
-		return shield;
-	}
-
-	public void setShield(int shield) {
-		this.shield = shield;
-	}
-
-	public double getShieldRegen() {
-		return shieldRegen;
-	}
-
-	public void setShieldRegen(double shieldRegen) {
-		this.shieldRegen = shieldRegen;
-	}
-
-	public int getMaxShield() {
-		return maxShield;
-	}
-
-	public void setMaxShield(int maxShield) {
-		this.maxShield = maxShield;
-	}
 
 }

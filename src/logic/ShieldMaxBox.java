@@ -6,7 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
 import renderer.RenderableHolder;
 
 public class ShieldMaxBox extends Items {
-	private final int shieldStorage = 150;
+	private final int shieldStorage = 250;
 	
 	public ShieldMaxBox(double x) {
 		super(ThreadLocalRandom.current().nextDouble(1, 5));

@@ -6,7 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
 import renderer.RenderableHolder;
 
 public class ShieldRegenBox extends Items {
-	private final double regenStorage = 0.3;
+	private final double regenStorage = 0.4;
 
 	public ShieldRegenBox(double x) {
 		super(ThreadLocalRandom.current().nextDouble(1, 5));

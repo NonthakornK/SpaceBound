@@ -46,27 +46,27 @@ public class Bullet extends Unit {
 			this.height = RenderableHolder.roundBulletB.getHeight();
 			this.width = RenderableHolder.roundBulletB.getWidth();
 			bulletSprite = RenderableHolder.roundBulletB;
-			this.collideDamage = 10;
+			this.collideDamage = 15;
 		} else if (type == 3) {
 			this.height = RenderableHolder.roundBulletY.getHeight();
 			this.width = RenderableHolder.roundBulletY.getWidth();
 			bulletSprite = RenderableHolder.roundBulletY;
-			this.collideDamage = 10;
+			this.collideDamage = 15;
 		} else if (type == 4) {
 			this.height = RenderableHolder.roundBulletR.getHeight();
 			this.width = RenderableHolder.roundBulletR.getWidth();
 			bulletSprite = RenderableHolder.roundBulletR;
-			this.collideDamage = 10;
+			this.collideDamage = 15;
 		} else if (type == 5) {
 			this.height = RenderableHolder.roundBulletP.getHeight();
 			this.width = RenderableHolder.roundBulletP.getWidth();
 			bulletSprite = RenderableHolder.roundBulletP;
-			this.collideDamage = 10;
+			this.collideDamage = 15;
 		} else if (type == 6) {
 			this.height = RenderableHolder.powerAttack.getHeight();
 			this.width = RenderableHolder.powerAttack.getWidth();
 			bulletSprite = RenderableHolder.powerAttack;
-			this.collideDamage = 10;
+			this.collideDamage = 20;
 		}
 		if (side == 1) {
 			this.x = x + (e.width - this.width) / 2.0;
