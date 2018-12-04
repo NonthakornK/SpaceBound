@@ -50,8 +50,7 @@ public class GameLogic {
 		stageLevel = 1;
 		GameLogic.isBossAlive = false;
 		GameLogic.isSemiAlive = false;
-		killedBoss=false;
-		
+		killedBoss = false;
 
 		RenderableHolder.getInstance().add(new Background());
 		RenderableHolder.getInstance().add(new Score());
@@ -65,12 +64,12 @@ public class GameLogic {
 		pendingBullet = new ConcurrentLinkedQueue<>();
 
 	}
-	
+
 	protected void addNewObject(Unit unit) {
 		gameObjectContainer.add(unit);
 		RenderableHolder.getInstance().add(unit);
 	}
-	
+
 	protected void winGame() {
 		this.isGameRunning = false;
 		this.gameObjectContainer.clear();
@@ -91,7 +90,7 @@ public class GameLogic {
 
 	private void gameLoop() {
 		long lastLoopStartTime = System.nanoTime();
-		GameLogic.relaxTime = System.nanoTime() + 9000000001L;
+		GameLogic.relaxTime = System.nanoTime() + 9000000000l;
 		GameLogic.currentEnemyWeight += 16.2;
 		while (isGameRunning) {
 			long elapsedTime = System.nanoTime() - lastLoopStartTime;
@@ -110,8 +109,8 @@ public class GameLogic {
 
 	private void updateGame() {
 		// TODO fill code
-		
-		if(relaxTime >= System.nanoTime()) {
+
+		if (relaxTime >= System.nanoTime()) {
 			GameLogic.currentEnemyWeight -= 0.03;
 		}
 		spawnEnemy();
@@ -144,7 +143,7 @@ public class GameLogic {
 		if (player.isDestroyed()) {
 			gameOverCountdown--;
 		}
-		if(killedBoss) {
+		if (killedBoss) {
 			gameWinCountdown--;
 		}
 		if (gameWinCountdown == 0) {
@@ -153,16 +152,15 @@ public class GameLogic {
 		if (gameOverCountdown == 0) {
 			GameMain.loseGame();
 		}
-		
+
 		double mod = Score.distance / 500;
-		hiddenDistance += 0.5 + mod/4;
-		//if(hiddenDistance > 5000) {
-			//Score.distance = ((int) hiddenDistance/100)*100;
-		//}
-		//else {
-			Score.distance = (int) hiddenDistance;
-		//}
-		
+		hiddenDistance += 0.5 + mod / 4;
+		// if(hiddenDistance > 5000) {
+		// Score.distance = ((int) hiddenDistance/100)*100;
+		// }
+		// else {
+		Score.distance = (int) hiddenDistance;
+		// }
 
 	}
 
@@ -177,7 +175,7 @@ public class GameLogic {
 		Random r = new Random();
 		this.maxEnemyCap = 6 + stageLevel;
 		// check distance to spawn boss first
-		//if didn't check it will spawn a lot of boss
+		// if didn't check it will spawn a lot of boss
 		if (Score.distance >= 5000 && !isSemiAlive) {
 			esemi = new ESemiBoss(this);
 			addNewObject(esemi);
@@ -188,7 +186,7 @@ public class GameLogic {
 			addNewObject(eboss);
 			GameLogic.currentEnemyWeight += 5;
 		}
-		
+
 		if (Score.distance >= 500 * stageLevel * stageLevel) {
 			stageLevel++;
 		}
@@ -197,13 +195,15 @@ public class GameLogic {
 		// this.currentEnemyWeight);
 
 		if (GameLogic.currentEnemyWeight < this.maxEnemyCap) {
-			int chance = r.nextInt(100) - 40000 / (Score.distance + 1); // difficulty factor , +1 to prevent zero when start
-																	// new game
+			int chance = r.nextInt(100) - 40000 / (Score.distance + 1); // difficulty factor , +1 to prevent zero when
+																		// start
+			// new game
 			// System.out.println(" chance " + chance);
 			if (chance < 55) {
-				Image variation = RenderableHolder.asteroidArr[ThreadLocalRandom.current().nextInt(0,4)];
-				asteroid = new Asteroid(ThreadLocalRandom.current()
-						.nextDouble(SceneManager.SCENE_WIDTH - variation.getWidth()),variation);
+				Image variation = RenderableHolder.asteroidArr[ThreadLocalRandom.current().nextInt(0, 4)];
+				asteroid = new Asteroid(
+						ThreadLocalRandom.current().nextDouble(SceneManager.SCENE_WIDTH - variation.getWidth()),
+						variation);
 				addNewObject(asteroid);
 				GameLogic.currentEnemyWeight += 1;
 			} else if (chance < 70) {
@@ -214,12 +214,12 @@ public class GameLogic {
 				addNewObject(new EGhost(this, ThreadLocalRandom.current()
 						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.eGhost.getWidth())));
 				GameLogic.currentEnemyWeight += 2;
-			} else if (chance < 95)  {
+			} else if (chance < 95) {
 				addNewObject(new ETree(this, ThreadLocalRandom.current()
 						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.eGhost.getWidth())));
 				GameLogic.currentEnemyWeight += 2.5;
 			}
-			
+
 		}
 
 	}
@@ -227,19 +227,25 @@ public class GameLogic {
 	private void spawnItems() {
 		long now = System.nanoTime();
 		if (this.nextItemsSpawnTime <= now) {
-			long rand = ThreadLocalRandom.current().nextLong(5000000000l, 15000000000l); // random the time next Box
+			long rand = ThreadLocalRandom.current().nextLong(5000000000l, 10000000000l); // random the time next Box
 																							// will come out
 			// System.out.println("\t\tNext Box in " + rand / 1000000000l + " seconds.");
 			this.nextItemsSpawnTime = now + rand;
 
 			double gachaPull = ThreadLocalRandom.current().nextDouble(100);
 			// System.out.println("\t\tGacha: " + gachaPull);
-			if (gachaPull <= 32.5) {
+			if (gachaPull <= 20) {
 				addNewObject(new TripleFireBox(ThreadLocalRandom.current()
 						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.randomBox.getWidth())));
-			} else if (gachaPull <= 55) {
-				addNewObject(new PowerAttackBox(ThreadLocalRandom.current()
-						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.randomBox.getWidth())));
+//			} else if (gachaPull <= 40) {
+//				addNewObject(new PowerAttackBox(ThreadLocalRandom.current()
+//						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.randomBox.getWidth())));
+//			} else if (gachaPull <= 55) {
+//				addNewObject(new ShieldMaxBox(ThreadLocalRandom.current()
+//						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.shieldmax.getWidth())));
+			} else if (gachaPull <= 70) {
+				addNewObject(new ShieldRegenBox(ThreadLocalRandom.current()
+						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.shieldregen.getWidth())));
 			} else {
 				addNewObject(new HPBox(ThreadLocalRandom.current()
 						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.healthpack.getWidth())));

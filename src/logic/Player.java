@@ -273,7 +273,7 @@ public class Player extends Unit implements IRenderable {
 			this.hp -= (other.collideDamage - damageReduced);
 			this.isDamaged = true;
 			this.fullShield = false;
-			this.regenTimeOut = System.nanoTime() + 2500000000l;
+			this.regenTimeOut = System.nanoTime() + (25 - this.regenLvl) * 100000000l;
 		}
 
 		if (other instanceof HPBox) {
@@ -292,10 +292,16 @@ public class Player extends Unit implements IRenderable {
 		if (other instanceof ShieldMaxBox) {
 			this.maxShield += ((ShieldMaxBox) other).getShieldStorage();
 			shieldLvl++;
+			if(shieldLvl > 10) {
+				shieldLvl = 10;
+			}
 		}
 		if (other instanceof ShieldRegenBox) {
 			this.shieldRegen += ((ShieldRegenBox) other).getRegenStorage();
 			regenLvl++;
+			if(regenLvl > 10) {
+				regenLvl = 10;
+			}
 		}
 		// to be further discussed (sound effect etc)
 		if (this.hp <= 0) {

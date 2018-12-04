@@ -33,10 +33,10 @@ public class GameWinnerScreen extends Canvas {
 		gc.fillText("YOU WIN", SceneManager.SCENE_WIDTH / 2, SceneManager.SCENE_HEIGHT / 4);
 		gc.setFont(SCORE_FONT);
 		gc.setFill(Color.DARKORANGE);
-		String distance = "Your distance is : " + Score.distance + " ly";
+		String distance = "You travelled " + Score.distance + " ly";
 		gc.fillText(distance, SceneManager.SCENE_WIDTH / 2, SceneManager.SCENE_HEIGHT * 2 / 4);
 		gc.setFill(Color.DODGERBLUE);
-		gc.fillText("Press Enter to New Game", SceneManager.SCENE_WIDTH / 2, SceneManager.SCENE_HEIGHT * 3 / 4);
+		gc.fillText("Press Enter to Play Again", SceneManager.SCENE_WIDTH / 2, SceneManager.SCENE_HEIGHT * 3 / 4);
 		this.addKeyEventHandler();
 	}
 

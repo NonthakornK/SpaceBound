@@ -80,8 +80,8 @@ public class RenderableHolder {// the picture class maker and we use this to mak
 		randomBox = new Image(ClassLoader.getSystemResource("res/items/randomBox.png").toString());
 		//healthpack = new Image(ClassLoader.getSystemResource("res/items/healthpack.gif").toString());
 		healthpack = new Image(ClassLoader.getSystemResource("res/items/health.png").toString());
-		shieldmax = new Image(ClassLoader.getSystemResource("res/items/shieldmax.png").toString());
-		shieldregen = new Image(ClassLoader.getSystemResource("res/items/shieldregen.png").toString());
+		shieldmax = new Image(ClassLoader.getSystemResource("res/items/shieldmax.gif").toString());
+		shieldregen = new Image(ClassLoader.getSystemResource("res/items/shieldregen.gif").toString());
 		// item box picture
 		bgm = new AudioClip(ClassLoader.getSystemResource("res/song/GameScene.mp3").toExternalForm());
 		fireBall = new AudioClip(ClassLoader.getSystemResource("res/song/Fire_Ball.mp3").toExternalForm());

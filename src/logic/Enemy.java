@@ -40,7 +40,7 @@ public abstract class Enemy extends Unit {
 				}
 				else if(this instanceof ESemiBoss) {
 					GameLogic.currentEnemyWeight -= 3.5;
-					GameLogic.relaxTime = System.nanoTime() + 18000000001L;
+					GameLogic.relaxTime = System.nanoTime() + 18000000000l;
 					GameLogic.currentEnemyWeight += 32.4;
 				}
 				else if(this instanceof EBoss) {
