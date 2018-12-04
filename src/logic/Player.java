@@ -60,7 +60,7 @@ public class Player extends Unit implements IRenderable {
 			this.y = (SceneManager.SCENE_HEIGHT - this.height) - 60;
 			// this.speed = 3;
 			this.side = 1;
-			this.collideDamage = 10; // test
+			this.collideDamage = 15; // test
 		} else {
 			width = 0;
 			height = 0;

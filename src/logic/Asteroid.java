@@ -22,7 +22,7 @@ public class Asteroid extends Enemy {
 		this.destroyed = false;
 		this.x = x;
 		this.y = -this.height - ThreadLocalRandom.current().nextDouble(500);
-		this.collideDamage = 15;
+		this.collideDamage = 18;
 	}
 
 	@Override

@@ -112,7 +112,6 @@ public class GameLogic {
 		// TODO fill code
 		
 		if(relaxTime >= System.nanoTime()) {
-			System.out.println(GameLogic.currentEnemyWeight);
 			GameLogic.currentEnemyWeight -= 0.03;
 		}
 		spawnEnemy();
