@@ -10,7 +10,6 @@ public class EGhost extends Enemy {
 	private int bulletDelayTick = 0;
 	private GameLogic gameLogic;
 	private double startingX;
-	public static final double weight = 2.5;
 
 	public EGhost(GameLogic gameLogic, double x) {
 		super(250, 1);
@@ -23,6 +22,7 @@ public class EGhost extends Enemy {
 		this.startingX = x;
 		this.y = -this.height;
 		this.collideDamage = 15;
+		this.weight = 2.5;
 		this.gameLogic = gameLogic;
 	}
 

@@ -11,7 +11,6 @@ public class EMachine extends Enemy {
 	private int bulletDelayTick = 0;
 	private GameLogic gameLogic;
 	private double startingX;
-	public static final double weight = 1.5;
 
 	public EMachine(GameLogic gameLogic, double x) {
 		super(150, 2.5);
@@ -24,6 +23,7 @@ public class EMachine extends Enemy {
 		this.startingX = x;
 		this.y = -this.height;
 		this.collideDamage = 20;
+		this.weight = 1.5;
 		this.gameLogic = gameLogic;
 	}
 

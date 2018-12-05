@@ -12,7 +12,6 @@ public class EBoss extends Enemy {
 	private int originalHp;
 	private GameLogic gameLogic;
 	private int bulletDelayTick = 0;
-	public static final double weight = 8;
 
 	public EBoss(GameLogic gameLogic) {
 		super(4500, 0.1);
@@ -23,7 +22,14 @@ public class EBoss extends Enemy {
 		this.destroyed = false;
 		this.x = (SceneManager.SCENE_WIDTH - this.width) / 2.0;
 		this.y = -this.height;
+<<<<<<< HEAD
 		this.collideDamage = 3000;
+||||||| merged common ancestors
+		this.collideDamage = 1000;
+=======
+		this.collideDamage = 3000;
+		this.weight = 8;
+>>>>>>> Added spark
 		this.gameLogic = gameLogic;
 
 		GameLogic.isBossAlive = true;

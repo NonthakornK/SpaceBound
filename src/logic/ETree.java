@@ -10,7 +10,6 @@ public class ETree extends Enemy {
 	private int bulletDelayTick = 0;
 	private GameLogic gameLogic;
 	private double startingX;
-	public static final double weight = 4;
 
 	public ETree(GameLogic gameLogic, double x) {
 		super(800, 0.5);
@@ -23,6 +22,7 @@ public class ETree extends Enemy {
 		this.startingX = x;
 		this.y = -this.height;
 		this.collideDamage = 25;
+		this.weight = 4;
 		this.gameLogic = gameLogic;
 	}
 

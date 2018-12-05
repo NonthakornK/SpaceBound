@@ -1,6 +1,7 @@
 package logic;
 
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 import com.sun.javafx.tk.FontLoader;
 import com.sun.javafx.tk.Toolkit;
@@ -32,6 +33,7 @@ public class Player extends Unit implements IRenderable {
 	private int regenLvl;
 	private long regenTimeOut = 0;	
 	private boolean isDamaged;
+	private boolean collided;
 	private long TripleFireTimeOut = 0;
 	private int powerAttack = 0;
 	private int fireMode = 0;
@@ -191,7 +193,12 @@ public class Player extends Unit implements IRenderable {
 		drawHpBar(gc);
 		drawShieldBar(gc);
 		drawItemsStatus(gc);
-
+		
+		if(collided) {
+			Image spark = RenderableHolder.sparkArr[ThreadLocalRandom.current().nextInt(0,3)];
+			gc.drawImage(spark, x + 7, y);
+			collided = false;
+		}
 	}
 
 	@Override
@@ -218,7 +225,6 @@ public class Player extends Unit implements IRenderable {
 
 			if (this.powerAttack > 0) {
 				gameLogic.addPendingBullet(new Bullet(x, y + this.height, 0, 40, 1, 6, this));
-				
 				gameLogic.addPendingBullet(new Bullet(x, y + this.height, 0, -40, 1, 6, this));
 				gameLogic.addPendingBullet(new Bullet(x, y + this.height, 12, 0, 1, 6, this));
 				gameLogic.addPendingBullet(new Bullet(x, y + this.height, -12, 0, 1, 6, this));
@@ -300,6 +306,7 @@ public class Player extends Unit implements IRenderable {
 			this.isDamaged = true;
 			this.fullShield = false;
 			this.regenTimeOut = System.nanoTime() + (35 - this.regenLvl * 3) * 50000000l;
+			this.collided = true;
 		}
 
 		if (other instanceof HPBox) {

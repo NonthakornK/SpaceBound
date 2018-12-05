@@ -4,7 +4,8 @@ import renderer.RenderableHolder;
 import window.SceneManager;
 
 public abstract class Enemy extends Unit {
-
+	
+	protected double weight;
 	private static int zCounter = -200; // to generate different z for each Enemy to prevent flashing when 2 or more
 										// enemy are overlap.
 										// Enemy z is between -200 and -100 inclusive.
