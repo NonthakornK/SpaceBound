@@ -16,9 +16,9 @@ import window.SceneManager;
 
 public class MainMenu extends Canvas {
 	private static final Font TITLE_FONT = Font
-			.loadFont(ClassLoader.getSystemResource("res/font/Mouse.otf").toString(), 50);
+			.loadFont(ClassLoader.getSystemResource("res/font/Astrobia.ttf").toString(), 50);
 	private static final Font MENU_FONT = Font
-			.loadFont(ClassLoader.getSystemResource("res/font/Mouse.otf").toString(), 35);
+			.loadFont(ClassLoader.getSystemResource("res/font/Astrobia.ttf").toString(), 35);
 	private AudioClip music = RenderableHolder.mainMenuMusic;
 
 	public MainMenu() {
@@ -29,9 +29,9 @@ public class MainMenu extends Canvas {
 		GraphicsContext gc = this.getGraphicsContext2D();
 		gc.drawImage(RenderableHolder.backgroundMM, 0, 0, SceneManager.SCENE_WIDTH, SceneManager.SCENE_HEIGHT);
 		gc.setTextAlign(TextAlignment.CENTER);
-		gc.setFill(Color.DARKRED);
+		gc.setFill(Color.BLUE);
 		gc.setFont(TITLE_FONT);
-		gc.fillText("DRAGON JOURNEY", SceneManager.SCENE_WIDTH/2, SceneManager.SCENE_HEIGHT/4);
+		gc.fillText("SPACE BOUND", SceneManager.SCENE_WIDTH/2, SceneManager.SCENE_HEIGHT/3);
 		gc.setFont(MENU_FONT);
 		gc.fillText("Press Enter to Start", SceneManager.SCENE_WIDTH/2, SceneManager.SCENE_HEIGHT * 3 / 4+35);
 

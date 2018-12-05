@@ -23,7 +23,7 @@ public class EBoss extends Enemy {
 		this.destroyed = false;
 		this.x = (SceneManager.SCENE_WIDTH - this.width) / 2.0;
 		this.y = -this.height;
-		this.collideDamage = 1000;
+		this.collideDamage = 3000;
 		this.gameLogic = gameLogic;
 
 		GameLogic.isBossAlive = true;

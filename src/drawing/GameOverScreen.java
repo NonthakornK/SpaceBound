@@ -18,9 +18,9 @@ import window.SceneManager;
 public class GameOverScreen extends Canvas {
 
 	private static final Font TITLE_FONT = Font
-			.loadFont(ClassLoader.getSystemResource("res/font/HACKED.ttf").toString(), 70);
+			.loadFont(ClassLoader.getSystemResource("res/font/Astrobia.ttf").toString(), 70);
 	private static final Font SCORE_FONT = Font
-			.loadFont(ClassLoader.getSystemResource("res/font/HACKED.ttf").toString(), 40);
+			.loadFont(ClassLoader.getSystemResource("res/font/Astrobia.ttf").toString(), 40);
 	private AudioClip music = RenderableHolder.gameOverMusic;
 
 	public GameOverScreen() {
@@ -34,10 +34,10 @@ public class GameOverScreen extends Canvas {
 		gc.setFont(TITLE_FONT);
 		gc.fillText("GAME OVER", SceneManager.SCENE_WIDTH / 2, SceneManager.SCENE_HEIGHT / 4);
 		gc.setFont(SCORE_FONT);
-		gc.setFill(Color.GREENYELLOW);
+		gc.setFill(Color.RED);
 		String distance = "Your survived " + Score.distance + " ly";
 		gc.fillText(distance, SceneManager.SCENE_WIDTH / 2, SceneManager.SCENE_HEIGHT * 2 / 4);
-		gc.setFill(Color.DODGERBLUE);
+		gc.setFill(Color.RED);
 		gc.fillText("Press Enter to retry", SceneManager.SCENE_WIDTH / 2, SceneManager.SCENE_HEIGHT * 3 / 4);
 		this.addKeyEventHandler();
 	}

@@ -17,9 +17,9 @@ import window.SceneManager;
 
 public class GameWinnerScreen extends Canvas {
 	private static final Font TITLE_FONT = Font
-			.loadFont(ClassLoader.getSystemResource("res/font/Winner.otf").toString(), 70);
+			.loadFont(ClassLoader.getSystemResource("res/font/Astrobia.ttf").toString(), 70);
 	private static final Font SCORE_FONT = Font
-			.loadFont(ClassLoader.getSystemResource("res/font/Winner.otf").toString(), 40);
+			.loadFont(ClassLoader.getSystemResource("res/font/Astrobia.ttf").toString(), 40);
 	private AudioClip music = RenderableHolder.gameWinnerMusic;
 
 	public GameWinnerScreen() {
@@ -28,11 +28,11 @@ public class GameWinnerScreen extends Canvas {
 		music.play();
 		gc.drawImage(RenderableHolder.backgroundW, 0, 0, SceneManager.SCENE_WIDTH, SceneManager.SCENE_HEIGHT);
 		gc.setTextAlign(TextAlignment.CENTER);
-		gc.setFill(Color.YELLOW);
+		gc.setFill(Color.DODGERBLUE);
 		gc.setFont(TITLE_FONT);
 		gc.fillText("YOU WIN", SceneManager.SCENE_WIDTH / 2, SceneManager.SCENE_HEIGHT / 4);
 		gc.setFont(SCORE_FONT);
-		gc.setFill(Color.DARKORANGE);
+		gc.setFill(Color.DODGERBLUE);
 		String distance = "You travelled " + Score.distance + " ly";
 		gc.fillText(distance, SceneManager.SCENE_WIDTH / 2, SceneManager.SCENE_HEIGHT * 2 / 4);
 		gc.setFill(Color.DODGERBLUE);
