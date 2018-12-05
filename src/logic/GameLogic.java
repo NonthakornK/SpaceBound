@@ -42,7 +42,6 @@ public class GameLogic {
 	private Player player;
 	private ESemiBoss esemi;
 	private EBoss eboss;
-	private Asteroid asteroid;
 
 	public GameLogic(GameScreen canvas) {
 		this.gameObjectContainer = new ArrayList<Unit>();
@@ -213,7 +212,7 @@ public class GameLogic {
 																		// start
 			// new game
 			// System.out.println(" chance " + chance);
-			if (chance < 45) {
+			if (chance < 40) {
 				Image variation = RenderableHolder.asteroidArr[ThreadLocalRandom.current().nextInt(0, 4)];
 				Asteroid asteroid = new Asteroid(
 						ThreadLocalRandom.current().nextDouble(SceneManager.SCENE_WIDTH - variation.getWidth()),
@@ -221,19 +220,25 @@ public class GameLogic {
 				
 				addNewObject(asteroid);
 				GameLogic.currentEnemyWeight += asteroid.getWeight();
-			} else if (chance < 70) {
+			} else if (chance < 60) {
 				EMachine emachine = new EMachine(this, ThreadLocalRandom.current()
-						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.eGhost.getWidth()));
+						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.eMachine.getWidth()));
 				addNewObject(emachine);
 				GameLogic.currentEnemyWeight += emachine.getWeight();
-			} else if (chance < 85) {
+			} 
+			else if (chance < 75) {
+				EJet ejet = new EJet(this, ThreadLocalRandom.current()
+						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.eJet.getWidth()));
+				addNewObject(ejet);
+				GameLogic.currentEnemyWeight += ejet.getWeight();
+			}else if (chance < 90) {
 				EGhost eghost = new EGhost(this, ThreadLocalRandom.current()
 						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.eGhost.getWidth()));
 				addNewObject(eghost);
 				GameLogic.currentEnemyWeight += eghost.getWeight();
-			} else if (chance < 95) {
+			} else if (chance < 100) {
 				ETree etree = new ETree(this, ThreadLocalRandom.current()
-						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.eGhost.getWidth())); 
+						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.eTree.getWidth())); 
 				addNewObject(etree);
 				GameLogic.currentEnemyWeight += etree.getWeight();
 			}

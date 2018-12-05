@@ -16,9 +16,9 @@ public class RenderableHolder {// the picture class maker and we use this to mak
 	private Comparator<IRenderable> comparator;
 	// various image plz check the image first before using (like to find its size /
 	// how it looks etc)
-	public static Image dragon, eSemiBoss, eBoss, eGhost, eSpiriteFire, eMachine, eTree, bullet, background,
+	public static Image dragon, eSemiBoss, eBoss, eGhost, eSpiriteFire, eJet, eMachine, eTree, bullet, background,
 			backgroundMM, backgroundW, healthpack, bossBullet, roundBulletB, roundBulletY, roundBulletR, roundBulletP, sparkArr[],
-			powerAttack, exploArr[], randomBox, asteroidArr[], shieldmax, shieldregen, attackBox,triplefirebox, powerattackBox;
+			powerAttack, exploArr[], randomBox, asteroidArr[], shieldmax, shieldregen, attackBox, triplefirebox, powerattackBox;
 
 	public static AudioClip bgm, fireBall, explosion, explosion2, gameOverMusic, mainMenuMusic, powerAttackLaunch,
 			gameWinnerMusic,laser;
@@ -56,14 +56,16 @@ public class RenderableHolder {// the picture class maker and we use this to mak
 			asteroidArr[i] = new Image(ClassLoader.getSystemResource("res/enemy/asteroid" + i + ".gif").toString());
 		}
 		
-
 		eMachine = new Image(ClassLoader.getSystemResource("res/enemy/Normal.png").toString());
+		eJet = new Image(ClassLoader.getSystemResource("res/enemy/Normal.png").toString());
 		eTree = new Image(ClassLoader.getSystemResource("res/enemy/Excusive.gif").toString());
 		// mob picture
 		exploArr = new Image[12];
 		for (int i = 0; i < 12; i++) {
 			exploArr[i] = new Image(ClassLoader.getSystemResource("res/explosion/" + i + ".gif").toString());
 		}
+		
+		
 		// explore loop from sprite sheet that was cut before
 		sparkArr = new Image[4];
 		for (int i = 0; i < 4; i++) {

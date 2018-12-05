@@ -51,6 +51,7 @@ public class EMachine extends Enemy {
 		this.x = Math.sin(5 * now * 1e-10 + Math.toRadians(90) + startingX/SceneManager.SCENE_WIDTH * 180) * ((SceneManager.SCENE_WIDTH - this.width) / 2)
 				+ (SceneManager.SCENE_WIDTH - this.width) / 2.0;
 		y += this.speed;
+		
 		if (this.isOutOfScreen()) {
 			this.visible = false;
 			this.destroyed = true;
