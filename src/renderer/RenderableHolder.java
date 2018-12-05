@@ -96,6 +96,7 @@ public class RenderableHolder {// the picture class maker and we use this to mak
 		mainMenuMusic = new AudioClip(ClassLoader.getSystemResource("res/song/MenuSound.mp3").toExternalForm());
 		explosion = new AudioClip(ClassLoader.getSystemResource("res/song/Explosion.wav").toExternalForm());
 		explosion2 = new AudioClip(ClassLoader.getSystemResource("res/song/Explosion2.wav").toExternalForm());
+		
 		powerAttackLaunch = new AudioClip(ClassLoader.getSystemResource("res/song/PowerAttack.mp3").toExternalForm());
 
 		explosions = new AudioClip[] { explosion, explosion2 };
