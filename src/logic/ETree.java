@@ -54,7 +54,7 @@ public class ETree extends Enemy {
 			this.visible = false;
 			this.destroyed = true;
 		}
-		if (bulletDelayTick % 20 == 0) {
+		if (bulletDelayTick % 35 == 0) {
 			gameLogic.addPendingBullet(new Bullet(x, y, 5, 10, -1, 3, this));
 			gameLogic.addPendingBullet(new Bullet(x, y, -5, 10, -1, 3, this));
 			gameLogic.addPendingBullet(new Bullet(x, y, 0, 10, -1, 3, this));

@@ -10,8 +10,8 @@ public class TripleFireBox extends Items {
 	public TripleFireBox(double x) {
 		// TODO Auto-generated constructor stub
 		super(ThreadLocalRandom.current().nextDouble(1, 5));
-		this.width = RenderableHolder.randomBox.getWidth();
-		this.height = RenderableHolder.randomBox.getHeight();
+		this.width = RenderableHolder.triplefirebox.getWidth();
+		this.height = RenderableHolder.triplefirebox.getHeight();
 		this.visible = true;
 		this.destroyed = false;
 		this.x = x;
@@ -22,7 +22,7 @@ public class TripleFireBox extends Items {
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		gc.drawImage(RenderableHolder.randomBox, x, y);
+		gc.drawImage(RenderableHolder.triplefirebox, x, y);
 	}
 
 	@Override

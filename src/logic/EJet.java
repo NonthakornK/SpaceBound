@@ -10,11 +10,12 @@ import renderer.RenderableHolder;
 import window.SceneManager;
 
 public class EJet extends Enemy {
-	
+
 	private int originalHp;
 	private int bulletDelayTick = 0;
 	private double yMultiplier;
 	private GameLogic gameLogic;
+	private boolean inPosition;
 
 	public EJet(GameLogic gameLogic, double x) {
 		super(100, 0.5);
@@ -27,27 +28,33 @@ public class EJet extends Enemy {
 		this.collideDamage = 80;
 		this.weight = 2;
 		this.gameLogic = gameLogic;
-		this.yMultiplier = ThreadLocalRandom.current().nextDouble(0.6,0.9);
+		this.yMultiplier = ThreadLocalRandom.current().nextDouble(0.6, 0.9);
+		this.inPosition = false;
 	}
 
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
 
-		if(this.y <= SceneManager.SCENE_HEIGHT * this.yMultiplier) {
+		if (this.y <= SceneManager.SCENE_HEIGHT * this.yMultiplier) {
 			this.y += (SceneManager.SCENE_HEIGHT * this.yMultiplier - y) / Math.sqrt(SceneManager.SCENE_HEIGHT);
+		}
+		else {
+			this.inPosition = true;
 		}
 		this.y += this.speed;
 		if (this.isOutOfScreen()) {
 			this.visible = false;
 			this.destroyed = true;
 		}
-		if (bulletDelayTick % 20 == 0) {
-			gameLogic.addPendingBullet(new Bullet(x, y - this.height / 2, 8, 0, -1, 5, this));
-			gameLogic.addPendingBullet(new Bullet(x, y - this.height / 2, -8, 0, -1, 5, this));
-			RenderableHolder.fireBall.play();
+		if (inPosition) {
+			if (bulletDelayTick % 30 == 0) {
+				gameLogic.addPendingBullet(new Bullet(x, y - this.height / 2, 8, 0, -1, 5, this));
+				gameLogic.addPendingBullet(new Bullet(x, y - this.height / 2, -8, 0, -1, 5, this));
+				RenderableHolder.fireBall.play();
+			}
+			bulletDelayTick++;
 		}
-		bulletDelayTick++;
 
 	}
 
@@ -57,7 +64,7 @@ public class EJet extends Enemy {
 		gc.drawImage(RenderableHolder.eJet, x, y);
 		drawHpBar(gc);
 	}
-	
+
 	private void drawHpBar(GraphicsContext gc) {
 		double percentHp = this.hp / this.originalHp;
 		gc.setFill(Color.RED);

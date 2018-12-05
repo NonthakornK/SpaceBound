@@ -8,7 +8,7 @@ import renderer.RenderableHolder;
 public class ShieldRegenBox extends Items {
 
 	public ShieldRegenBox(double x) {
-		super(ThreadLocalRandom.current().nextDouble(2,4));
+		super(3);
 		this.width = RenderableHolder.shieldregen.getWidth();
 		this.height = RenderableHolder.shieldregen.getHeight();
 		this.visible = true;

@@ -56,7 +56,7 @@ public class EMachine extends Enemy {
 			this.visible = false;
 			this.destroyed = true;
 		}
-		if (bulletDelayTick % 50 == 0) {
+		if (bulletDelayTick % 40 == 0) {
 			gameLogic.addPendingBullet(new Bullet(x, y, 0, 15, -1, 5, this));
 			RenderableHolder.fireBall.play();
 		}

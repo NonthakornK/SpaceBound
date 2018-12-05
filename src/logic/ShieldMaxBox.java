@@ -9,7 +9,7 @@ public class ShieldMaxBox extends Items {
 	private final int shieldStorage = 200;
 	
 	public ShieldMaxBox(double x) {
-		super(ThreadLocalRandom.current().nextDouble(2, 4));
+		super(3);
 		this.width = RenderableHolder.shieldmax.getWidth();
 		this.height = RenderableHolder.shieldmax.getHeight();
 		this.visible = true;

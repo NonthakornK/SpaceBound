@@ -41,7 +41,7 @@ public class Bullet extends Unit {
 			this.height = RenderableHolder.bossBullet.getHeight();
 			this.width = RenderableHolder.bossBullet.getWidth();
 			bulletSprite = RenderableHolder.bossBullet;
-			this.collideDamage = 50 + Score.distance/20000;
+			this.collideDamage = 45 + Score.distance/20000;
 		} else if (type == 2) {
 			this.height = RenderableHolder.roundBulletB.getHeight();
 			this.width = RenderableHolder.roundBulletB.getWidth();

@@ -8,7 +8,7 @@ import renderer.RenderableHolder;
 public class AttackBox extends Items {
 	
 	public AttackBox(double x) {
-		super(ThreadLocalRandom.current().nextDouble(2,4));
+		super(3);
 		this.width = RenderableHolder.attackBox.getWidth();
 		this.height = RenderableHolder.attackBox.getHeight();
 		this.visible = true;

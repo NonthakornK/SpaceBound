@@ -54,7 +54,7 @@ public class EGhost extends Enemy {
 			this.visible = false;
 			this.destroyed = true;
 		}
-		if (bulletDelayTick % 20 == 0) {
+		if (bulletDelayTick % 25 == 0) {
 			gameLogic.addPendingBullet(new Bullet(x, y - this.height / 2, -5, 10, -1, 2, this));
 			gameLogic.addPendingBullet(new Bullet(x, y - this.height / 2, 5, 10, -1, 2, this));
 			RenderableHolder.fireBall.play();

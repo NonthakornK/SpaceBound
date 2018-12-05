@@ -29,7 +29,7 @@ public class Score implements IRenderable {
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		gc.setFont(RenderableHolder.inGameFont);
-		gc.setFill(Color.GREENYELLOW);
+		gc.setFill(Color.GOLD);
 		//String score = "Score: " + Integer.toString(Score.score);
 		String distanceDisplay = "Distance: " + Integer.toString(Score.distance) + " ly";
 		FontLoader fontLoader = Toolkit.getToolkit().getFontLoader();

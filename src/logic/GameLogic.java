@@ -116,9 +116,10 @@ public class GameLogic {
 			GameLogic.currentEnemyWeight += 32.4;
 
 			nextItemsSpawnTime = System.nanoTime() + 8000000000l;
+			
+			addNewObject(new ShieldMaxBox((SceneManager.SCENE_WIDTH - RenderableHolder.shieldmax.getWidth()) / 2 - 100));
 			addNewObject(new AttackBox((SceneManager.SCENE_WIDTH - RenderableHolder.attackBox.getWidth())/2));
-			addNewObject(new ShieldMaxBox((SceneManager.SCENE_WIDTH - RenderableHolder.shieldmax.getWidth())/2));
-			addNewObject(new ShieldRegenBox((SceneManager.SCENE_WIDTH - RenderableHolder.shieldregen.getWidth())/2));
+			addNewObject(new ShieldRegenBox((SceneManager.SCENE_WIDTH - RenderableHolder.shieldregen.getWidth()) / 2 + 100));
 			
 			killedSemi = false;
 		}
@@ -258,7 +259,7 @@ public class GameLogic {
 						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.attackBox.getWidth())));
 			} else if (rand <= 30) {
 				addNewObject(new TripleFireBox(ThreadLocalRandom.current()
-						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.randomBox.getWidth())));
+						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.triplefirebox.getWidth())));
 			} else if (rand <= 50) {
 				addNewObject(new PowerAttackBox(ThreadLocalRandom.current()
 						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.powerattackBox.getWidth())));

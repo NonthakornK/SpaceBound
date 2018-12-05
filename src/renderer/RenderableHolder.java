@@ -85,7 +85,7 @@ public class RenderableHolder {// the picture class maker and we use this to mak
 		backgroundW = new Image(ClassLoader.getSystemResource("res/background/BackWinner.jpg").toString());
 		// background of 3 screen
 		randomBox = new Image(ClassLoader.getSystemResource("res/items/randombox.png").toString());
-		attackBox = new Image(ClassLoader.getSystemResource("res/items/POWERUP.png").toString());
+		attackBox = new Image(ClassLoader.getSystemResource("res/items/attackbox.gif").toString());
 		//------------
 		triplefirebox = new Image(ClassLoader.getSystemResource("res/items/triple.png").toString());
 		//------------
@@ -93,6 +93,8 @@ public class RenderableHolder {// the picture class maker and we use this to mak
 		healthpack = new Image(ClassLoader.getSystemResource("res/items/health.png").toString());
 		shieldmax = new Image(ClassLoader.getSystemResource("res/items/shieldmax.gif").toString());
 		shieldregen = new Image(ClassLoader.getSystemResource("res/items/shieldregen.gif").toString());
+		
+		
 		bgm = new AudioClip(ClassLoader.getSystemResource("res/song/GameScreen.mp3").toExternalForm());
 		fireBall = new AudioClip(ClassLoader.getSystemResource("res/song/Fire_Ball.mp3").toExternalForm());
 		fireBall.setVolume(0.35);
@@ -109,7 +111,7 @@ public class RenderableHolder {// the picture class maker and we use this to mak
 		explosions = new AudioClip[] { explosion, explosion2 };
 		// sound effect
 		inGameFont = Font.loadFont(ClassLoader.getSystemResource("res/font/Astrobia.ttf").toString(), 40);
-		inGameFontSmall = Font.loadFont(ClassLoader.getSystemResource("res/font/Astrobia.ttf").toString(), 20);
+		inGameFontSmall = Font.loadFont(ClassLoader.getSystemResource("res/font/Astrobia.ttf").toString(), 22.5);
 	}
 
 	public void add(IRenderable entity) {
