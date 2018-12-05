@@ -20,7 +20,7 @@ public class RenderableHolder {// the picture class maker and we use this to mak
 			backgroundMM, backgroundW, healthpack, bossBullet, roundBulletB, roundBulletY, roundBulletR, roundBulletP,
 			powerAttack, exploArr[], randomBox, asteroidArr[], shieldmax, shieldregen, attackBox,triplefirebox, powerattackBox;
 	public static AudioClip bgm, fireBall, explosion, explosion2, gameOverMusic, mainMenuMusic, powerAttackLaunch,
-			gameWinnerMusic;
+			gameWinnerMusic,laser;
 	public static Font inGameFont, inGameFontSmall;
 
 	public static AudioClip[] explosions;
@@ -86,10 +86,11 @@ public class RenderableHolder {// the picture class maker and we use this to mak
 		healthpack = new Image(ClassLoader.getSystemResource("res/items/health.png").toString());
 		shieldmax = new Image(ClassLoader.getSystemResource("res/items/shieldmax.gif").toString());
 		shieldregen = new Image(ClassLoader.getSystemResource("res/items/shieldregen.gif").toString());
-		// item box picture
 		bgm = new AudioClip(ClassLoader.getSystemResource("res/song/GameScreen.mp3").toExternalForm());
 		fireBall = new AudioClip(ClassLoader.getSystemResource("res/song/Fire_Ball.mp3").toExternalForm());
 		fireBall.setVolume(0.35);
+		laser = new AudioClip(ClassLoader.getSystemResource("res/song/laser.wav").toExternalForm());
+		laser.setVolume(0.35);
 		gameWinnerMusic = new AudioClip(ClassLoader.getSystemResource("res/song/GameWinner.mp3").toExternalForm());
 		gameOverMusic = new AudioClip(ClassLoader.getSystemResource("res/song/GameLoser.mp3").toExternalForm());
 		mainMenuMusic = new AudioClip(ClassLoader.getSystemResource("res/song/MenuSound.mp3").toExternalForm());

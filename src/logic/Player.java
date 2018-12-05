@@ -9,6 +9,7 @@ import input.CharacterInput;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
@@ -36,8 +37,7 @@ public class Player extends Unit implements IRenderable {
 	private int fireMode = 0;
 	private boolean fullShield;
 	private final double shieldReduction = 0.35;
-
-	public static int atkLvl;
+    public static int atkLvl;
 	
 	public Player(GameLogic gameLogic) {
 		// TODO Auto-generated constructor stub
@@ -55,7 +55,8 @@ public class Player extends Unit implements IRenderable {
 		playerImage = RenderableHolder.dragon;
 
 		this.gameLogic = gameLogic;
-
+		
+		
 		if (playerImage != null) {
 			this.width = playerImage.getWidth();
 			this.height = playerImage.getHeight();
@@ -213,6 +214,7 @@ public class Player extends Unit implements IRenderable {
 			turn(false);
 		}
 		if (CharacterInput.getTriggeredCtrl().poll() == KeyCode.CONTROL) {
+			
 
 			if (this.powerAttack > 0) {
 				gameLogic.addPendingBullet(new Bullet(x, y + this.height, 0, 40, 1, 6, this));
@@ -229,26 +231,28 @@ public class Player extends Unit implements IRenderable {
 				gameLogic.addPendingBullet(new Bullet(x, y + this.height, 6, -35, 1, 6, this));
 				gameLogic.addPendingBullet(new Bullet(x, y + this.height, -6, -35, 1, 6, this));
 				RenderableHolder.powerAttackLaunch.play();
+				
 				powerAttack--;
 
 			}
 		}
+		
 		if (CharacterInput.getKeyPressed(KeyCode.SPACE)) {
 			// shoot a bullet
 			// to be further discussed
-
+			
 			if (bulletDelayTick - prevbulletTick > 7) {
 				// System.out.println("SHOOOOT");
 				if (fireMode == 0) {
 					gameLogic.addPendingBullet(new Bullet(x, y, 0, 20, 1, 0, this));
-					RenderableHolder.fireBall.play();
+					RenderableHolder.laser.play();
 				} else if (fireMode == 1) {
 					gameLogic.addPendingBullet(new Bullet(x, y, 0, 20, 1, 0, this));
-					RenderableHolder.fireBall.play();
+					RenderableHolder.laser.play();
 					gameLogic.addPendingBullet(new Bullet(x - 20, y, 1, 20, 1, 0, this));
-					RenderableHolder.fireBall.play();
+					RenderableHolder.laser.play();
 					gameLogic.addPendingBullet(new Bullet(x + 20, y, -1, 20, 1, 0, this));
-					RenderableHolder.fireBall.play();
+					RenderableHolder.laser.play();
 				}
 				prevbulletTick = bulletDelayTick;
 			}
@@ -377,5 +381,4 @@ public class Player extends Unit implements IRenderable {
 		bound.setRadius(width / 4);
 		return bound;
 	}
-
 }
