@@ -14,8 +14,8 @@ public class ESemiBoss extends Enemy {
 	private GameLogic gameLogic;
 
 	public ESemiBoss(GameLogic gameLogic) {
-		super(2500, 0.1);
-		this.originalHp = 2000;
+		super(3000, 0.1);
+		this.originalHp = 3000;
 		this.width = RenderableHolder.eSemiBoss.getWidth();
 		this.height = RenderableHolder.eSemiBoss.getHeight();
 		yOffset = 0;
@@ -23,14 +23,8 @@ public class ESemiBoss extends Enemy {
 		this.destroyed = false;
 		this.x = (SceneManager.SCENE_WIDTH - this.width) / 2.0;
 		this.y = -this.height;
-<<<<<<< HEAD
-		this.collideDamage = 3000;
-||||||| merged common ancestors
-		this.collideDamage = 1000;
-=======
 		this.collideDamage = 3000;
 		this.weight = 5.5;
->>>>>>> Added spark
 		this.gameLogic = gameLogic;
 		
 		GameLogic.isSemiAlive = true;

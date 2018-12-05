@@ -195,8 +195,8 @@ public class Player extends Unit implements IRenderable {
 		drawItemsStatus(gc);
 		
 		if(collided) {
-			Image spark = RenderableHolder.sparkArr[ThreadLocalRandom.current().nextInt(0,3)];
-			gc.drawImage(spark, x + 7, y);
+			Image spark = RenderableHolder.sparkArr[ThreadLocalRandom.current().nextInt(0,4)];
+			gc.drawImage(spark, x, y, 100, 100);
 			collided = false;
 		}
 	}

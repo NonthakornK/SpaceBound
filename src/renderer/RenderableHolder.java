@@ -17,16 +17,9 @@ public class RenderableHolder {// the picture class maker and we use this to mak
 	// various image plz check the image first before using (like to find its size /
 	// how it looks etc)
 	public static Image dragon, eSemiBoss, eBoss, eGhost, eSpiriteFire, eMachine, eTree, bullet, background,
-<<<<<<< HEAD
-			backgroundMM, backgroundW, healthpack, bossBullet, roundBulletB, roundBulletY, roundBulletR, roundBulletP,
-			powerAttack, exploArr[], randomBox, asteroidArr[], shieldmax, shieldregen, attackBox,triplefirebox, powerattackBox;
-||||||| merged common ancestors
-			backgroundMM, backgroundW, healthpack, bossBullet, roundBulletB, roundBulletY, roundBulletR, roundBulletP,
-			powerAttack, exploArr[], randomBox, asteroidArr[], shieldmax, shieldregen, attackBox, powerattackBox;
-=======
 			backgroundMM, backgroundW, healthpack, bossBullet, roundBulletB, roundBulletY, roundBulletR, roundBulletP, sparkArr[],
 			powerAttack, exploArr[], randomBox, asteroidArr[], shieldmax, shieldregen, attackBox,triplefirebox, powerattackBox;
->>>>>>> Added spark
+
 	public static AudioClip bgm, fireBall, explosion, explosion2, gameOverMusic, mainMenuMusic, powerAttackLaunch,
 			gameWinnerMusic,laser;
 	public static Font inGameFont, inGameFontSmall;
@@ -72,8 +65,8 @@ public class RenderableHolder {// the picture class maker and we use this to mak
 			exploArr[i] = new Image(ClassLoader.getSystemResource("res/explosion/" + i + ".gif").toString());
 		}
 		// explore loop from sprite sheet that was cut before
-		sparkArr = new Image[3];
-		for (int i = 0; i < 3; i++) {
+		sparkArr = new Image[4];
+		for (int i = 0; i < 4; i++) {
 			sparkArr[i] = new Image(ClassLoader.getSystemResource("res/spark/" + i + ".png").toString());
 		}
 
