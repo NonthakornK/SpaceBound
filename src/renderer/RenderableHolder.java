@@ -17,7 +17,7 @@ public class RenderableHolder {// the picture class maker and we use this to mak
 	// various image plz check the image first before using (like to find its size /
 	// how it looks etc)
 	public static Image dragon, eSemiBoss, eBoss, eGhost, eSpiriteFire, eJet, eMachine, eTree, bullet, background,
-			backgroundMM, backgroundW, healthpack, bossBullet, roundBulletB, roundBulletY, roundBulletR, roundBulletP, sparkArr[],
+			backgroundMM, backgroundW, healthpack, bossBullet, bossPower, bossLow, roundBulletB, roundBulletY, roundBulletR, roundBulletP, sparkArr[],
 			powerAttack, exploArr[], randomBox, asteroidArr[], shieldmax, shieldregen, attackBox, triplefirebox, powerattackBox;
 
 	public static AudioClip bgm, fireBall, explosion, explosion2, gameOverMusic, mainMenuMusic, powerAttackLaunch,
@@ -75,6 +75,9 @@ public class RenderableHolder {// the picture class maker and we use this to mak
 		bullet = new Image(ClassLoader.getSystemResource("res/bullet/Laser.png").toString());
 		powerAttack = new Image(ClassLoader.getSystemResource("res/bullet/fireball.gif").toString());
 		bossBullet = new Image(ClassLoader.getSystemResource("res/bullet/bossBullet.gif").toString());
+		bossPower = new Image(ClassLoader.getSystemResource("res/bullet/bossPower.png").toString());
+		bossLow = new Image(ClassLoader.getSystemResource("res/bullet/bossLow.png").toString());
+		
 		roundBulletB = new Image(ClassLoader.getSystemResource("res/bullet/roundBulletB.png").toString());
 		roundBulletY = new Image(ClassLoader.getSystemResource("res/bullet/roundBulletY.png").toString());
 		roundBulletR = new Image(ClassLoader.getSystemResource("res/bullet/roundBulletR.png").toString());

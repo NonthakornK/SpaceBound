@@ -22,12 +22,13 @@ public class MainMenu extends Canvas {
 	private static final Font TUTORIAL_FONT = Font
 			.loadFont(ClassLoader.getSystemResource("res/font/Astrobia.ttf").toString(), 22);
 	private AudioClip music = RenderableHolder.mainMenuMusic;
+	private boolean inTutorial;
 
 	public MainMenu() {
 		super(SceneManager.SCENE_WIDTH, SceneManager.SCENE_HEIGHT);
 		music.play();
-		HomeMenu();
-		this.addKeyEventHandler();
+		HomeMenu();	
+		this.inTutorial = false;	
 	}
 	
 	private void HomeMenu() {
@@ -42,10 +43,12 @@ public class MainMenu extends Canvas {
 		gc.setFill(Color.DARKBLUE);
 		gc.setFont(TUTORIAL_FONT);
 		gc.fillText("Press Spacebar For Tutorial", SceneManager.SCENE_WIDTH/2, SceneManager.SCENE_HEIGHT * 5 / 6 + 80);
+		this.addKeyEventHandler();
 
 	}
 	
 	private void TutorialMenu() {
+		this.inTutorial = true;
 		GraphicsContext gc = this.getGraphicsContext2D();
 		gc.drawImage(RenderableHolder.backgroundMM, 0, 0, SceneManager.SCENE_WIDTH, SceneManager.SCENE_HEIGHT);
 		gc.setTextAlign(TextAlignment.CENTER);
@@ -72,13 +75,13 @@ public class MainMenu extends Canvas {
 		gc.fillText("Increases Shield Regeneration Rate", SceneManager.SCENE_WIDTH * 0.3, SceneManager.SCENE_HEIGHT * 1 / 9 + 370);
 		gc.fillText("And Reduces Shield Cooldown", SceneManager.SCENE_WIDTH * 0.3, SceneManager.SCENE_HEIGHT * 1 / 9 + 395);
 		
-		gc.drawImage(RenderableHolder.powerattackBox, SceneManager.SCENE_WIDTH/7, SceneManager.SCENE_HEIGHT * 1 / 9 + 420, 40 ,40);
-		gc.fillText("Charges Power Attack", SceneManager.SCENE_WIDTH * 0.3, SceneManager.SCENE_HEIGHT * 1 / 9 + 445);
+		gc.drawImage(RenderableHolder.powerattackBox, SceneManager.SCENE_WIDTH/7 + 3, SceneManager.SCENE_HEIGHT * 1 / 9 + 420, 36, 36);
+		gc.fillText("Charges Power Attack  (Max : 3 )", SceneManager.SCENE_WIDTH * 0.3, SceneManager.SCENE_HEIGHT * 1 / 9 + 445);
 		
-		gc.drawImage(RenderableHolder.triplefirebox, SceneManager.SCENE_WIDTH/7, SceneManager.SCENE_HEIGHT * 1 / 9 + 470, 40 ,40);
+		gc.drawImage(RenderableHolder.triplefirebox, SceneManager.SCENE_WIDTH/7 + 3, SceneManager.SCENE_HEIGHT * 1 / 9 + 470, 36, 36);
 		gc.fillText("Triple The Fun", SceneManager.SCENE_WIDTH * 0.3, SceneManager.SCENE_HEIGHT * 1 / 9 + 495);
 		
-		gc.drawImage(RenderableHolder.healthpack, SceneManager.SCENE_WIDTH/7 + 5, SceneManager.SCENE_HEIGHT * 1 / 9 + 520, 30, 45);
+		gc.drawImage(RenderableHolder.healthpack, SceneManager.SCENE_WIDTH/7 + 5, SceneManager.SCENE_HEIGHT * 1 / 9 + 515, 32, 38);
 		gc.fillText("Increases Health", SceneManager.SCENE_WIDTH * 0.3, SceneManager.SCENE_HEIGHT * 1 / 9 + 545);
 		
 	}
@@ -95,7 +98,7 @@ public class MainMenu extends Canvas {
 				if (event.getCode() == KeyCode.ENTER) {
 					music.stop();
 					GameMain.newGame();
-				} else if (event.getCode() == KeyCode.SPACE) {
+				} else if (event.getCode() == KeyCode.SPACE && inTutorial == false) {
 					TutorialMenu();
 				} else if (event.getCode() == KeyCode.ESCAPE) {
 					Platform.exit();

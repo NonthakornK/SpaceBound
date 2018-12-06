@@ -154,13 +154,13 @@ public class Player extends Unit implements IRenderable {
 		String shieldLevelDisplay = "Shield Level : " + Integer.toString(this.shieldLvl);
 		double shieldLevelDisplay_height = fontLoader.getFontMetrics(RenderableHolder.inGameFontSmall)
 				.getLineHeight();
-		gc.fillText(shieldLevelDisplay, 10, 30 + shieldLevelDisplay_height);
+		gc.fillText(shieldLevelDisplay, 10, 32 + shieldLevelDisplay_height);
 		
 		gc.setFill(Color.MEDIUMSEAGREEN);
 		String regenLevelDisplay = "Regen Level : " + Integer.toString(this.regenLvl);
 		double regenLevelDisplay_height = fontLoader.getFontMetrics(RenderableHolder.inGameFontSmall)
 				.getLineHeight();
-		gc.fillText(regenLevelDisplay, 10, 50 + regenLevelDisplay_height);
+		gc.fillText(regenLevelDisplay, 10, 54 + regenLevelDisplay_height);
 		
 		if (powerAttack > 0 && fireMode == 1) {
 			
@@ -321,10 +321,13 @@ public class Player extends Unit implements IRenderable {
 		}
 		if (other instanceof TripleFireBox) {
 			this.fireMode = 1;
-			this.TripleFireTimeOut = System.nanoTime() + 12000000000l; // 10 seconds timeout
+			this.TripleFireTimeOut = System.nanoTime() + 9000000000l; // 9 seconds timeout
 		}
 		if (other instanceof PowerAttackBox) {
 			powerAttack++;
+			if(powerAttack > 3) {
+				powerAttack = 3;
+			}
 		}
 		if (other instanceof ShieldMaxBox) {
 			this.maxShield += ((ShieldMaxBox) other).getShieldStorage();

@@ -8,7 +8,7 @@ import renderer.RenderableHolder;
 public class PowerAttackBox extends Items {
 
 	public PowerAttackBox(double x) {
-		super(ThreadLocalRandom.current().nextDouble(1, 5));
+		super(ThreadLocalRandom.current().nextDouble(3, 6));
 		this.width = RenderableHolder.powerattackBox.getWidth();
 		this.height = RenderableHolder.powerattackBox.getHeight();
 		this.visible = true;

@@ -115,7 +115,7 @@ public class GameLogic {
 			GameLogic.relaxTime = System.nanoTime() + 18000000000l;
 			GameLogic.currentEnemyWeight += 32.4;
 
-			nextItemsSpawnTime = System.nanoTime() + 8000000000l;
+			nextItemsSpawnTime = System.nanoTime() + 12000000000l;
 			
 			addNewObject(new ShieldMaxBox((SceneManager.SCENE_WIDTH - RenderableHolder.shieldmax.getWidth()) / 2 - 100));
 			addNewObject(new AttackBox((SceneManager.SCENE_WIDTH - RenderableHolder.attackBox.getWidth())/2));
@@ -251,7 +251,7 @@ public class GameLogic {
 	private void spawnItems() {
 		long now = System.nanoTime();
 		if (this.nextItemsSpawnTime <= now) {
-			this.nextItemsSpawnTime = now + ThreadLocalRandom.current().nextLong(6000000000l, 10000000000l);
+			this.nextItemsSpawnTime = now + ThreadLocalRandom.current().nextLong(8000000000l, 12000000000l);
 
 			double rand = ThreadLocalRandom.current().nextDouble(100);
 			if (rand <= 10) {

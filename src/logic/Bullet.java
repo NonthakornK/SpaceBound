@@ -12,7 +12,7 @@ public class Bullet extends Unit {
 
 	private Image bulletSprite;
 	private int type;
-	private static int zCounter = -500; // Bullet z is between -700 and -300 inclusive.
+	private static int zCounter = -500; // Bullet z is between -1100 and -300 inclusive.
 	private int speedX, speedY;
 	private boolean exploding = false;
 
@@ -23,13 +23,13 @@ public class Bullet extends Unit {
 		this.speedY = speedY;
 		this.side = side;
 		if (side == -1) {
-			this.z = zCounter - 200;
+			this.z = zCounter - 400;
 		} else {
 			this.z = zCounter;
 		}
 		zCounter++;
 		if (zCounter > -300) {
-			zCounter = -500;
+			zCounter = -700;
 		}
 		this.type = type;
 		if (type == 0) {
@@ -41,7 +41,7 @@ public class Bullet extends Unit {
 			this.height = RenderableHolder.bossBullet.getHeight();
 			this.width = RenderableHolder.bossBullet.getWidth();
 			bulletSprite = RenderableHolder.bossBullet;
-			this.collideDamage = 45 + Score.distance/20000;
+			this.collideDamage = 50 + Score.distance/20000;
 		} else if (type == 2) {
 			this.height = RenderableHolder.roundBulletB.getHeight();
 			this.width = RenderableHolder.roundBulletB.getWidth();
@@ -66,7 +66,17 @@ public class Bullet extends Unit {
 			this.height = RenderableHolder.powerAttack.getHeight();
 			this.width = RenderableHolder.powerAttack.getWidth();
 			bulletSprite = RenderableHolder.powerAttack;
-			this.collideDamage = 27 + 3 * Player.atkLvl;
+			this.collideDamage = 20;
+		} else if (type == 8) {
+			this.height = RenderableHolder.bossPower.getHeight();
+			this.width = RenderableHolder.bossPower.getWidth();
+			bulletSprite = RenderableHolder.bossPower;
+			this.collideDamage = 400 + Score.distance/600;
+		} else if (type == 9) {
+			this.height = RenderableHolder.bossLow.getHeight();
+			this.width = RenderableHolder.bossLow.getWidth();
+			bulletSprite = RenderableHolder.bossLow;
+			this.collideDamage = 20 + Score.distance/30000;
 		}
 		if (side == 1) {
 			this.x = x + (e.width - this.width) / 2.0;
@@ -114,7 +124,7 @@ public class Bullet extends Unit {
 			this.y = y - 145;
 			this.width = 200; // explosion area of effect
 			this.height = 200; // explosion area of effect
-			this.collideDamage = 250 + 50 * Player.atkLvl; // explode missile damage
+			this.collideDamage = 200 + 40 * Player.atkLvl; // explode missile damage
 			Explosion e = new Explosion(x - 50, y - 50 - 40, width + 100, height + 100, z);
 			e.playSfx();
 			RenderableHolder.getInstance().add(e);

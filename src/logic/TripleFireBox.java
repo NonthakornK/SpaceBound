@@ -9,7 +9,7 @@ public class TripleFireBox extends Items {
 
 	public TripleFireBox(double x) {
 		// TODO Auto-generated constructor stub
-		super(ThreadLocalRandom.current().nextDouble(1, 5));
+		super(ThreadLocalRandom.current().nextDouble(3, 6));
 		this.width = RenderableHolder.triplefirebox.getWidth();
 		this.height = RenderableHolder.triplefirebox.getHeight();
 		this.visible = true;

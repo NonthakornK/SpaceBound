@@ -14,6 +14,7 @@ public class Main extends Application {
 			SceneManager.initialize(primaryStage);
 			SceneManager.gotoMainMenu();
 			primaryStage.setTitle("SpaceBound");
+			primaryStage.setAlwaysOnTop(true);
 			primaryStage.centerOnScreen();
 			primaryStage.setResizable(false);
 			primaryStage.sizeToScene();
