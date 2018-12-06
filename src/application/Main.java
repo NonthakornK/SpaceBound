@@ -5,12 +5,15 @@ import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import renderer.LoadUnableException;
+import renderer.RenderableHolder;
 import window.SceneManager;
 
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			RenderableHolder.loadResource();
 			SceneManager.initialize(primaryStage);
 			SceneManager.gotoMainMenu();
 			primaryStage.setTitle("SpaceBound");
@@ -29,7 +32,8 @@ public class Main extends Application {
 					System.exit(0);
 				}
 			});
-
+		} catch (LoadUnableException l) {
+			l.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

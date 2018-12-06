@@ -48,9 +48,9 @@ public class EJet extends Enemy {
 			this.destroyed = true;
 		}
 		if (inPosition) {
-			if (bulletDelayTick % 30 == 0) {
-				gameLogic.addPendingBullet(new Bullet(x, y - this.height / 2, 8, 0, -1, 5, this));
-				gameLogic.addPendingBullet(new Bullet(x, y - this.height / 2, -8, 0, -1, 5, this));
+			if (bulletDelayTick % 25 == 0) {
+				gameLogic.addPendingBullet(new Bullet(x, y - this.height / 2, 8, 0, -1, 10, this));
+				gameLogic.addPendingBullet(new Bullet(x, y - this.height / 2, -8, 0, -1, 10, this));
 				RenderableHolder.fireBall.play();
 			}
 			bulletDelayTick++;

@@ -17,7 +17,7 @@ public class RenderableHolder {// the picture class maker and we use this to mak
 	// various image plz check the image first before using (like to find its size /
 	// how it looks etc)
 	public static Image dragon, eSemiBoss, eBoss, eGhost, eSpiriteFire, eJet, eMachine, eTree, bullet, background,
-			backgroundMM, backgroundW, healthpack, bossBullet, bossPower, bossLow, roundBulletB, roundBulletY, roundBulletR, roundBulletP, sparkArr[],
+			backgroundMM, backgroundW, healthpack, bossBullet, bossPower, bossLow, roundBulletB, roundBulletY, roundBulletR, roundBulletP, beamSmallG, sparkArr[],
 			powerAttack, exploArr[], randomBox, asteroidArr[], shieldmax, shieldregen, attackBox, triplefirebox, powerattackBox;
 
 	public static AudioClip bgm, fireBall, explosion, explosion2, gameOverMusic, mainMenuMusic, powerAttackLaunch,
@@ -25,10 +25,6 @@ public class RenderableHolder {// the picture class maker and we use this to mak
 	public static Font inGameFont, inGameFontSmall;
 
 	public static AudioClip[] explosions;
-
-	static {
-		loadResource();
-	}
 
 	public RenderableHolder() {
 		entities = Collections.synchronizedList(new ArrayList<>());
@@ -44,77 +40,80 @@ public class RenderableHolder {// the picture class maker and we use this to mak
 		return instance;
 	}
 
-	public static void loadResource() {
-		dragon = new Image(ClassLoader.getSystemResource("res/player/SpaceD.gif").toString());
+	public static void loadResource() throws LoadUnableException {
+		//dragon = imageLoader("res/player/SpaceD.gif"));
+		dragon = imageLoader("res/player/SpaceD.gif");
 		// player picture
 
-		eSemiBoss = new Image(ClassLoader.getSystemResource("res/enemy/semiboss.gif").toString());
-		eBoss = new Image(ClassLoader.getSystemResource("res/enemy/BigBoss.gif").toString());
-		eGhost = new Image(ClassLoader.getSystemResource("res/enemy/Extra.gif").toString());
+		eSemiBoss = imageLoader("res/enemy/semiboss.gif");
+		eBoss = imageLoader("res/enemy/BigBoss.gif");
+		eGhost = imageLoader("res/enemy/Extra.gif");
 		asteroidArr = new Image[4];
 		for (int i = 0; i < 4; i++) {
-			asteroidArr[i] = new Image(ClassLoader.getSystemResource("res/enemy/asteroid" + i + ".gif").toString());
+			asteroidArr[i] = imageLoader("res/enemy/asteroid" + i + ".gif");
 		}
 		
-		eMachine = new Image(ClassLoader.getSystemResource("res/enemy/Normal.png").toString());
-		eJet = new Image(ClassLoader.getSystemResource("res/enemy/Normal.png").toString());
-		eTree = new Image(ClassLoader.getSystemResource("res/enemy/Excusive.gif").toString());
+		eMachine = imageLoader("res/enemy/Normal.png");
+		eJet = imageLoader("res/enemy/Normal.png");
+		eTree = imageLoader("res/enemy/Excusive.gif");
 		// mob picture
 		exploArr = new Image[12];
 		for (int i = 0; i < 12; i++) {
-			exploArr[i] = new Image(ClassLoader.getSystemResource("res/explosion/" + i + ".gif").toString());
+			exploArr[i] = imageLoader("res/explosion/" + i + ".gif");
 		}
 		
 		
 		// explore loop from sprite sheet that was cut before
 		sparkArr = new Image[4];
 		for (int i = 0; i < 4; i++) {
-			sparkArr[i] = new Image(ClassLoader.getSystemResource("res/spark/" + i + ".png").toString());
+			sparkArr[i] = imageLoader("res/spark/" + i + ".png");
 		}
 
-		bullet = new Image(ClassLoader.getSystemResource("res/bullet/Laser.png").toString());
-		powerAttack = new Image(ClassLoader.getSystemResource("res/bullet/fireball.gif").toString());
-		bossBullet = new Image(ClassLoader.getSystemResource("res/bullet/bossBullet.gif").toString());
-		bossPower = new Image(ClassLoader.getSystemResource("res/bullet/bossPower.png").toString());
-		bossLow = new Image(ClassLoader.getSystemResource("res/bullet/bossLow.png").toString());
+		bullet = imageLoader("res/bullet/Laser.png");
+		powerAttack = imageLoader("res/bullet/fireball.gif");
+		bossBullet = imageLoader("res/bullet/bossBullet.gif");
+		bossPower = imageLoader("res/bullet/bossPower.png");
+		bossLow = imageLoader("res/bullet/bossLow.png");
 		
-		roundBulletB = new Image(ClassLoader.getSystemResource("res/bullet/roundBulletB.png").toString());
-		roundBulletY = new Image(ClassLoader.getSystemResource("res/bullet/roundBulletY.png").toString());
-		roundBulletR = new Image(ClassLoader.getSystemResource("res/bullet/roundBulletR.png").toString());
-		roundBulletP = new Image(ClassLoader.getSystemResource("res/bullet/roundBulletP.png").toString());
+		roundBulletB = imageLoader("res/bullet/roundBulletB.png");
+		roundBulletY = imageLoader("res/bullet/roundBulletY.png");
+		roundBulletR = imageLoader("res/bullet/roundBulletR.png");
+		roundBulletP = imageLoader("res/bullet/roundBulletP.png");
+		beamSmallG = imageLoader("res/bullet/beamSmallG.png");
 		// bullet picture
-		background = new Image(ClassLoader.getSystemResource("res/background/BackSpace.jpg").toString());
-		backgroundMM = new Image(ClassLoader.getSystemResource("res/background/BackMenu.png").toString());
-		backgroundW = new Image(ClassLoader.getSystemResource("res/background/BackWinner.jpg").toString());
+		background = imageLoader("res/background/BackSpace.jpg");
+		backgroundMM = imageLoader("res/background/BackMenu.png");
+		backgroundW = imageLoader("res/background/BackWinner.jpg");
 		// background of 3 screen
-		randomBox = new Image(ClassLoader.getSystemResource("res/items/randombox.png").toString());
-		attackBox = new Image(ClassLoader.getSystemResource("res/items/attackbox.gif").toString());
+		randomBox = imageLoader("res/items/randombox.png");
+		attackBox = imageLoader("res/items/attackbox.gif");
 		//------------
-		triplefirebox = new Image(ClassLoader.getSystemResource("res/items/triple.png").toString());
+		triplefirebox = imageLoader("res/items/triple.png");
 		//------------
-		powerattackBox = new Image(ClassLoader.getSystemResource("res/items/SUPERPOWER.png").toString());
-		healthpack = new Image(ClassLoader.getSystemResource("res/items/health.png").toString());
-		shieldmax = new Image(ClassLoader.getSystemResource("res/items/shieldmax.gif").toString());
-		shieldregen = new Image(ClassLoader.getSystemResource("res/items/shieldregen.gif").toString());
+		powerattackBox = imageLoader("res/items/SUPERPOWER.png");
+		healthpack = imageLoader("res/items/health.png");
+		shieldmax = imageLoader("res/items/shieldmax.gif");
+		shieldregen = imageLoader("res/items/shieldregen.gif");
 		
 		
-		bgm = new AudioClip(ClassLoader.getSystemResource("res/song/GameScreen.mp3").toExternalForm());
-		fireBall = new AudioClip(ClassLoader.getSystemResource("res/song/Fire_Ball.mp3").toExternalForm());
+		bgm = audioLoader("res/song/GameScreen.mp3");
+		fireBall = audioLoader("res/song/Fire_Ball.mp3");
 		fireBall.setVolume(0.35);
-		laser = new AudioClip(ClassLoader.getSystemResource("res/song/laser.wav").toExternalForm());
+		laser = audioLoader("res/song/laser.wav");
 		laser.setVolume(0.35);
-		gameWinnerMusic = new AudioClip(ClassLoader.getSystemResource("res/song/GameWinner.mp3").toExternalForm());
-		gameOverMusic = new AudioClip(ClassLoader.getSystemResource("res/song/GameLoser.mp3").toExternalForm());
-		mainMenuMusic = new AudioClip(ClassLoader.getSystemResource("res/song/MenuSound.mp3").toExternalForm());
-		explosion = new AudioClip(ClassLoader.getSystemResource("res/song/Explosion.wav").toExternalForm());
-		explosion2 = new AudioClip(ClassLoader.getSystemResource("res/song/Explosion2.wav").toExternalForm());
+		gameWinnerMusic = audioLoader("res/song/GameWinner.mp3");
+		gameOverMusic = audioLoader("res/song/GameLoser.mp3");
+		mainMenuMusic = audioLoader("res/song/MenuSound.mp3");
+		explosion = audioLoader("res/song/Explosion.wav");
+		explosion2 = audioLoader("res/song/Explosion2.wav");
 		
-		powerAttackLaunch = new AudioClip(ClassLoader.getSystemResource("res/song/PowerAttack.mp3").toExternalForm());
+		powerAttackLaunch = audioLoader("res/song/PowerAttack.mp3");
 
 		explosions = new AudioClip[] { explosion, explosion2 };
 		// sound effect
-		inGameFont = Font.loadFont(ClassLoader.getSystemResource("res/font/Astrobia.ttf").toString(), 40);
-		inGameFontSmall = Font.loadFont(ClassLoader.getSystemResource("res/font/Astrobia.ttf").toString(), 22.5);
+		inGameFont = fontLoader("res/font/Astrobia.ttf", 40);
+		inGameFontSmall = fontLoader("res/font/Astrobia.ttf", 22.5);
+		//inGameFontSmall = Font.loadFont(ClassLoader.getSystemResource("res/font/Astrobia.ttf").toString(), 22.5);
 	}
 
 	public void add(IRenderable entity) {
@@ -138,4 +137,30 @@ public class RenderableHolder {// the picture class maker and we use this to mak
 		entities.clear();
 	}
 
+	private static Image imageLoader(String path) throws LoadUnableException {
+		try {
+			return new Image(ClassLoader.getSystemResource(path).toString());
+		}
+		catch (Exception e) {
+			throw new LoadUnableException(path);
+		}
+	}
+	
+	private static AudioClip audioLoader(String path) throws LoadUnableException {
+		try {
+			return new AudioClip(ClassLoader.getSystemResource(path).toExternalForm());
+		}
+		catch (Exception e) {
+			throw new LoadUnableException(path);
+		}
+	}
+	
+	private static Font fontLoader(String path, double size) throws LoadUnableException {
+		try {
+			return Font.loadFont(ClassLoader.getSystemResource(path).toString(), size);
+		}
+		catch (Exception e) {
+			throw new LoadUnableException(path);
+		}
+	}
 }

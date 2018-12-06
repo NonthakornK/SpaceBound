@@ -90,6 +90,8 @@ public class GameLogic {
 	}
 
 	private void gameLoop() {
+		esemi = new ESemiBoss(this);
+		addNewObject(esemi);
 		long lastLoopStartTime = System.nanoTime();
 		GameLogic.relaxTime = System.nanoTime() + 9000000000l;
 		GameLogic.currentEnemyWeight += 16.2;
