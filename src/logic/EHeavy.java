@@ -6,16 +6,16 @@ import javafx.scene.shape.Shape;
 import renderer.RenderableHolder;
 import window.SceneManager;
 
-public class ETree extends Enemy {
+public class EHeavy extends Enemy {
 	private int bulletDelayTick = 0;
 	private GameLogic gameLogic;
 	private double startingX;
 
-	public ETree(GameLogic gameLogic, double x) {
+	public EHeavy(GameLogic gameLogic, double x) {
 		super(800, 0.5);
 		// TODO Auto-generated constructor stub
-		this.width = RenderableHolder.eTree.getWidth();
-		this.height = RenderableHolder.eTree.getHeight();
+		this.width = RenderableHolder.eHeavy.getWidth();
+		this.height = RenderableHolder.eHeavy.getHeight();
 		this.visible = true;
 		this.destroyed = false;
 		this.x = x;
@@ -29,7 +29,7 @@ public class ETree extends Enemy {
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		gc.drawImage(RenderableHolder.eTree, x, y);
+		gc.drawImage(RenderableHolder.eHeavy, x, y);
 	}
 
 	@Override

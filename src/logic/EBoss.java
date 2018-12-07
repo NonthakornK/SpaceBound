@@ -46,15 +46,15 @@ public class EBoss extends Enemy {
 			GameLogic.isBossAlive = false;
 			GameLogic.killedBoss = true;
 		}
-		if (bulletDelayTick % 18 == 0) {
+		if (bulletDelayTick % 21 == 0) {
 			gameLogic.addPendingBullet(new Bullet(x, y, 0, 20, -1, 9, this));
 			RenderableHolder.laser.play();
 		}
-		if (bulletDelayTick % 61 == 23) {
+		if (bulletDelayTick % 73 == 23) {
 			gameLogic.addPendingBullet(new Bullet(x, y, 0, 30, -1, 1, this));
 			RenderableHolder.fireBall.play();
 		}
-		if (bulletDelayTick % 223 == 177) {
+		if (bulletDelayTick % 233 == 177) {
 			gameLogic.addPendingBullet(new Bullet(x, y - 20, 0, 50, -1, 8, this));
 			RenderableHolder.laser.play();
 		}

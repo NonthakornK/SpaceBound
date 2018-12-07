@@ -18,7 +18,7 @@ public class EJet extends Enemy {
 	private boolean inPosition;
 
 	public EJet(GameLogic gameLogic, double x) {
-		super(100, 0.5);
+		super(100, 0.3);
 		this.width = RenderableHolder.eJet.getWidth();
 		this.height = RenderableHolder.eJet.getHeight();
 		this.visible = true;
@@ -49,8 +49,8 @@ public class EJet extends Enemy {
 		}
 		if (inPosition) {
 			if (bulletDelayTick % 25 == 0) {
-				gameLogic.addPendingBullet(new Bullet(x, y - this.height / 2, 8, 0, -1, 10, this));
-				gameLogic.addPendingBullet(new Bullet(x, y - this.height / 2, -8, 0, -1, 10, this));
+				gameLogic.addPendingBullet(new Bullet(x, y - this.height / 2, 15, 0, -1, 10, this));
+				gameLogic.addPendingBullet(new Bullet(x, y - this.height / 2, -15, 0, -1, 10, this));
 				RenderableHolder.fireBall.play();
 			}
 			bulletDelayTick++;

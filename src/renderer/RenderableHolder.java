@@ -16,12 +16,13 @@ public class RenderableHolder {// the picture class maker and we use this to mak
 	private Comparator<IRenderable> comparator;
 	// various image plz check the image first before using (like to find its size /
 	// how it looks etc)
-	public static Image dragon, eSemiBoss, eBoss, eGhost, eSpiriteFire, eJet, eMachine, eTree, bullet, background,
-			backgroundMM, backgroundW, healthpack, bossBullet, bossPower, bossLow, roundBulletB, roundBulletY, roundBulletR, roundBulletP, beamSmallG, sparkArr[],
-			powerAttack, exploArr[], randomBox, asteroidArr[], shieldmax, shieldregen, attackBox, triplefirebox, powerattackBox;
+	public static Image dragon, eSemiBoss, eBoss, eGhost, eSpiriteFire, eJet, eMachine, eHeavy, bullet, background,
+			backgroundMM, backgroundW, healthpack, bossBullet, bossPower, bossLow, roundBulletB, roundBulletY,
+			roundBulletR, roundBulletP, beamSmallG, beamSmallY, sparkArr[], powerAttack, exploArr[], randomBox,
+			asteroidArr[], shieldmax, shieldregen, attackBox, triplefirebox, powerattackBox;
 
 	public static AudioClip bgm, fireBall, explosion, explosion2, gameOverMusic, mainMenuMusic, powerAttackLaunch,
-			gameWinnerMusic,laser;
+			gameWinnerMusic, laser;
 	public static Font inGameFont, inGameFontSmall;
 
 	public static AudioClip[] explosions;
@@ -41,7 +42,7 @@ public class RenderableHolder {// the picture class maker and we use this to mak
 	}
 
 	public static void loadResource() throws LoadUnableException {
-		//dragon = imageLoader("res/player/SpaceD.gif"));
+		// dragon = imageLoader("res/player/SpaceD.gif"));
 		dragon = imageLoader("res/player/SpaceD.gif");
 		// player picture
 
@@ -52,17 +53,16 @@ public class RenderableHolder {// the picture class maker and we use this to mak
 		for (int i = 0; i < 4; i++) {
 			asteroidArr[i] = imageLoader("res/enemy/asteroid" + i + ".gif");
 		}
-		
+
 		eMachine = imageLoader("res/enemy/Normal.png");
 		eJet = imageLoader("res/enemy/Normal.png");
-		eTree = imageLoader("res/enemy/Excusive.gif");
+		eHeavy = imageLoader("res/enemy/Excusive.gif");
 		// mob picture
 		exploArr = new Image[12];
 		for (int i = 0; i < 12; i++) {
 			exploArr[i] = imageLoader("res/explosion/" + i + ".gif");
 		}
-		
-		
+
 		// explore loop from sprite sheet that was cut before
 		sparkArr = new Image[4];
 		for (int i = 0; i < 4; i++) {
@@ -74,12 +74,13 @@ public class RenderableHolder {// the picture class maker and we use this to mak
 		bossBullet = imageLoader("res/bullet/bossBullet.gif");
 		bossPower = imageLoader("res/bullet/bossPower.png");
 		bossLow = imageLoader("res/bullet/bossLow.png");
-		
+
 		roundBulletB = imageLoader("res/bullet/roundBulletB.png");
 		roundBulletY = imageLoader("res/bullet/roundBulletY.png");
 		roundBulletR = imageLoader("res/bullet/roundBulletR.png");
 		roundBulletP = imageLoader("res/bullet/roundBulletP.png");
 		beamSmallG = imageLoader("res/bullet/beamSmallG.png");
+		beamSmallY = imageLoader("res/bullet/beamSmallY.png");
 		// bullet picture
 		background = imageLoader("res/background/BackSpace.jpg");
 		backgroundMM = imageLoader("res/background/BackMenu.png");
@@ -87,15 +88,14 @@ public class RenderableHolder {// the picture class maker and we use this to mak
 		// background of 3 screen
 		randomBox = imageLoader("res/items/randombox.png");
 		attackBox = imageLoader("res/items/attackbox.gif");
-		//------------
+		// ------------
 		triplefirebox = imageLoader("res/items/triple.png");
-		//------------
+		// ------------
 		powerattackBox = imageLoader("res/items/SUPERPOWER.png");
 		healthpack = imageLoader("res/items/health.png");
 		shieldmax = imageLoader("res/items/shieldmax.gif");
 		shieldregen = imageLoader("res/items/shieldregen.gif");
-		
-		
+
 		bgm = audioLoader("res/song/GameScreen.mp3");
 		fireBall = audioLoader("res/song/Fire_Ball.mp3");
 		fireBall.setVolume(0.35);
@@ -106,14 +106,16 @@ public class RenderableHolder {// the picture class maker and we use this to mak
 		mainMenuMusic = audioLoader("res/song/MenuSound.mp3");
 		explosion = audioLoader("res/song/Explosion.wav");
 		explosion2 = audioLoader("res/song/Explosion2.wav");
-		
+
 		powerAttackLaunch = audioLoader("res/song/PowerAttack.mp3");
 
 		explosions = new AudioClip[] { explosion, explosion2 };
 		// sound effect
 		inGameFont = fontLoader("res/font/Astrobia.ttf", 40);
 		inGameFontSmall = fontLoader("res/font/Astrobia.ttf", 22.5);
-		//inGameFontSmall = Font.loadFont(ClassLoader.getSystemResource("res/font/Astrobia.ttf").toString(), 22.5);
+		// inGameFontSmall =
+		// Font.loadFont(ClassLoader.getSystemResource("res/font/Astrobia.ttf").toString(),
+		// 22.5);
 	}
 
 	public void add(IRenderable entity) {
@@ -140,26 +142,23 @@ public class RenderableHolder {// the picture class maker and we use this to mak
 	private static Image imageLoader(String path) throws LoadUnableException {
 		try {
 			return new Image(ClassLoader.getSystemResource(path).toString());
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw new LoadUnableException(path);
 		}
 	}
-	
+
 	private static AudioClip audioLoader(String path) throws LoadUnableException {
 		try {
 			return new AudioClip(ClassLoader.getSystemResource(path).toExternalForm());
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw new LoadUnableException(path);
 		}
 	}
-	
+
 	private static Font fontLoader(String path, double size) throws LoadUnableException {
 		try {
 			return Font.loadFont(ClassLoader.getSystemResource(path).toString(), size);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw new LoadUnableException(path);
 		}
 	}

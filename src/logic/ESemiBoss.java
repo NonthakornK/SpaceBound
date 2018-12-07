@@ -14,14 +14,15 @@ public class ESemiBoss extends Enemy {
 	private int bulletDelayTick = 0;
 	private double yOffset;
 	private double xOffset;
+	private long moveTime;
 	private double yMultiplier;
 	private boolean returning;
 	private GameLogic gameLogic;
 	private long chargeDelay;
 
 	public ESemiBoss(GameLogic gameLogic) {
-		super(3000, 0.2);
-		this.originalHp = 3000;
+		super(4000, 0.15);
+		this.originalHp = 4000;
 		this.width = RenderableHolder.eSemiBoss.getWidth();
 		this.height = RenderableHolder.eSemiBoss.getHeight();
 		this.yOffset = 0;
@@ -32,10 +33,11 @@ public class ESemiBoss extends Enemy {
 		this.x = (SceneManager.SCENE_WIDTH - this.width) / 2.0;
 		this.y = -this.height;
 		this.collideDamage = 3000;
-		this.weight = 5.5;
+		this.weight = 7;
 		this.gameLogic = gameLogic;
-		this.chargeDelay = System.nanoTime() + ThreadLocalRandom.current().nextLong(7000000000l, 10000000000l);
+		this.chargeDelay = System.nanoTime() + ThreadLocalRandom.current().nextLong(6000000000l, 9000000000l);
 		this.returning = false;
+		this.moveTime = System.nanoTime();
 
 		GameLogic.isSemiAlive = true;
 	}
@@ -50,10 +52,10 @@ public class ESemiBoss extends Enemy {
 		if (now >= this.chargeDelay) {
 			if (returning) {
 				if (this.y >= yOffset) {
-					this.y -= 6 * (SceneManager.SCENE_HEIGHT - this.yOffset) / SceneManager.SCENE_HEIGHT;
+					this.y -= 8 * (SceneManager.SCENE_HEIGHT - this.yOffset) / SceneManager.SCENE_HEIGHT;
 				} else {
 					this.returning = false;
-					this.chargeDelay = now + ThreadLocalRandom.current().nextLong(5000000000l, 7000000000l);
+					this.chargeDelay = now + ThreadLocalRandom.current().nextLong(5000000000l, 6000000000l);
 				}
 
 			} else if (this.y < SceneManager.SCENE_HEIGHT * this.yMultiplier) {
@@ -61,10 +63,13 @@ public class ESemiBoss extends Enemy {
 			} else {
 				this.returning = true;
 			}
-		} else if (now >= this.chargeDelay - 1300000000l) {
+		} else if (now >= this.chargeDelay - 1000000000l) {
+			this.y -= 10 * (SceneManager.SCENE_HEIGHT - this.yOffset) / SceneManager.SCENE_HEIGHT;
 			
 		} else {
-			this.x = Math.abs(this.x - 5 - SceneManager.SCENE_WIDTH - this.width);
+			this.moveTime += GameLogic.LOOP_TIME;
+			this.x = Math.sin(3.5 * (this.moveTime) * 1e-9 + Math.toRadians(90)) * ((SceneManager.SCENE_WIDTH - this.width) / 2)
+					+ (SceneManager.SCENE_WIDTH - this.width) / 2.0;
 			this.y += this.speed;
 			this.yOffset = this.y;
 			this.xOffset = this.x;
@@ -77,15 +82,17 @@ public class ESemiBoss extends Enemy {
 			this.visible = false;
 			this.destroyed = true;
 		}
-		if (bulletDelayTick % 20 == 0) {
-			gameLogic.addPendingBullet(new Bullet(x - 50, y - 20, 8, 15, -1, 4, this));
-			gameLogic.addPendingBullet(new Bullet(x + 50, y - 20, -8, 15, -1, 4, this));
-			gameLogic.addPendingBullet(new Bullet(x - 15, y, 4, 15, -1, 4, this));
-			gameLogic.addPendingBullet(new Bullet(x + 15, y, -4, 15, -1, 4, this));
-			RenderableHolder.fireBall.play();
+		if(now < this.chargeDelay - 1000000000l) {
+			if (bulletDelayTick % 30 == 0) {
+				gameLogic.addPendingBullet(new Bullet(x, y, 0, 15, -1, 4, this));
+				gameLogic.addPendingBullet(new Bullet(x - 50, y - 20, 9, 15, -1, 4, this));
+				gameLogic.addPendingBullet(new Bullet(x + 50, y - 20, -9, 15, -1, 4, this));
+				gameLogic.addPendingBullet(new Bullet(x - 15, y, 5, 15, -1, 4, this));
+				gameLogic.addPendingBullet(new Bullet(x + 15, y, -5, 15, -1, 4, this));
+				RenderableHolder.fireBall.play();
+			}
+			bulletDelayTick++;
 		}
-		bulletDelayTick++;
-
 	}
 
 	@Override

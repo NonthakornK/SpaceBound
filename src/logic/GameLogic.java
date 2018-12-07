@@ -19,7 +19,7 @@ public class GameLogic {
 
 	private List<Unit> gameObjectContainer;
 	private static final int FPS = 60;
-	private static final long LOOP_TIME = 1000000000 / FPS;
+	public static final long LOOP_TIME = 1000000000 / FPS;
 	private double hiddenDistance = 0;
 
 	private int gameOverCountdown = 24;
@@ -90,11 +90,9 @@ public class GameLogic {
 	}
 
 	private void gameLoop() {
-		esemi = new ESemiBoss(this);
-		addNewObject(esemi);
 		long lastLoopStartTime = System.nanoTime();
-		GameLogic.relaxTime = System.nanoTime() + 9000000000l;
-		GameLogic.currentEnemyWeight += 16.2;
+		GameLogic.relaxTime = System.nanoTime() + 7000000000l;
+		GameLogic.currentEnemyWeight += 12.6;
 		while (isGameRunning) {
 			long elapsedTime = System.nanoTime() - lastLoopStartTime;
 			if (elapsedTime >= LOOP_TIME) {
@@ -114,10 +112,10 @@ public class GameLogic {
 		// TODO fill code
 
 		if (killedSemi) {
-			GameLogic.relaxTime = System.nanoTime() + 18000000000l;
-			GameLogic.currentEnemyWeight += 32.4;
+			GameLogic.relaxTime = System.nanoTime() + 14000000000l;
+			GameLogic.currentEnemyWeight += 25.2;
 
-			nextItemsSpawnTime = System.nanoTime() + 12000000000l;
+			nextItemsSpawnTime = System.nanoTime() + 11000000000l;
 			
 			addNewObject(new ShieldMaxBox((SceneManager.SCENE_WIDTH - RenderableHolder.shieldmax.getWidth()) / 2 - 100));
 			addNewObject(new AttackBox((SceneManager.SCENE_WIDTH - RenderableHolder.attackBox.getWidth())/2));
@@ -211,7 +209,7 @@ public class GameLogic {
 		// this.currentEnemyWeight);
 
 		if (GameLogic.currentEnemyWeight < this.maxEnemyCap) {
-			int chance = r.nextInt(100) - 20000 / (Score.distance + 1); // difficulty factor , +1 to prevent zero when
+			int chance = r.nextInt(100) - 10000 / (Score.distance + 1); // difficulty factor , +1 to prevent zero when
 																		// start
 			// new game
 			// System.out.println(" chance " + chance);
@@ -239,11 +237,11 @@ public class GameLogic {
 						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.eGhost.getWidth()));
 				addNewObject(eghost);
 				GameLogic.currentEnemyWeight += eghost.getWeight();
-			} else if (chance < 100) {
-				ETree etree = new ETree(this, ThreadLocalRandom.current()
-						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.eTree.getWidth())); 
-				addNewObject(etree);
-				GameLogic.currentEnemyWeight += etree.getWeight();
+			} else {
+				EHeavy eheavy = new EHeavy(this, ThreadLocalRandom.current()
+						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.eHeavy.getWidth())); 
+				addNewObject(eheavy);
+				GameLogic.currentEnemyWeight += eheavy.getWeight();
 			}
 
 		}
