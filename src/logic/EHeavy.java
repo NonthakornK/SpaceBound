@@ -35,7 +35,7 @@ public class EHeavy extends Enemy {
 		gc.drawImage(RenderableHolder.eHeavy, x, y);
 		if(collided) {
 			Image spark = RenderableHolder.sparkArr[ThreadLocalRandom.current().nextInt(0,4)];
-			gc.drawImage(spark, x + this.width/3.3, y + this.height/2.5, this.width * 0.6, this.height * 0.6);
+			gc.drawImage(spark, x + this.width/4.5, y + this.height/2.5, this.width * 0.6, this.height * 0.6);
 			collided = false;
 		}
 	}

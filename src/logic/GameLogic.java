@@ -90,8 +90,8 @@ public class GameLogic {
 
 	private void gameLoop() {
 		long lastLoopStartTime = System.nanoTime();
-		GameLogic.relaxTime = System.nanoTime() + 7000000000l;
-		GameLogic.currentEnemyWeight += 12.6;
+		GameLogic.relaxTime = System.nanoTime() + 6000000000l;
+		GameLogic.currentEnemyWeight += 10.8;
 		while (isGameRunning) {
 			long elapsedTime = System.nanoTime() - lastLoopStartTime;
 			if (elapsedTime >= LOOP_TIME) {
@@ -111,8 +111,8 @@ public class GameLogic {
 		// TODO fill code
 
 		if (killedSemi) {
-			GameLogic.relaxTime = System.nanoTime() + 14000000000l;
-			GameLogic.currentEnemyWeight += 25.2;
+			GameLogic.relaxTime = System.nanoTime() + 12000000000l;
+			GameLogic.currentEnemyWeight += 21.6;
 
 			nextItemsSpawnTime = System.nanoTime() + 11000000000l;
 			

@@ -74,7 +74,7 @@ public class EBoss extends Enemy {
 		drawHpBar(gc);
 		if(collided) {
 			Image spark = RenderableHolder.sparkArr[ThreadLocalRandom.current().nextInt(0,4)];
-			gc.drawImage(spark, x + this.width/4, y + this.height/3, this.width * 0.4, this.height * 0.4);
+			gc.drawImage(spark, x + this.width/7, y + this.height * 0.3, this.width * 0.7, this.height * 0.7);
 			collided = false;
 		}
 	}

@@ -65,7 +65,7 @@ public class EJet extends Enemy {
 		gc.drawImage(RenderableHolder.eJet, x, y);
 		if(collided) {
 			Image spark = RenderableHolder.sparkArr[ThreadLocalRandom.current().nextInt(0,4)];
-			gc.drawImage(spark, x, y, this.width * 0.85, this.height * 0.85);
+			gc.drawImage(spark, x - 5, y, this.width, this.height);
 			collided = false;
 		}
 	}

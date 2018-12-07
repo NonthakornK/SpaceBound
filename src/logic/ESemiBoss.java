@@ -103,7 +103,7 @@ public class ESemiBoss extends Enemy {
 		drawHpBar(gc);
 		if(collided) {
 			Image spark = RenderableHolder.sparkArr[ThreadLocalRandom.current().nextInt(0,4)];
-			gc.drawImage(spark, x + this.width/4, y + this.height/4, this.width * 0.25, this.height * 0.25);
+			gc.drawImage(spark, x + this.width/10, y + this.height * 0.32, this.width * 0.8, this.height * 0.8);
 			collided = false;
 		}
 	}
