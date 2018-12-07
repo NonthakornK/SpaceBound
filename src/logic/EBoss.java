@@ -17,8 +17,8 @@ public class EBoss extends Enemy {
 	private int bulletDelayTick = 0;
 
 	public EBoss(GameLogic gameLogic) {
-		super(9000, 0.15);
-		this.originalHp = 9000;
+		super(8000, 0.15);
+		this.originalHp = 8000;
 		this.width = RenderableHolder.eBoss.getWidth();
 		this.height = RenderableHolder.eBoss.getHeight();
 		this.visible = true;

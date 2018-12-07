@@ -6,6 +6,8 @@ import java.util.Comparator;
 import java.util.List;
 
 import javafx.scene.image.Image;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.AudioClip;
 import javafx.scene.text.Font;
 
@@ -20,11 +22,13 @@ public class RenderableHolder {
 			roundBulletR, roundBulletP, beamSmallG, beamSmallY, sparkArr[], powerAttack, exploArr[], randomBox,
 			asteroidArr[], shieldmax, shieldregen, attackBox, triplefirebox, powerattackBox;
 
-	public static AudioClip bgm, fireBall, explosion, explosion2, gameOverMusic, mainMenuMusic, powerAttackLaunch,
-			gameWinnerMusic, laser;
 	public static Font inGameFont, inGameFontSmall;
 
+	public static AudioClip fireBall, explosion, explosion2, powerAttackLaunch, laser;
+	
 	public static AudioClip[] explosions;
+	
+	public static MediaPlayer bgm, gameOverMusic, mainMenuMusic, gameWinnerMusic;
 
 	public RenderableHolder() {
 		entities = Collections.synchronizedList(new ArrayList<>());
@@ -95,18 +99,20 @@ public class RenderableHolder {
 		shieldmax = imageLoader("res/items/shieldmax.gif");
 		shieldregen = imageLoader("res/items/shieldregen.gif");
 
-		bgm = audioLoader("res/song/GameScreen.mp3");
-		fireBall = audioLoader("res/song/Fire_Ball.mp3");
+		bgm = mediaPlayerLoader("res/song/GameScreen.mp3");
+		fireBall = audioClipLoader("res/song/Fire_Ball.mp3");		
+		laser = audioClipLoader("res/song/laser.wav");	
+		gameWinnerMusic = mediaPlayerLoader("res/song/GameWinner.mp3");
+		gameOverMusic = mediaPlayerLoader("res/song/GameLoser.mp3");
+		mainMenuMusic = mediaPlayerLoader("res/song/MenuSound.mp3");
+		explosion = audioClipLoader("res/song/Explosion.wav");
+		explosion2 = audioClipLoader("res/song/Explosion2.wav");
+		powerAttackLaunch = audioClipLoader("res/song/PowerAttack.mp3");
+		
 		fireBall.setVolume(0.35);
-		laser = audioLoader("res/song/laser.wav");
 		laser.setVolume(0.35);
-		gameWinnerMusic = audioLoader("res/song/GameWinner.mp3");
-		gameOverMusic = audioLoader("res/song/GameLoser.mp3");
-		mainMenuMusic = audioLoader("res/song/MenuSound.mp3");
-		explosion = audioLoader("res/song/Explosion.wav");
-		explosion2 = audioLoader("res/song/Explosion2.wav");
-
-		powerAttackLaunch = audioLoader("res/song/PowerAttack.mp3");
+		explosion.setVolume(0.25);
+		explosion2.setVolume(0.4);
 
 		explosions = new AudioClip[] { explosion, explosion2 };
 		// sound effect
@@ -141,10 +147,17 @@ public class RenderableHolder {
 			throw new LoadUnableException(path);
 		}
 	}
-
-	private static AudioClip audioLoader(String path) throws LoadUnableException {
+	private static AudioClip audioClipLoader(String path) throws LoadUnableException {
 		try {
-			return new AudioClip(ClassLoader.getSystemResource(path).toExternalForm());
+			return new AudioClip(ClassLoader.getSystemResource(path).toString());
+		} catch (Exception e) {
+			throw new LoadUnableException(path);
+		}
+	}
+
+	private static MediaPlayer mediaPlayerLoader(String path) throws LoadUnableException {
+		try {
+			return new MediaPlayer(new Media(ClassLoader.getSystemResource(path).toString()));
 		} catch (Exception e) {
 			throw new LoadUnableException(path);
 		}

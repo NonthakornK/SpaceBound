@@ -9,7 +9,7 @@ import renderer.RenderableHolder;
 
 public class BackgroundMusic {
 	private Thread bgmLoop;
-	private AudioClip bgm;
+	private MediaPlayer bgm;
 	final Task task;
 	
 	public BackgroundMusic() {
@@ -17,7 +17,7 @@ public class BackgroundMusic {
 			@Override
 			protected Object call() throws Exception {
 				bgm = RenderableHolder.bgm;
-				bgm.setVolume(1.5);
+				bgm.setVolume(1.65);
 				bgm.setCycleCount(MediaPlayer.INDEFINITE);
 				bgm.play();
 				return null;

@@ -7,7 +7,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.media.AudioClip;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
@@ -21,7 +21,7 @@ public class GameOverScreen extends Canvas {
 			.loadFont(ClassLoader.getSystemResource("res/font/Astrobia.ttf").toString(), 70);
 	private static final Font SCORE_FONT = Font
 			.loadFont(ClassLoader.getSystemResource("res/font/Astrobia.ttf").toString(), 40);
-	private AudioClip music = RenderableHolder.gameOverMusic;
+	private MediaPlayer music = RenderableHolder.gameOverMusic;
 
 	public GameOverScreen() {
 		super(SceneManager.SCENE_WIDTH, SceneManager.SCENE_HEIGHT);

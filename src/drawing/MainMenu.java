@@ -7,7 +7,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.media.AudioClip;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
@@ -21,7 +21,7 @@ public class MainMenu extends Canvas {
 			.loadFont(ClassLoader.getSystemResource("res/font/Astrobia.ttf").toString(), 35);
 	private static final Font TUTORIAL_FONT = Font
 			.loadFont(ClassLoader.getSystemResource("res/font/Astrobia.ttf").toString(), 22);
-	private AudioClip music = RenderableHolder.mainMenuMusic;
+	private MediaPlayer music = RenderableHolder.mainMenuMusic;
 	private boolean inTutorial;
 
 	public MainMenu() {

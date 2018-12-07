@@ -229,7 +229,7 @@ public class GameLogic {
 	private void spawnItems() {
 		long now = System.nanoTime();
 		if (this.nextItemsSpawnTime <= now) {
-			this.nextItemsSpawnTime = now + ThreadLocalRandom.current().nextLong(8000000000l, 12000000000l);
+			this.nextItemsSpawnTime = now + ThreadLocalRandom.current().nextLong(8000000000l, 11000000000l);
 
 			double rand = ThreadLocalRandom.current().nextDouble(100);
 			if (rand <= 10) {
