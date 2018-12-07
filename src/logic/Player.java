@@ -354,7 +354,7 @@ public class Player extends Unit implements IRenderable {
 				}
 			}
 		}
-		// to be further discussed (sound effect etc)
+
 		if (this.hp <= 0) {
 			this.destroyed = true;
 			this.visible = false;

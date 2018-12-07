@@ -9,7 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
 import javafx.scene.text.Font;
 
-public class RenderableHolder {// the picture class maker and we use this to make instead o
+public class RenderableHolder {
 	private static final RenderableHolder instance = new RenderableHolder();
 
 	private List<IRenderable> entities;
@@ -45,9 +45,9 @@ public class RenderableHolder {// the picture class maker and we use this to mak
 		ship = imageLoader("res/player/SpaceD.gif");
 		// player picture
 
-		asteroidArr = new Image[4];
-		for (int i = 0; i < 4; i++) {
-			asteroidArr[i] = imageLoader("res/enemy/asteroid" + i + ".gif");
+		asteroidArr = new Image[7];
+		for (int i = 0; i < 7; i++) {
+			asteroidArr[i] = imageLoader("res/enemy/asteroid/asteroid" + i + ".gif");
 		}
 		
 		eSemiBoss = imageLoader("res/enemy/semiboss.gif");
@@ -112,13 +112,9 @@ public class RenderableHolder {// the picture class maker and we use this to mak
 		// sound effect
 		inGameFont = fontLoader("res/font/Astrobia.ttf", 40);
 		inGameFontSmall = fontLoader("res/font/Astrobia.ttf", 22.5);
-		// inGameFontSmall =
-		// Font.loadFont(ClassLoader.getSystemResource("res/font/Astrobia.ttf").toString(),
-		// 22.5);
 	}
 
 	public void add(IRenderable entity) {
-		// System.out.println("add");
 		entities.add(entity);
 		Collections.sort(entities, comparator);
 	}

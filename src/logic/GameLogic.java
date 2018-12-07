@@ -98,12 +98,6 @@ public class GameLogic {
 				lastLoopStartTime += LOOP_TIME;
 				updateGame();
 			}
-
-			try {
-				Thread.sleep(1);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 		}
 	}
 
@@ -179,8 +173,7 @@ public class GameLogic {
 	private void spawnEnemy() {
 		Random r = new Random();
 		this.maxEnemyCap = 6 + stageLevel * 0.85;
-		// check distance to spawn boss first
-		// if didn't check it will spawn a lot of boss
+
 		if (Score.distance >= 5000 && !isSemiAlive) {
 			esemi = new ESemiBoss(this);
 			addNewObject(esemi);
@@ -196,18 +189,14 @@ public class GameLogic {
 			stageLevel++;
 		}
 
-		// System.out.println("cap" + this.maxEnemyCap + " current " +
-		// this.currentEnemyWeight);
-
 		if (GameLogic.currentEnemyWeight < this.maxEnemyCap) {
 			int chance = r.nextInt(100) - 10000 / (Score.distance + 1); 
 			
 			if (chance < 40) {
-				Image variation = RenderableHolder.asteroidArr[ThreadLocalRandom.current().nextInt(0, 4)];
+				Image variation = RenderableHolder.asteroidArr[ThreadLocalRandom.current().nextInt(0, 7)];
 				Asteroid asteroid = new Asteroid(
 						ThreadLocalRandom.current().nextDouble(SceneManager.SCENE_WIDTH - variation.getWidth()),
 						variation);
-				
 				addNewObject(asteroid);
 				GameLogic.currentEnemyWeight += asteroid.getWeight();
 			} else if (chance < 60) {
