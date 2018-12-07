@@ -1,6 +1,9 @@
 package logic;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import renderer.RenderableHolder;
@@ -30,6 +33,11 @@ public class EHeavy extends Enemy {
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		gc.drawImage(RenderableHolder.eHeavy, x, y);
+		if(collided) {
+			Image spark = RenderableHolder.sparkArr[ThreadLocalRandom.current().nextInt(0,4)];
+			gc.drawImage(spark, x + this.width/3.3, y + this.height/2.5, this.width * 0.6, this.height * 0.6);
+			collided = false;
+		}
 	}
 
 	@Override

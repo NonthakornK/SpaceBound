@@ -14,9 +14,8 @@ public class RenderableHolder {// the picture class maker and we use this to mak
 
 	private List<IRenderable> entities;
 	private Comparator<IRenderable> comparator;
-	// various image plz check the image first before using (like to find its size /
-	// how it looks etc)
-	public static Image dragon, eSemiBoss, eBoss, eGhost, eSpiriteFire, eJet, eMachine, eHeavy, bullet, background,
+
+	public static Image ship, eSemiBoss, eBoss, eScout, eJet, eHeavy, eLight, bullet, background,
 			backgroundMM, backgroundW, healthpack, bossBullet, bossPower, bossLow, roundBulletB, roundBulletY,
 			roundBulletR, roundBulletP, beamSmallG, beamSmallY, sparkArr[], powerAttack, exploArr[], randomBox,
 			asteroidArr[], shieldmax, shieldregen, attackBox, triplefirebox, powerattackBox;
@@ -42,21 +41,21 @@ public class RenderableHolder {// the picture class maker and we use this to mak
 	}
 
 	public static void loadResource() throws LoadUnableException {
-		// dragon = imageLoader("res/player/SpaceD.gif"));
-		dragon = imageLoader("res/player/SpaceD.gif");
+
+		ship = imageLoader("res/player/SpaceD.gif");
 		// player picture
 
-		eSemiBoss = imageLoader("res/enemy/semiboss.gif");
-		eBoss = imageLoader("res/enemy/BigBoss.gif");
-		eGhost = imageLoader("res/enemy/Extra.gif");
 		asteroidArr = new Image[4];
 		for (int i = 0; i < 4; i++) {
 			asteroidArr[i] = imageLoader("res/enemy/asteroid" + i + ".gif");
 		}
-
-		eMachine = imageLoader("res/enemy/Normal.png");
-		eJet = imageLoader("res/enemy/Normal.png");
-		eHeavy = imageLoader("res/enemy/Excusive.gif");
+		
+		eSemiBoss = imageLoader("res/enemy/semiboss.gif");
+		eBoss = imageLoader("res/enemy/BigBoss.gif");
+		eScout = imageLoader("res/enemy/Extra.gif");
+		eLight = imageLoader("res/enemy/Light.png");
+		eJet = imageLoader("res/enemy/Light.png");
+		eHeavy = imageLoader("res/enemy/Heavy.gif");
 		// mob picture
 		exploArr = new Image[12];
 		for (int i = 0; i < 12; i++) {

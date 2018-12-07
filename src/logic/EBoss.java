@@ -1,6 +1,9 @@
 package logic;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
@@ -14,8 +17,8 @@ public class EBoss extends Enemy {
 	private int bulletDelayTick = 0;
 
 	public EBoss(GameLogic gameLogic) {
-		super(6000, 0.1);
-		this.originalHp = 6000;
+		super(9000, 0.15);
+		this.originalHp = 9000;
 		this.width = RenderableHolder.eBoss.getWidth();
 		this.height = RenderableHolder.eBoss.getHeight();
 		this.visible = true;
@@ -23,7 +26,7 @@ public class EBoss extends Enemy {
 		this.x = (SceneManager.SCENE_WIDTH - this.width) / 2.0;
 		this.y = -this.height;
 		this.collideDamage = 3000;
-		this.weight = 10;
+		this.weight = 11;
 		this.gameLogic = gameLogic;
 
 		GameLogic.isBossAlive = true;
@@ -35,7 +38,7 @@ public class EBoss extends Enemy {
 
 		
 		long now = System.nanoTime();
-		this.x = Math.sin(5 * now * 8e-10 + Math.toRadians(90)) * ((SceneManager.SCENE_WIDTH - this.width) / 2)
+		this.x = Math.sin(4 * now * 1e-9 + Math.toRadians(90)) * ((SceneManager.SCENE_WIDTH - this.width) / 2)
 				+ (SceneManager.SCENE_WIDTH - this.width) / 2.0;
 		if (this.y < 40) {
 			this.y += this.speed;
@@ -46,17 +49,19 @@ public class EBoss extends Enemy {
 			GameLogic.isBossAlive = false;
 			GameLogic.killedBoss = true;
 		}
-		if (bulletDelayTick % 21 == 0) {
-			gameLogic.addPendingBullet(new Bullet(x, y, 0, 20, -1, 9, this));
-			RenderableHolder.laser.play();
-		}
-		if (bulletDelayTick % 73 == 23) {
-			gameLogic.addPendingBullet(new Bullet(x, y, 0, 30, -1, 1, this));
-			RenderableHolder.fireBall.play();
-		}
-		if (bulletDelayTick % 233 == 177) {
-			gameLogic.addPendingBullet(new Bullet(x, y - 20, 0, 50, -1, 8, this));
-			RenderableHolder.laser.play();
+		if(bulletDelayTick > 100) {
+			if (bulletDelayTick % 19 == 18) {
+				gameLogic.addPendingBullet(new Bullet(x, y - this.height / 7, 0, 20, -1, 9, this));
+				RenderableHolder.laser.play();
+			}
+			if (bulletDelayTick % 73 == 72) {
+				gameLogic.addPendingBullet(new Bullet(x, y - this.height / 7, 0, 8, -1, 1, this));
+				RenderableHolder.fireBall.play();
+			}
+			if (bulletDelayTick % 277 == 177) {
+				gameLogic.addPendingBullet(new Bullet(x, y - this.height / 7, 0, 35, -1, 8, this));
+				RenderableHolder.laser.play();
+			}
 		}
 		bulletDelayTick++;
 		
@@ -67,6 +72,11 @@ public class EBoss extends Enemy {
 		// TODO Auto-generated method stub
 		gc.drawImage(RenderableHolder.eBoss, x, y);
 		drawHpBar(gc);
+		if(collided) {
+			Image spark = RenderableHolder.sparkArr[ThreadLocalRandom.current().nextInt(0,4)];
+			gc.drawImage(spark, x + this.width/4, y + this.height/3, this.width * 0.4, this.height * 0.4);
+			collided = false;
+		}
 	}
 	
 

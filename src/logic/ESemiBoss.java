@@ -3,6 +3,7 @@ package logic;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
@@ -83,7 +84,7 @@ public class ESemiBoss extends Enemy {
 			this.destroyed = true;
 		}
 		if(now < this.chargeDelay - 1000000000l) {
-			if (bulletDelayTick % 30 == 0) {
+			if (bulletDelayTick % 35 == 0) {
 				gameLogic.addPendingBullet(new Bullet(x, y, 0, 15, -1, 4, this));
 				gameLogic.addPendingBullet(new Bullet(x - 50, y - 20, 9, 15, -1, 4, this));
 				gameLogic.addPendingBullet(new Bullet(x + 50, y - 20, -9, 15, -1, 4, this));
@@ -100,6 +101,11 @@ public class ESemiBoss extends Enemy {
 		// TODO Auto-generated method stub
 		gc.drawImage(RenderableHolder.eSemiBoss, x, y);
 		drawHpBar(gc);
+		if(collided) {
+			Image spark = RenderableHolder.sparkArr[ThreadLocalRandom.current().nextInt(0,4)];
+			gc.drawImage(spark, x + this.width/4, y + this.height/4, this.width * 0.25, this.height * 0.25);
+			collided = false;
+		}
 	}
 
 	private void drawHpBar(GraphicsContext gc) {

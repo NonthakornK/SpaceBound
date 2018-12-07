@@ -28,8 +28,13 @@ public class Asteroid extends Enemy {
 
 	@Override
 	public void draw(GraphicsContext gc) {
-		// TODO Auto-generated method stub
-		gc.drawImage(variation, x, y);
+		// TODO Auto-generated method stubs		
+		gc.drawImage(variation, x, y);		
+		if(collided) {
+			Image spark = RenderableHolder.sparkArr[ThreadLocalRandom.current().nextInt(0,4)];
+			gc.drawImage(spark, x + this.width/4, y + this.height/4, this.width * 0.45, this.height * 0.45);
+			collided = false;
+		}
 	}
 
 	@Override

@@ -12,11 +12,13 @@ import window.SceneManager;
 public class Score implements IRenderable {
 	//public static int score;
 	public static int distance;
+	public static double hiddenDistance;
 
 	public Score() {
 		// TODO Auto-generated constructor stub
 		//score = 0;
 		distance = 0;
+		hiddenDistance = 0;
 	}
 
 	@Override

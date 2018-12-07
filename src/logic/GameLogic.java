@@ -20,12 +20,11 @@ public class GameLogic {
 	private List<Unit> gameObjectContainer;
 	private static final int FPS = 60;
 	public static final long LOOP_TIME = 1000000000 / FPS;
-	private double hiddenDistance = 0;
 
 	private int gameOverCountdown = 24;
 	private int gameWinCountdown = 24;
 
-	private int maxEnemyCap;
+	private double maxEnemyCap;
 	public static double currentEnemyWeight;
 	public static boolean isBossAlive;
 	public static boolean isSemiAlive;
@@ -134,7 +133,6 @@ public class GameLogic {
 			gameObjectContainer.add(pendingBullet.poll());
 
 		}
-		// System.out.println("Number of gameObject\t" + gameObjectContainer.size());
 
 		for (Unit i : gameObjectContainer) {
 			i.update();
@@ -168,26 +166,19 @@ public class GameLogic {
 		}
 
 		double mod = Score.distance / 500;
-		hiddenDistance += 0.5 + mod / 4;
-		// if(hiddenDistance > 5000) {
-		// Score.distance = ((int) hiddenDistance/100)*100;
-		// }
-		// else {
-		Score.distance = (int) hiddenDistance;
-		// }
+		Score.hiddenDistance += 0.5 + mod / 4;
+		Score.distance = (int) Score.hiddenDistance;
 
 	}
 
 	public void addPendingBullet(Bullet a) {
-
 		pendingBullet.add(a);
-
 		canvas.addPendingBullet(a);
 	}
 
 	private void spawnEnemy() {
 		Random r = new Random();
-		this.maxEnemyCap = 6 + stageLevel;
+		this.maxEnemyCap = 6 + stageLevel * 0.85;
 		// check distance to spawn boss first
 		// if didn't check it will spawn a lot of boss
 		if (Score.distance >= 5000 && !isSemiAlive) {
@@ -209,10 +200,8 @@ public class GameLogic {
 		// this.currentEnemyWeight);
 
 		if (GameLogic.currentEnemyWeight < this.maxEnemyCap) {
-			int chance = r.nextInt(100) - 10000 / (Score.distance + 1); // difficulty factor , +1 to prevent zero when
-																		// start
-			// new game
-			// System.out.println(" chance " + chance);
+			int chance = r.nextInt(100) - 10000 / (Score.distance + 1); 
+			
 			if (chance < 40) {
 				Image variation = RenderableHolder.asteroidArr[ThreadLocalRandom.current().nextInt(0, 4)];
 				Asteroid asteroid = new Asteroid(
@@ -222,10 +211,10 @@ public class GameLogic {
 				addNewObject(asteroid);
 				GameLogic.currentEnemyWeight += asteroid.getWeight();
 			} else if (chance < 60) {
-				EMachine emachine = new EMachine(this, ThreadLocalRandom.current()
-						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.eMachine.getWidth()));
-				addNewObject(emachine);
-				GameLogic.currentEnemyWeight += emachine.getWeight();
+				ELight elight = new ELight(this, ThreadLocalRandom.current()
+						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.eLight.getWidth()));
+				addNewObject(elight);
+				GameLogic.currentEnemyWeight += elight.getWeight();
 			} 
 			else if (chance < 75) {
 				EJet ejet = new EJet(this, ThreadLocalRandom.current()
@@ -233,10 +222,10 @@ public class GameLogic {
 				addNewObject(ejet);
 				GameLogic.currentEnemyWeight += ejet.getWeight();
 			}else if (chance < 90) {
-				EGhost eghost = new EGhost(this, ThreadLocalRandom.current()
-						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.eGhost.getWidth()));
-				addNewObject(eghost);
-				GameLogic.currentEnemyWeight += eghost.getWeight();
+				EScout escout = new EScout(this, ThreadLocalRandom.current()
+						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.eScout.getWidth()));
+				addNewObject(escout);
+				GameLogic.currentEnemyWeight += escout.getWeight();
 			} else {
 				EHeavy eheavy = new EHeavy(this, ThreadLocalRandom.current()
 						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.eHeavy.getWidth())); 

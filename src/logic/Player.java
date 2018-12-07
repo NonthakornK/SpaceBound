@@ -54,7 +54,7 @@ public class Player extends Unit implements IRenderable {
 
 		this.z = 0;
 
-		playerImage = RenderableHolder.dragon;
+		playerImage = RenderableHolder.ship;
 
 		this.gameLogic = gameLogic;
 		
@@ -209,19 +209,15 @@ public class Player extends Unit implements IRenderable {
 	public void update() {
 		// TODO Auto-generated method stub
 		if (CharacterInput.getKeyPressed(KeyCode.UP)) {
-			// System.out.println("GO uppppp");
 			forward(true);
 		}
 		if (CharacterInput.getKeyPressed(KeyCode.DOWN)) {
-			// System.out.println("GO DOWNNN");
 			forward(false);
 		}
 		if (CharacterInput.getKeyPressed(KeyCode.RIGHT)) {
-			// System.out.println("GO RIGHt");
 			turn(true);
 		}
 		if (CharacterInput.getKeyPressed(KeyCode.LEFT)) {
-			// System.out.println("GO Left");
 			turn(false);
 		}
 		if (CharacterInput.getTriggeredCtrl().poll() == KeyCode.CONTROL) {
@@ -249,19 +245,17 @@ public class Player extends Unit implements IRenderable {
 		
 		if (CharacterInput.getKeyPressed(KeyCode.SPACE)) {
 			// shoot a bullet
-			// to be further discussed
 			
 			if (bulletDelayTick - prevbulletTick > 7) {
-				// System.out.println("SHOOOOT");
 				if (fireMode == 0) {
 					gameLogic.addPendingBullet(new Bullet(x, y + 18, 0, 20, 1, 0, this));
 					RenderableHolder.laser.play();
 				} else if (fireMode == 1) {
-					gameLogic.addPendingBullet(new Bullet(x, y + 18, 0, 20, 1, 0, this));
+					gameLogic.addPendingBullet(new Bullet(x, y + 18, 0, 20, 1, -1, this));
 					RenderableHolder.laser.play();
-					gameLogic.addPendingBullet(new Bullet(x - 15, y + 18, 1, 20, 1, 0, this));
+					gameLogic.addPendingBullet(new Bullet(x - 15, y + 18, 1, 20, 1, -1, this));
 					RenderableHolder.laser.play();
-					gameLogic.addPendingBullet(new Bullet(x + 15, y + 18, -1, 20, 1, 0, this));
+					gameLogic.addPendingBullet(new Bullet(x + 15, y + 18, -1, 20, 1, -1, this));
 					RenderableHolder.laser.play();
 				}
 				prevbulletTick = bulletDelayTick;
@@ -291,7 +285,6 @@ public class Player extends Unit implements IRenderable {
 	@Override
 	public void onCollision(Unit other) {
 		// TODO Auto-generated method stub
-		// this.hp -= other.collideDamage;
 
 		if (other instanceof Enemy || other instanceof Bullet) {
 			double damageReduced;
@@ -321,7 +314,7 @@ public class Player extends Unit implements IRenderable {
 		}
 		if (other instanceof TripleFireBox) {
 			this.fireMode = 1;
-			this.TripleFireTimeOut = System.nanoTime() + 9000000000l; // 9 seconds timeout
+			this.TripleFireTimeOut = System.nanoTime() + 10000000000l; // 10 seconds timeout
 		}
 		if (other instanceof PowerAttackBox) {
 			powerAttack++;

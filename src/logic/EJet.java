@@ -3,6 +3,7 @@ package logic;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
@@ -60,17 +61,15 @@ public class EJet extends Enemy {
 
 	@Override
 	public void draw(GraphicsContext gc) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub	
 		gc.drawImage(RenderableHolder.eJet, x, y);
-		drawHpBar(gc);
+		if(collided) {
+			Image spark = RenderableHolder.sparkArr[ThreadLocalRandom.current().nextInt(0,4)];
+			gc.drawImage(spark, x, y, this.width * 0.85, this.height * 0.85);
+			collided = false;
+		}
 	}
 
-	private void drawHpBar(GraphicsContext gc) {
-		double percentHp = this.hp / this.originalHp;
-		gc.setFill(Color.RED);
-		gc.fillRect(this.x + this.width / 5, this.y + this.height + 20, this.width * percentHp / 2, 10);
-
-	}
 
 	@Override
 	public Shape getBoundary() {
