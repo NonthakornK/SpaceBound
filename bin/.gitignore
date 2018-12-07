@@ -1,6 +1,9 @@
+/application/
 /drawing/
+/game/
+/input/
 /logic/
 /renderer/
-/application/
-/window/
 /res/
+/soundtrack/
+/window/

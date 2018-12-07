@@ -54,7 +54,7 @@ public class RenderableHolder {// the picture class maker and we use this to mak
 		eBoss = imageLoader("res/enemy/BigBoss.gif");
 		eScout = imageLoader("res/enemy/Extra.gif");
 		eLight = imageLoader("res/enemy/Light.png");
-		eJet = imageLoader("res/enemy/Light.png");
+		eJet = imageLoader("res/enemy/eJet.gif");
 		eHeavy = imageLoader("res/enemy/Heavy.gif");
 		// mob picture
 		exploArr = new Image[12];
