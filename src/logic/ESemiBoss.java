@@ -58,7 +58,7 @@ public class ESemiBoss extends Enemy {
 			this.charging = false;
 			if (this.returning) {
 				if (this.y >= yOffset) {
-					this.y -= 7;
+					this.y -= 5.5;
 				} else {
 					this.returning = false;
 					this.chargeDelay = now + ThreadLocalRandom.current().nextLong(7000000000l, 9000000000l);
@@ -122,29 +122,18 @@ public class ESemiBoss extends Enemy {
 	}
 	
 	private void drawDangerZone(GraphicsContext gc) {
+		
 		LinearGradient linearGrad = new LinearGradient(0, // start X
 				0, // start Y
-				1, // end X
+				0.5, // end X
 				0, // end Y
 				true, // proportional
-				CycleMethod.NO_CYCLE, // cycle colors
+				CycleMethod.REFLECT, // cycle colors
 				// stops
-				new Stop(0.1f, Color.rgb(255, 200, 200, 0.2)), new Stop(1.0f, Color.rgb(255, 100, 100, 0.2)));
+				new Stop(0.1f, Color.rgb(255, 30, 30, 0.3)), new Stop(1.0f,Color.rgb(255, 150, 150, 0.3)) );
 		gc.setFill(linearGrad);
 		
-		gc.fillRect(this.xOffset + this.width/2, 0, this.width/2, SceneManager.SCENE_HEIGHT * 2);
-		
-		LinearGradient linearGrad2 = new LinearGradient(0, // start X
-				0, // start Y
-				1, // end X
-				0, // end Y
-				true, // proportional
-				CycleMethod.NO_CYCLE, // cycle colors
-				// stops
-				new Stop(0.1f, Color.rgb(255, 100, 100, 0.2)), new Stop(1.0f,Color.rgb(255, 200, 200, 0.2)) );
-		gc.setFill(linearGrad2);
-		
-		gc.fillRect(this.xOffset, 0, this.width/2, SceneManager.SCENE_HEIGHT * 2);
+		gc.fillRect(this.xOffset, 0, this.width, SceneManager.SCENE_HEIGHT * 2);
 	}
 
 	@Override
