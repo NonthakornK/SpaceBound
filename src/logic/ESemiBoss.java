@@ -5,6 +5,9 @@ import java.util.concurrent.ThreadLocalRandom;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 import renderer.RenderableHolder;
@@ -18,12 +21,13 @@ public class ESemiBoss extends Enemy {
 	private long moveTime;
 	private double yMultiplier;
 	private boolean returning;
+	private boolean charging;
 	private GameLogic gameLogic;
 	private long chargeDelay;
 
 	public ESemiBoss(GameLogic gameLogic) {
-		super(4000, 0.15);
-		this.originalHp = 4000;
+		super(5000, 0.15);
+		this.originalHp = 5000;
 		this.width = RenderableHolder.eSemiBoss.getWidth();
 		this.height = RenderableHolder.eSemiBoss.getHeight();
 		this.yOffset = 0;
@@ -38,6 +42,7 @@ public class ESemiBoss extends Enemy {
 		this.gameLogic = gameLogic;
 		this.chargeDelay = System.nanoTime() + ThreadLocalRandom.current().nextLong(8000000000l, 10000000000l);
 		this.returning = false;
+		this.charging = false;
 		this.moveTime = System.nanoTime();
 
 		GameLogic.isSemiAlive = true;
@@ -50,9 +55,10 @@ public class ESemiBoss extends Enemy {
 		long now = System.nanoTime();
 
 		if (now >= this.chargeDelay) {
+			this.charging = false;
 			if (this.returning) {
 				if (this.y >= yOffset) {
-					this.y -= 8 * (SceneManager.SCENE_HEIGHT - this.yOffset) / SceneManager.SCENE_HEIGHT;
+					this.y -= 7;
 				} else {
 					this.returning = false;
 					this.chargeDelay = now + ThreadLocalRandom.current().nextLong(7000000000l, 9000000000l);
@@ -64,7 +70,8 @@ public class ESemiBoss extends Enemy {
 				this.returning = true;
 			}
 		} else if (now >= this.chargeDelay - 1000000000l) {
-			this.y -= 10 * (SceneManager.SCENE_HEIGHT - this.yOffset) / SceneManager.SCENE_HEIGHT;
+			this.y += 11 * (this.yOffset - SceneManager.SCENE_HEIGHT) / SceneManager.SCENE_HEIGHT;
+			this.charging = true;
 			
 		} else {
 			this.moveTime += GameLogic.LOOP_TIME;
@@ -103,13 +110,41 @@ public class ESemiBoss extends Enemy {
 			gc.drawImage(spark, x + this.width/10, y + this.height * 0.32, this.width * 0.8, this.height * 0.8);
 			collided = false;
 		}
+		if(charging) {
+			drawDangerZone(gc);
+		}
 	}
 
 	private void drawHpBar(GraphicsContext gc) {
 		double percentHp = this.hp / this.originalHp;
 		gc.setFill(Color.RED);
 		gc.fillRect(this.x + this.width / 5, this.y + this.height + 20, this.width * percentHp * 0.6, 10);
-
+	}
+	
+	private void drawDangerZone(GraphicsContext gc) {
+		LinearGradient linearGrad = new LinearGradient(0, // start X
+				0, // start Y
+				1, // end X
+				0, // end Y
+				true, // proportional
+				CycleMethod.NO_CYCLE, // cycle colors
+				// stops
+				new Stop(0.1f, Color.rgb(255, 200, 200, 0.2)), new Stop(1.0f, Color.rgb(255, 100, 100, 0.2)));
+		gc.setFill(linearGrad);
+		
+		gc.fillRect(this.xOffset + this.width/2, 0, this.width/2, SceneManager.SCENE_HEIGHT * 2);
+		
+		LinearGradient linearGrad2 = new LinearGradient(0, // start X
+				0, // start Y
+				1, // end X
+				0, // end Y
+				true, // proportional
+				CycleMethod.NO_CYCLE, // cycle colors
+				// stops
+				new Stop(0.1f, Color.rgb(255, 100, 100, 0.2)), new Stop(1.0f,Color.rgb(255, 200, 200, 0.2)) );
+		gc.setFill(linearGrad2);
+		
+		gc.fillRect(this.xOffset, 0, this.width/2, SceneManager.SCENE_HEIGHT * 2);
 	}
 
 	@Override

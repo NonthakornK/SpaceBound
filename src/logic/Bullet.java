@@ -81,7 +81,7 @@ public class Bullet extends Unit {
 			this.height = RenderableHolder.bossLow.getHeight();
 			this.width = RenderableHolder.bossLow.getWidth();
 			bulletSprite = RenderableHolder.bossLow;
-			this.collideDamage = 11 + Distance.distance/35000;
+			this.collideDamage = 10 + Distance.distance/35000;
 		} else if (type == 10) {
 			this.height = RenderableHolder.beamSmallG.getHeight();
 			this.width = RenderableHolder.beamSmallG.getWidth();
@@ -113,7 +113,7 @@ public class Bullet extends Unit {
 			this.visible = false;
 
 		} else if (type == 7) {
-			// do nothing wait for Explosion to make big area 250 collide damage
+			// wait for Explosion
 		} else {
 			this.hp -= others.collideDamage;
 		}
@@ -134,7 +134,7 @@ public class Bullet extends Unit {
 			this.height = 200; // explosion area of effect
 			this.x = x - this.width/2;
 			this.y = y - this.height/2 + 30;
-			this.collideDamage = 200 + 40 * Player.atkLvl; // explode missile damage
+			this.collideDamage = 200 + 40 * Player.atkLvl; // explode damage
 			Explosion e = new Explosion(x, y, width + 50, height + 50, z);
 			e.playSfx();
 			RenderableHolder.getInstance().add(e);

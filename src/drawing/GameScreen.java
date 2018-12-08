@@ -75,7 +75,6 @@ public class GameScreen extends Canvas {
 				gc.setFill(Color.BLACK);
 				synchronized (RenderableHolder.getInstance().getEntities()) {
 					for (IRenderable entity : RenderableHolder.getInstance().getEntities()) {
-						// System.out.println(entity.getZ());
 						if (entity.isVisible() && !entity.isDestroyed()) {
 							entity.draw(gc);
 						}

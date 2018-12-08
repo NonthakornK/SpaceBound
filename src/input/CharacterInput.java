@@ -40,7 +40,7 @@ public class CharacterInput {
 		return triggeredCtrl;
 	}
 
-	// need when starting/reseting a new game
+	// starting/reseting a new game
 	public static void clear() {
 		keyPressed.clear();
 		triggeredCtrl.clear();
