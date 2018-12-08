@@ -12,8 +12,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import logic.Bullet;
-import renderer.IRenderable;
-import renderer.RenderableHolder;
+import sharedObject.IRenderable;
+import sharedObject.RenderableHolder;
 
 public class GameScreen extends Canvas {
 

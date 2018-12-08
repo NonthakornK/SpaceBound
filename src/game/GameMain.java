@@ -6,7 +6,7 @@ import drawing.GameWinnerScreen;
 import input.CharacterInput;
 import javafx.application.Platform;
 import logic.GameLogic;
-import renderer.RenderableHolder;
+import sharedObject.RenderableHolder;
 import soundtrack.BackgroundMusic;
 import window.SceneManager;
 

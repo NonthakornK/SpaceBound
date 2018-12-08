@@ -1,4 +1,4 @@
-package renderer;
+package sharedObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -106,7 +106,7 @@ public class RenderableHolder {
 		powerAttackLaunch = audioClipLoader("res/song/PowerAttack.mp3");
 
 		fireBall.setVolume(0.35);
-		laser.setVolume(0.15);
+		laser.setVolume(0.2);
 		hit.setVolume(0.12);
 		hit2.setVolume(0.08);
 		explosion.setVolume(0.25);

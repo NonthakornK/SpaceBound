@@ -1,4 +1,4 @@
-package renderer;
+package sharedObject;
 
 import javafx.scene.canvas.GraphicsContext;
 

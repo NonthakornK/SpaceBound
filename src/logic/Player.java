@@ -15,8 +15,8 @@ import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
-import renderer.IRenderable;
-import renderer.RenderableHolder;
+import sharedObject.IRenderable;
+import sharedObject.RenderableHolder;
 import window.SceneManager;
 
 @SuppressWarnings("restriction")
@@ -303,25 +303,25 @@ public class Player extends Unit implements IRenderable {
 			RenderableHolder.hits[ThreadLocalRandom.current().nextInt(0,2)].play();
 		}
 
-		if (other instanceof HPBox) {
-			this.hp += ((HPBox) other).getHPStorage();
+		if (other instanceof IHPBox) {
+			this.hp += ((IHPBox) other).getHPStorage();
 			if (this.hp > this.maxHp) {
 				this.hp = this.maxHp;
 			}
 		}
-		if (other instanceof TripleFireBox) {
+		if (other instanceof ITripleFireBox) {
 			this.fireMode = 1;
-			this.TripleFireTimeOut = System.nanoTime() + 10000000000l; // 10 seconds timeout
+			this.TripleFireTimeOut = System.nanoTime() + 8000000000l;
 		}
-		if (other instanceof PowerAttackBox) {
+		if (other instanceof IPowerAttackBox) {
 			powerAttack++;
 			if(powerAttack > 3) {
 				powerAttack = 3;
 			}
 		}
-		if (other instanceof ShieldMaxBox) {
-			this.maxShield += ((ShieldMaxBox) other).getShieldStorage();
-			this.shield += ((ShieldMaxBox) other).getShieldStorage();
+		if (other instanceof IShieldMaxBox) {
+			this.maxShield += ((IShieldMaxBox) other).getShieldStorage();
+			this.shield += ((IShieldMaxBox) other).getShieldStorage();
 			shieldLvl++;
 			if(shieldLvl > 5) {
 				shieldLvl = 5;
@@ -331,7 +331,7 @@ public class Player extends Unit implements IRenderable {
 				}
 			}
 		}
-		if (other instanceof ShieldRegenBox) {
+		if (other instanceof IShieldRegenBox) {
 			regenLvl++;
 			if(regenLvl > 5) {
 				regenLvl = 5;
@@ -341,7 +341,7 @@ public class Player extends Unit implements IRenderable {
 				}
 			}
 		}
-		if (other instanceof AttackBox) {
+		if (other instanceof IAttackBox) {
 			atkLvl++;
 			if(atkLvl > 5) {
 				atkLvl = 5;

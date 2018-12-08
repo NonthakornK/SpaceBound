@@ -12,7 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import logic.Distance;
-import renderer.RenderableHolder;
+import sharedObject.RenderableHolder;
 import window.SceneManager;
 
 public class GameOverScreen extends Canvas {

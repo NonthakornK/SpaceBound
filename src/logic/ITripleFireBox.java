@@ -3,14 +3,15 @@ package logic;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javafx.scene.canvas.GraphicsContext;
-import renderer.RenderableHolder;
+import sharedObject.RenderableHolder;
 
-public class AttackBox extends Items {
-	
-	public AttackBox(double x) {
-		super(3);
-		this.width = RenderableHolder.attackBox.getWidth();
-		this.height = RenderableHolder.attackBox.getHeight();
+public class ITripleFireBox extends Items {
+
+	public ITripleFireBox(double x) {
+		// TODO Auto-generated constructor stub
+		super(ThreadLocalRandom.current().nextDouble(3, 6));
+		this.width = RenderableHolder.triplefirebox.getWidth();
+		this.height = RenderableHolder.triplefirebox.getHeight();
 		this.visible = true;
 		this.destroyed = false;
 		this.x = x;
@@ -21,15 +22,15 @@ public class AttackBox extends Items {
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		gc.drawImage(RenderableHolder.attackBox, x, y);
+		gc.drawImage(RenderableHolder.triplefirebox, x, y);
 	}
 
 	@Override
-	public void onCollision(Unit other) {
+	public void onCollision(Unit others) {
 		// TODO Auto-generated method stub
 		this.hp = 0;
 		this.destroyed = true;
 		this.visible = false;
 	}
-	
+
 }

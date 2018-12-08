@@ -10,7 +10,7 @@ import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
-import renderer.RenderableHolder;
+import sharedObject.RenderableHolder;
 import window.SceneManager;
 
 public class ESemiBoss extends Enemy {

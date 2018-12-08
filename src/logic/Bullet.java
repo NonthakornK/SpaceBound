@@ -5,7 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
-import renderer.RenderableHolder;
+import sharedObject.RenderableHolder;
 import window.SceneManager;
 
 public class Bullet extends Unit {

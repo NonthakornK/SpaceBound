@@ -11,7 +11,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
-import renderer.RenderableHolder;
+import sharedObject.RenderableHolder;
 import window.SceneManager;
 
 public class MainMenu extends Canvas {

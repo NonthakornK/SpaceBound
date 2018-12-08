@@ -10,7 +10,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import drawing.GameScreen;
 import game.GameMain;
 import javafx.scene.image.Image;
-import renderer.RenderableHolder;
+import sharedObject.RenderableHolder;
 import window.SceneManager;
 
 public class GameLogic {
@@ -98,6 +98,12 @@ public class GameLogic {
 				lastLoopStartTime += LOOP_TIME;
 				updateGame();
 			}
+			
+			try {
+				Thread.sleep(1);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -110,9 +116,9 @@ public class GameLogic {
 
 			nextItemsSpawnTime = System.nanoTime() + 11000000000l;
 			
-			addNewObject(new ShieldMaxBox((SceneManager.SCENE_WIDTH - RenderableHolder.shieldmax.getWidth()) / 2 - 100));
-			addNewObject(new AttackBox((SceneManager.SCENE_WIDTH - RenderableHolder.attackBox.getWidth())/2));
-			addNewObject(new ShieldRegenBox((SceneManager.SCENE_WIDTH - RenderableHolder.shieldregen.getWidth()) / 2 + 100));
+			addNewObject(new IShieldMaxBox((SceneManager.SCENE_WIDTH - RenderableHolder.shieldmax.getWidth()) / 2 - 100));
+			addNewObject(new IAttackBox((SceneManager.SCENE_WIDTH - RenderableHolder.attackBox.getWidth())/2));
+			addNewObject(new IShieldRegenBox((SceneManager.SCENE_WIDTH - RenderableHolder.shieldregen.getWidth()) / 2 + 100));
 			
 			killedSemi = false;
 		}
@@ -194,11 +200,11 @@ public class GameLogic {
 			
 			if (chance < 40) {
 				Image variation = RenderableHolder.asteroidArr[ThreadLocalRandom.current().nextInt(0, 7)];
-				Asteroid asteroid = new Asteroid(
+				EAsteroid easteroid = new EAsteroid(
 						ThreadLocalRandom.current().nextDouble(SceneManager.SCENE_WIDTH - variation.getWidth()),
 						variation);
-				addNewObject(asteroid);
-				GameLogic.currentEnemyWeight += asteroid.getWeight();
+				addNewObject(easteroid);
+				GameLogic.currentEnemyWeight += easteroid.getWeight();
 			} else if (chance < 60) {
 				ELight elight = new ELight(this, ThreadLocalRandom.current()
 						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.eLight.getWidth()));
@@ -233,22 +239,22 @@ public class GameLogic {
 
 			double rand = ThreadLocalRandom.current().nextDouble(100);
 			if (rand <= 10) {
-				addNewObject(new AttackBox(ThreadLocalRandom.current()
+				addNewObject(new IAttackBox(ThreadLocalRandom.current()
 						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.attackBox.getWidth())));
 			} else if (rand <= 30) {
-				addNewObject(new TripleFireBox(ThreadLocalRandom.current()
+				addNewObject(new ITripleFireBox(ThreadLocalRandom.current()
 						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.triplefirebox.getWidth())));
 			} else if (rand <= 50) {
-				addNewObject(new PowerAttackBox(ThreadLocalRandom.current()
+				addNewObject(new IPowerAttackBox(ThreadLocalRandom.current()
 						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.powerattackBox.getWidth())));
 			} else if (rand <= 60) {
-				addNewObject(new ShieldMaxBox(ThreadLocalRandom.current()
+				addNewObject(new IShieldMaxBox(ThreadLocalRandom.current()
 						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.shieldmax.getWidth())));
 			} else if (rand <= 70) {
-				addNewObject(new ShieldRegenBox(ThreadLocalRandom.current()
+				addNewObject(new IShieldRegenBox(ThreadLocalRandom.current()
 						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.shieldregen.getWidth())));
 			} else {
-				addNewObject(new HPBox(ThreadLocalRandom.current()
+				addNewObject(new IHPBox(ThreadLocalRandom.current()
 						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.healthpack.getWidth())));
 			}
 		}

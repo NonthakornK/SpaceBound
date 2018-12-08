@@ -1,7 +1,7 @@
 package logic;
 
 import javafx.scene.shape.Shape;
-import renderer.IRenderable;
+import sharedObject.IRenderable;
 
 public abstract class Unit implements IRenderable {
 	protected double x, y, hp, speed, width, height, collideDamage;

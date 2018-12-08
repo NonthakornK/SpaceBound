@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
-import renderer.RenderableHolder;
+import sharedObject.RenderableHolder;
 import window.SceneManager;
 
 public class EBoss extends Enemy {
@@ -60,7 +60,7 @@ public class EBoss extends Enemy {
 			}
 			if (bulletDelayTick % 300 == 257) {
 				gameLogic.addPendingBullet(new Bullet(x, y - this.height / 7, 0, 35, -1, 8, this));
-				RenderableHolder.laser.play();
+				RenderableHolder.powerAttackLaunch.play();
 			}
 		}
 		bulletDelayTick++;

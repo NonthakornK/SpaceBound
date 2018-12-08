@@ -2,8 +2,8 @@ package logic;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import renderer.IRenderable;
-import renderer.RenderableHolder;
+import sharedObject.IRenderable;
+import sharedObject.RenderableHolder;
 
 public class Background implements IRenderable {
 

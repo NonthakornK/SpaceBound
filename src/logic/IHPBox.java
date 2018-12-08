@@ -3,15 +3,16 @@ package logic;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javafx.scene.canvas.GraphicsContext;
-import renderer.RenderableHolder;
+import sharedObject.RenderableHolder;
 
-public class TripleFireBox extends Items {
+public class IHPBox extends Items {
+	private double HPStorage;
 
-	public TripleFireBox(double x) {
-		// TODO Auto-generated constructor stub
-		super(ThreadLocalRandom.current().nextDouble(3, 6));
-		this.width = RenderableHolder.triplefirebox.getWidth();
-		this.height = RenderableHolder.triplefirebox.getHeight();
+	public IHPBox(double x) {
+		super(ThreadLocalRandom.current().nextDouble(1, 5));
+		this.HPStorage = ThreadLocalRandom.current().nextDouble(500, 700);
+		this.width = RenderableHolder.healthpack.getWidth();
+		this.height = RenderableHolder.healthpack.getHeight();
 		this.visible = true;
 		this.destroyed = false;
 		this.x = x;
@@ -22,7 +23,7 @@ public class TripleFireBox extends Items {
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		gc.drawImage(RenderableHolder.triplefirebox, x, y);
+		gc.drawImage(RenderableHolder.healthpack, x, y);
 	}
 
 	@Override
@@ -31,6 +32,10 @@ public class TripleFireBox extends Items {
 		this.hp = 0;
 		this.destroyed = true;
 		this.visible = false;
+	}
+
+	protected double getHPStorage() {
+		return HPStorage;
 	}
 
 }

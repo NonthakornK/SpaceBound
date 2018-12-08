@@ -5,8 +5,8 @@ import com.sun.javafx.tk.Toolkit;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import renderer.IRenderable;
-import renderer.RenderableHolder;
+import sharedObject.IRenderable;
+import sharedObject.RenderableHolder;
 import window.SceneManager;
 
 @SuppressWarnings("restriction")

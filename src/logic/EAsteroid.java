@@ -6,13 +6,13 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
-import renderer.RenderableHolder;
+import sharedObject.RenderableHolder;
 
-public class Asteroid extends Enemy {
+public class EAsteroid extends Enemy {
 
 	Image variation;
 	
-	public Asteroid(double x, Image i) {
+	public EAsteroid(double x, Image i) {
 		// TODO Auto-generated constructor stub
 		super(150 + Distance.distance/500, ThreadLocalRandom.current().nextDouble(2.5,5.5) + Distance.distance/20000);
 		this.variation = i;

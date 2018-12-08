@@ -2,7 +2,7 @@ package logic;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-import renderer.RenderableHolder;
+import sharedObject.RenderableHolder;
 import window.SceneManager;
 
 public abstract class Enemy extends Unit {

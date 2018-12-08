@@ -5,8 +5,8 @@ import java.util.concurrent.ThreadLocalRandom;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
-import renderer.IRenderable;
-import renderer.RenderableHolder;
+import sharedObject.IRenderable;
+import sharedObject.RenderableHolder;
 
 public class Explosion implements IRenderable {
 	private Image explosion[];

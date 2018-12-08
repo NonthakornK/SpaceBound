@@ -1,20 +1,16 @@
 package soundtrack;
 
-
-
 import javafx.concurrent.Task;
 import javafx.scene.media.MediaPlayer;
-import renderer.RenderableHolder;
+import sharedObject.RenderableHolder;
 
 public class BackgroundMusic {
 	private Thread bgmLoop;
 	private MediaPlayer bgm;
-	@SuppressWarnings("rawtypes")
-	final Task task;
+	final Task<Object> task;
 	
-	@SuppressWarnings("rawtypes")
 	public BackgroundMusic() {
-		task = new Task() {
+		task = new Task<Object>() {
 			@Override
 			protected Object call() throws Exception {
 				bgm = RenderableHolder.bgm;
