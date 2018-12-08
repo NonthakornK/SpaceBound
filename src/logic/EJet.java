@@ -4,7 +4,6 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 import renderer.RenderableHolder;
@@ -12,7 +11,6 @@ import window.SceneManager;
 
 public class EJet extends Enemy {
 
-	private int originalHp;
 	private int bulletDelayTick = 0;
 	private double yMultiplier;
 	private GameLogic gameLogic;

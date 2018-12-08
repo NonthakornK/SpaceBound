@@ -130,12 +130,12 @@ public class Bullet extends Unit {
 		}
 		if (exploding) {
 			type = 7;
-			this.x = x + (this.width / 2) - 150;
-			this.y = y - 145;
 			this.width = 200; // explosion area of effect
 			this.height = 200; // explosion area of effect
+			this.x = x - this.width/2;
+			this.y = y - this.height/2 + 30;
 			this.collideDamage = 200 + 40 * Player.atkLvl; // explode missile damage
-			Explosion e = new Explosion(x - 50, y - 50 - 40, width + 100, height + 100, z);
+			Explosion e = new Explosion(x, y, width + 50, height + 50, z);
 			e.playSfx();
 			RenderableHolder.getInstance().add(e);
 			exploding = false;

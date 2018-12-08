@@ -9,6 +9,7 @@ import renderer.IRenderable;
 import renderer.RenderableHolder;
 import window.SceneManager;
 
+@SuppressWarnings("restriction")
 public class Distance implements IRenderable {
 
 	public static int distance;

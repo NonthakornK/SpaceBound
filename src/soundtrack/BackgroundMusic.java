@@ -3,15 +3,16 @@ package soundtrack;
 
 
 import javafx.concurrent.Task;
-import javafx.scene.media.AudioClip;
 import javafx.scene.media.MediaPlayer;
 import renderer.RenderableHolder;
 
 public class BackgroundMusic {
 	private Thread bgmLoop;
 	private MediaPlayer bgm;
+	@SuppressWarnings("rawtypes")
 	final Task task;
 	
+	@SuppressWarnings("rawtypes")
 	public BackgroundMusic() {
 		task = new Task() {
 			@Override

@@ -1,6 +1,5 @@
 package logic;
 
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 import com.sun.javafx.tk.FontLoader;
@@ -10,7 +9,6 @@ import input.CharacterInput;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
-import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
@@ -77,13 +75,12 @@ public class Player extends Unit implements IRenderable {
 	private void drawHpBar(GraphicsContext gc) {
 		double percentHp = this.hp / this.maxHp;
 		if (percentHp >= 0.65) {
-			// gc.setFill(Color.LAWNGREEN);
 			LinearGradient linearGrad = new LinearGradient(0, // start X
 					0, // start Y
 					0, // end X
 					1, // end Y
 					true, // proportional
-					CycleMethod.NO_CYCLE, // cycle colors
+					CycleMethod.NO_CYCLE,
 					// stops
 					new Stop(0.1f, Color.LAWNGREEN), new Stop(1.0f, Color.GREEN));
 			gc.setFill(linearGrad);
@@ -98,7 +95,6 @@ public class Player extends Unit implements IRenderable {
 					new Stop(0.1f, Color.RED), new Stop(1.0f, Color.BLACK));
 			gc.setFill(linearGrad);
 		}
-		//gc.fillRect(SceneManager.SCENE_WIDTH / 2 - 200 * percentHp, 750, 2 * 200 * percentHp, 20);
 		gc.fillRect(SceneManager.SCENE_WIDTH / 2 - 200, 730, 400 * percentHp, 20);
 		
 		gc.setFill(Color.WHITE);
@@ -110,7 +106,7 @@ public class Player extends Unit implements IRenderable {
 	private void drawShieldBar(GraphicsContext gc) {
 		double percentShield = this.shield / this.maxShield;
 		if (percentShield >= 0.65) {
-			// gc.setFill(Color.LAWNGREEN);
+			
 			LinearGradient linearGrad = new LinearGradient(0, // start X
 					0, // start Y
 					0, // end X
@@ -131,7 +127,7 @@ public class Player extends Unit implements IRenderable {
 					new Stop(0.1f, Color.LIGHTBLUE), new Stop(1.0f, Color.STEELBLUE));
 			gc.setFill(linearGrad);
 		}
-		//gc.fillRect(SceneManager.SCENE_WIDTH / 2 - 200 * percentShield, 775, 2 * 200 * percentShield, 20);
+
 		gc.fillRect(SceneManager.SCENE_WIDTH / 2 - 200, 760, 400 * percentShield, 20);
 		
 		gc.setFill(Color.WHITE);

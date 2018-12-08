@@ -60,7 +60,7 @@ public class GameLogic {
 		spawnEnemy();
 
 		this.canvas = canvas;
-		nextItemsSpawnTime = System.nanoTime() + ThreadLocalRandom.current().nextLong(5000000000l, 15000000000l);
+		nextItemsSpawnTime = System.nanoTime() + ThreadLocalRandom.current().nextLong(8000000000l, 10000000000l);
 		pendingBullet = new ConcurrentLinkedQueue<>();
 
 	}
