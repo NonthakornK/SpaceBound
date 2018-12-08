@@ -26,7 +26,7 @@ public class EBoss extends Enemy {
 		this.x = (SceneManager.SCENE_WIDTH - this.width) / 2.0;
 		this.y = -this.height;
 		this.collideDamage = 3000;
-		this.weight = 11;
+		this.weight = 9.5;
 		this.gameLogic = gameLogic;
 
 		GameLogic.isBossAlive = true;
@@ -50,15 +50,15 @@ public class EBoss extends Enemy {
 			GameLogic.killedBoss = true;
 		}
 		if(bulletDelayTick > 100) {
-			if (bulletDelayTick % 19 == 18) {
-				gameLogic.addPendingBullet(new Bullet(x, y - this.height / 7, 0, 20, -1, 9, this));
+			if (bulletDelayTick % 17 == 16) {
+				gameLogic.addPendingBullet(new Bullet(x, y - this.height / 7, 0, 25, -1, 9, this));
 				RenderableHolder.laser.play();
 			}
 			if (bulletDelayTick % 73 == 72) {
 				gameLogic.addPendingBullet(new Bullet(x, y - this.height / 7, 0, 8, -1, 1, this));
 				RenderableHolder.fireBall.play();
 			}
-			if (bulletDelayTick % 277 == 177) {
+			if (bulletDelayTick % 300 == 257) {
 				gameLogic.addPendingBullet(new Bullet(x, y - this.height / 7, 0, 35, -1, 8, this));
 				RenderableHolder.laser.play();
 			}

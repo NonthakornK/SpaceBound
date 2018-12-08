@@ -9,12 +9,12 @@ import renderer.IRenderable;
 import renderer.RenderableHolder;
 import window.SceneManager;
 
-public class Score implements IRenderable {
-	//public static int score;
+public class Distance implements IRenderable {
+
 	public static int distance;
 	public static double hiddenDistance;
 
-	public Score() {
+	public Distance() {
 		// TODO Auto-generated constructor stub
 		//score = 0;
 		distance = 0;
@@ -32,8 +32,7 @@ public class Score implements IRenderable {
 		// TODO Auto-generated method stub
 		gc.setFont(RenderableHolder.inGameFont);
 		gc.setFill(Color.GOLD);
-		//String score = "Score: " + Integer.toString(Score.score);
-		String distanceDisplay = "Distance: " + Integer.toString(Score.distance) + " ly";
+		String distanceDisplay = "Distance: " + Integer.toString(Distance.distance) + " ly";
 		FontLoader fontLoader = Toolkit.getToolkit().getFontLoader();
 		double score_width = fontLoader.computeStringWidth(distanceDisplay, gc.getFont());
 		double score_height = fontLoader.getFontMetrics(RenderableHolder.inGameFont).getLineHeight();

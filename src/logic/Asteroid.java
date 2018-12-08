@@ -10,12 +10,11 @@ import renderer.RenderableHolder;
 
 public class Asteroid extends Enemy {
 
-	public static final double weight = 1;
 	Image variation;
 	
 	public Asteroid(double x, Image i) {
 		// TODO Auto-generated constructor stub
-		super(150 + Score.distance/500, ThreadLocalRandom.current().nextDouble(2.5,5.5) + Score.distance/20000);
+		super(150 + Distance.distance/500, ThreadLocalRandom.current().nextDouble(2.5,5.5) + Distance.distance/20000);
 		this.variation = i;
 		this.width = this.variation.getWidth();
 		this.height = this.variation.getHeight();
@@ -24,6 +23,7 @@ public class Asteroid extends Enemy {
 		this.x = x;
 		this.y = -this.height - ThreadLocalRandom.current().nextDouble(500);
 		this.collideDamage = 18;
+		this.weight = 1;
 	}
 
 	@Override

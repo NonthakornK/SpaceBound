@@ -66,7 +66,7 @@ public class ELight extends Enemy {
 		}
 		if (bulletDelayTick % 40 == 0) {
 			gameLogic.addPendingBullet(new Bullet(x, y - this.width / 2, 0, 15, -1, 5, this));
-			RenderableHolder.fireBall.play();
+			RenderableHolder.laser.play();
 		}
 		bulletDelayTick++;
 	}

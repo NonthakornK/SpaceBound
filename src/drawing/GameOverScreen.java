@@ -11,7 +11,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
-import logic.Score;
+import logic.Distance;
 import renderer.RenderableHolder;
 import window.SceneManager;
 
@@ -19,7 +19,7 @@ public class GameOverScreen extends Canvas {
 
 	private static final Font TITLE_FONT = Font
 			.loadFont(ClassLoader.getSystemResource("res/font/Astrobia.ttf").toString(), 70);
-	private static final Font SCORE_FONT = Font
+	private static final Font Distance_FONT = Font
 			.loadFont(ClassLoader.getSystemResource("res/font/Astrobia.ttf").toString(), 40);
 	private MediaPlayer music = RenderableHolder.gameOverMusic;
 
@@ -33,9 +33,9 @@ public class GameOverScreen extends Canvas {
 		gc.setFill(Color.RED);
 		gc.setFont(TITLE_FONT);
 		gc.fillText("GAME OVER", SceneManager.SCENE_WIDTH / 2, SceneManager.SCENE_HEIGHT / 4);
-		gc.setFont(SCORE_FONT);
+		gc.setFont(Distance_FONT);
 		gc.setFill(Color.RED);
-		String distance = "Your survived " + Score.distance + " ly";
+		String distance = "Your survived " + Distance.distance + " ly";
 		gc.fillText(distance, SceneManager.SCENE_WIDTH / 2, SceneManager.SCENE_HEIGHT * 2 / 4);
 		gc.setFill(Color.RED);
 		gc.fillText("Press Enter to retry", SceneManager.SCENE_WIDTH / 2, SceneManager.SCENE_HEIGHT * 3 / 4);
@@ -50,7 +50,6 @@ public class GameOverScreen extends Canvas {
 			@Override
 			public void handle(KeyEvent event) {
 				// TODO Auto-generated method stub
-				// System.out.println(event.getCode());
 				if (event.getCode() == KeyCode.ENTER) {
 					music.stop();
 					GameMain.newGame();

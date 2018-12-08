@@ -53,7 +53,7 @@ public class GameLogic {
 		killedSemi = false;
 
 		RenderableHolder.getInstance().add(new Background());
-		RenderableHolder.getInstance().add(new Score());
+		RenderableHolder.getInstance().add(new Distance());
 		player = new Player(this);
 		addNewObject(player);
 
@@ -159,9 +159,9 @@ public class GameLogic {
 			GameMain.loseGame();
 		}
 
-		double mod = Score.distance / 500;
-		Score.hiddenDistance += 0.5 + mod / 4;
-		Score.distance = (int) Score.hiddenDistance;
+		double mod = Distance.distance / 500;
+		Distance.hiddenDistance += 0.5 + mod / 4;
+		Distance.distance = (int) Distance.hiddenDistance;
 
 	}
 
@@ -174,23 +174,23 @@ public class GameLogic {
 		Random r = new Random();
 		this.maxEnemyCap = 6 + stageLevel * 0.85;
 
-		if (Score.distance >= 5000 && !isSemiAlive) {
+		if (Distance.distance >= 5000 && !isSemiAlive) {
 			esemi = new ESemiBoss(this);
 			addNewObject(esemi);
 			GameLogic.currentEnemyWeight += esemi.getWeight();
 		}
-		if (Score.distance >= 50000 && !isBossAlive) {
+		if (Distance.distance >= 50000 && !isBossAlive) {
 			eboss = new EBoss(this);
 			addNewObject(eboss);
 			GameLogic.currentEnemyWeight += eboss.getWeight();
 		}
 
-		if (Score.distance >= 800 * stageLevel * stageLevel) {
+		if (Distance.distance >= 800 * stageLevel * stageLevel) {
 			stageLevel++;
 		}
 
 		if (GameLogic.currentEnemyWeight < this.maxEnemyCap) {
-			int chance = r.nextInt(100) - 10000 / (Score.distance + 1); 
+			int chance = r.nextInt(100) - 10000 / (Distance.distance + 1); 
 			
 			if (chance < 40) {
 				Image variation = RenderableHolder.asteroidArr[ThreadLocalRandom.current().nextInt(0, 7)];

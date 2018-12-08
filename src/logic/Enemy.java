@@ -1,5 +1,7 @@
 package logic;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import renderer.RenderableHolder;
 import window.SceneManager;
 
@@ -26,6 +28,7 @@ public abstract class Enemy extends Unit {
 	public void onCollision(Unit others) {
 		if(others instanceof Player || others instanceof Bullet) {
 			this.collided = true;
+			RenderableHolder.hits[ThreadLocalRandom.current().nextInt(0,2)].play();
 		}
 		this.hp -= others.collideDamage;
 		if (this.hp <= 0) {

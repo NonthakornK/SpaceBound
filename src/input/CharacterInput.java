@@ -7,8 +7,6 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import javafx.scene.input.KeyCode;
 
 public class CharacterInput {
-	// TODO read plz
-	// use polling technique
 
 	private static ArrayList<KeyCode> keyPressed = new ArrayList<>();
 	private static boolean isHoldingCtrlKey = false;

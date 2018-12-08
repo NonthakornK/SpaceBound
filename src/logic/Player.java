@@ -302,8 +302,9 @@ public class Player extends Unit implements IRenderable {
 			this.hp -= (other.collideDamage - damageReduced);
 			this.isDamaged = true;
 			this.fullShield = false;
-			this.regenTimeOut = System.nanoTime() + (35 - this.regenLvl * 3) * 50000000l;
+			this.regenTimeOut = System.nanoTime() + (15 - this.regenLvl) * 100000000l;
 			this.collided = true;
+			RenderableHolder.hits[ThreadLocalRandom.current().nextInt(0,2)].play();
 		}
 
 		if (other instanceof HPBox) {

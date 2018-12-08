@@ -65,8 +65,6 @@ public class GameScreen extends Canvas {
 
 	public void updateAnimation() {
 
-		// System.out.println("Number of Renderable object\t" +
-		// RenderableHolder.getInstance().getEntities().size());
 		GraphicsContext gc = this.getGraphicsContext2D();
 		Platform.runLater(new Runnable() {
 			@Override
@@ -100,7 +98,6 @@ public class GameScreen extends Canvas {
 				if (event.getCode().isArrowKey() || event.getCode() == KeyCode.SPACE
 						|| event.getCode() == KeyCode.CONTROL) {
 					CharacterInput.setKeyPressed(event.getCode(), true);
-					// System.out.println("Adddddd");
 				}
 			}
 		});

@@ -36,7 +36,7 @@ public class ESemiBoss extends Enemy {
 		this.collideDamage = 3000;
 		this.weight = 7;
 		this.gameLogic = gameLogic;
-		this.chargeDelay = System.nanoTime() + ThreadLocalRandom.current().nextLong(6000000000l, 9000000000l);
+		this.chargeDelay = System.nanoTime() + ThreadLocalRandom.current().nextLong(8000000000l, 10000000000l);
 		this.returning = false;
 		this.moveTime = System.nanoTime();
 
@@ -47,16 +47,15 @@ public class ESemiBoss extends Enemy {
 	public void update() {
 		// TODO Auto-generated method stub
 
-		// yOffset += this.speed;
 		long now = System.nanoTime();
 
 		if (now >= this.chargeDelay) {
-			if (returning) {
+			if (this.returning) {
 				if (this.y >= yOffset) {
 					this.y -= 8 * (SceneManager.SCENE_HEIGHT - this.yOffset) / SceneManager.SCENE_HEIGHT;
 				} else {
 					this.returning = false;
-					this.chargeDelay = now + ThreadLocalRandom.current().nextLong(5000000000l, 6000000000l);
+					this.chargeDelay = now + ThreadLocalRandom.current().nextLong(7000000000l, 9000000000l);
 				}
 
 			} else if (this.y < SceneManager.SCENE_HEIGHT * this.yMultiplier) {
@@ -76,8 +75,6 @@ public class ESemiBoss extends Enemy {
 			this.xOffset = this.x;
 		}
 
-		// this.y = Math.cos(2 * now * 1e-9) * (200) + yOffset - 200 - this.height -
-		// this.speed;
 
 		if (this.isOutOfScreen()) {
 			this.visible = false;

@@ -24,7 +24,6 @@ public class Main extends Application {
 			// this will stop all thread / free all memory when we click exit button of
 			// windows (X)
 			primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-
 				@Override
 				public void handle(WindowEvent event) {
 					// TODO Auto-generated method stub
@@ -32,8 +31,6 @@ public class Main extends Application {
 					System.exit(0);
 				}
 			});
-		} catch (LoadUnableException l) {
-			l.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

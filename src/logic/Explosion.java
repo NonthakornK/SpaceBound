@@ -1,6 +1,6 @@
 package logic;
 
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -23,8 +23,7 @@ public class Explosion implements IRenderable {
 		this.y = posy;
 		this.width = width;
 		this.height = height;
-		Random random = new Random();
-		sound = RenderableHolder.explosions[random.nextInt(2)];
+		sound = RenderableHolder.explosions[ThreadLocalRandom.current().nextInt(0,2)];
 		this.z = Math.abs(originalZ) + 1; // + 1 to prevent bug
 		this.visible = true;
 		this.destroyed = false;

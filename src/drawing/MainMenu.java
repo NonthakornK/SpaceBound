@@ -26,6 +26,7 @@ public class MainMenu extends Canvas {
 
 	public MainMenu() {
 		super(SceneManager.SCENE_WIDTH, SceneManager.SCENE_HEIGHT);
+		music.setVolume(1.35);
 		music.play();
 		HomeMenu();	
 		this.inTutorial = false;	
@@ -94,7 +95,6 @@ public class MainMenu extends Canvas {
 			@Override
 			public void handle(KeyEvent event) {
 				// TODO Auto-generated method stub
-				// System.out.println(event.getCode());
 				if (event.getCode() == KeyCode.ENTER) {
 					music.stop();
 					GameMain.newGame();

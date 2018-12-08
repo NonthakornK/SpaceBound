@@ -8,7 +8,7 @@ public abstract class Unit implements IRenderable {
 	protected int z, side;
 	protected boolean visible, destroyed;
 
-	protected Unit() {//make all class that can collide like bullet enemy player
+	protected Unit() {
 		visible = true;
 		destroyed = false;
 		this.hp = 100;

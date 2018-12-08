@@ -46,7 +46,7 @@ public class Bullet extends Unit {
 			this.height = RenderableHolder.bossBullet.getHeight();
 			this.width = RenderableHolder.bossBullet.getWidth();
 			bulletSprite = RenderableHolder.bossBullet;
-			this.collideDamage = 60 + Score.distance/20000;
+			this.collideDamage = 70 + Distance.distance/20000;
 		} else if (type == 2) {
 			this.height = RenderableHolder.roundBulletB.getHeight();
 			this.width = RenderableHolder.roundBulletB.getWidth();
@@ -61,7 +61,7 @@ public class Bullet extends Unit {
 			this.height = RenderableHolder.roundBulletR.getHeight();
 			this.width = RenderableHolder.roundBulletR.getWidth();
 			bulletSprite = RenderableHolder.roundBulletR;
-			this.collideDamage = 30;
+			this.collideDamage = 30 + Distance.distance/1200;
 		} else if (type == 5) {
 			this.height = RenderableHolder.beamSmallY.getHeight();
 			this.width = RenderableHolder.beamSmallY.getWidth();
@@ -76,12 +76,12 @@ public class Bullet extends Unit {
 			this.height = RenderableHolder.bossPower.getHeight();
 			this.width = RenderableHolder.bossPower.getWidth();
 			bulletSprite = RenderableHolder.bossPower;
-			this.collideDamage = 400 + Score.distance/800;
+			this.collideDamage = 500 + Distance.distance/800;
 		} else if (type == 9) {
 			this.height = RenderableHolder.bossLow.getHeight();
 			this.width = RenderableHolder.bossLow.getWidth();
 			bulletSprite = RenderableHolder.bossLow;
-			this.collideDamage = 10 + Score.distance/35000;
+			this.collideDamage = 11 + Distance.distance/35000;
 		} else if (type == 10) {
 			this.height = RenderableHolder.beamSmallG.getHeight();
 			this.width = RenderableHolder.beamSmallG.getWidth();
@@ -117,7 +117,7 @@ public class Bullet extends Unit {
 		} else {
 			this.hp -= others.collideDamage;
 		}
-		// System.out.println("Bullet hit!");
+
 	}
 
 	@Override
