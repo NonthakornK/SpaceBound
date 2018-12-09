@@ -5,7 +5,7 @@ import javafx.scene.shape.Shape;
 import window.SceneManager;
 
 public abstract class Items extends Unit {
-	private static int zCounter = -725; // z is between -1150 to -1100
+	private static int zCounter = -1150; // z is between -1150 to -1100
 
 	protected Items(double speed) {
 		super(1, speed);

@@ -66,6 +66,9 @@ public class GameLogic {
 	}
 
 	protected void addNewObject(Unit unit) {
+		if(unit instanceof Enemy) {
+			GameLogic.currentEnemyWeight += ((Enemy) unit).getWeight();
+		}
 		gameObjectContainer.add(unit);
 		RenderableHolder.getInstance().add(unit);
 	}
@@ -204,28 +207,23 @@ public class GameLogic {
 						ThreadLocalRandom.current().nextDouble(SceneManager.SCENE_WIDTH - variation.getWidth()),
 						variation);
 				addNewObject(easteroid);
-				GameLogic.currentEnemyWeight += easteroid.getWeight();
 			} else if (chance < 60) {
 				ELight elight = new ELight(this, ThreadLocalRandom.current()
 						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.eLight.getWidth()));
 				addNewObject(elight);
-				GameLogic.currentEnemyWeight += elight.getWeight();
 			} 
 			else if (chance < 75) {
 				EJet ejet = new EJet(this, ThreadLocalRandom.current()
 						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.eJet.getWidth()));
 				addNewObject(ejet);
-				GameLogic.currentEnemyWeight += ejet.getWeight();
 			}else if (chance < 90) {
 				EScout escout = new EScout(this, ThreadLocalRandom.current()
 						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.eScout.getWidth()));
 				addNewObject(escout);
-				GameLogic.currentEnemyWeight += escout.getWeight();
 			} else {
 				EHeavy eheavy = new EHeavy(this, ThreadLocalRandom.current()
 						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.eHeavy.getWidth())); 
 				addNewObject(eheavy);
-				GameLogic.currentEnemyWeight += eheavy.getWeight();
 			}
 
 		}

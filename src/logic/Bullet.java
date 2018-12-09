@@ -12,7 +12,7 @@ public class Bullet extends Unit {
 
 	private Image bulletSprite;
 	private int type;
-	private static int zCounter = -500; // Bullet z is between -1100 and -300 inclusive.
+	private static int zCounter = -700; // Bullet z is between -1100 and -300 inclusive.
 	private int speedX, speedY;
 	private boolean exploding = false;
 
@@ -168,7 +168,7 @@ public class Bullet extends Unit {
 
 	@Override
 	public Shape getBoundary() {
-		if (type == 0 || type == 1 || type == 6) {
+		if (type == -1 || type == 0 || type == 1 || type == 5 || type == 8 || type == 9 || type == 10) {
 			Rectangle bound = new Rectangle();
 			bound.setX(x);
 			bound.setY(y);
