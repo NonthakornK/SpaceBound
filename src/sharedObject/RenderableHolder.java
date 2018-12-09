@@ -22,7 +22,7 @@ public class RenderableHolder {
 			roundBulletP, beamSmallG, beamSmallY, sparkArr[], powerAttack, exploArr[], asteroidArr[], shieldmax,
 			shieldregen, attackBox, triplefirebox, powerattackBox;
 
-	public static Font inGameFont, inGameFontSmall;
+	public static Font inGameFont, inGameFontSmall, titleFont, menuFont, tutorialFont;
 
 	public static AudioClip fireBall, explosion, explosion2, powerAttackLaunch, laser, hit, hit2;
 
@@ -46,64 +46,64 @@ public class RenderableHolder {
 
 	public static void loadResource() throws LoadUnableException {
 
-		ship = imageLoader("res/player/SpaceD.gif");
+		ship = imageLoader("player/SpaceD.gif");
 
 		asteroidArr = new Image[7];
 		for (int i = 0; i < 7; i++) {
-			asteroidArr[i] = imageLoader("res/enemy/asteroid/asteroid" + i + ".gif");
+			asteroidArr[i] = imageLoader("enemy/asteroid/asteroid" + i + ".gif");
 		}
-		eSemiBoss = imageLoader("res/enemy/semiboss.gif");
-		eBoss = imageLoader("res/enemy/BigBoss.gif");
-		eScout = imageLoader("res/enemy/Extra.gif");
-		eLight = imageLoader("res/enemy/Light.png");
-		eJet = imageLoader("res/enemy/eJet.gif");
-		eHeavy = imageLoader("res/enemy/Heavy.gif");
+		eSemiBoss = imageLoader("enemy/semiboss.gif");
+		eBoss = imageLoader("enemy/BigBoss.gif");
+		eScout = imageLoader("enemy/Extra.gif");
+		eLight = imageLoader("enemy/Light.png");
+		eJet = imageLoader("enemy/eJet.gif");
+		eHeavy = imageLoader("enemy/Heavy.gif");
 
 		exploArr = new Image[12];
 		for (int i = 0; i < 12; i++) {
-			exploArr[i] = imageLoader("res/explosion/" + i + ".gif");
+			exploArr[i] = imageLoader("explosion/" + i + ".gif");
 		}
 
 		sparkArr = new Image[4];
 		for (int i = 0; i < 4; i++) {
-			sparkArr[i] = imageLoader("res/spark/" + i + ".png");
+			sparkArr[i] = imageLoader("spark/" + i + ".png");
 		}
 
-		bullet = imageLoader("res/bullet/Laser.png");
-		powerAttack = imageLoader("res/bullet/fireball.gif");
-		bossBullet = imageLoader("res/bullet/bossBullet.gif");
-		bossPower = imageLoader("res/bullet/bossPower.png");
-		bossLow = imageLoader("res/bullet/bossLow.png");
+		bullet = imageLoader("bullet/Laser.png");
+		powerAttack = imageLoader("bullet/fireball.gif");
+		bossBullet = imageLoader("bullet/bossBullet.gif");
+		bossPower = imageLoader("bullet/bossPower.png");
+		bossLow = imageLoader("bullet/bossLow.png");
 
-		roundBulletB = imageLoader("res/bullet/roundBulletB.png");
-		roundBulletY = imageLoader("res/bullet/roundBulletY.png");
-		roundBulletR = imageLoader("res/bullet/roundBulletR.png");
-		roundBulletP = imageLoader("res/bullet/roundBulletP.png");
-		beamSmallG = imageLoader("res/bullet/beamSmallG.png");
-		beamSmallY = imageLoader("res/bullet/beamSmallY.png");
+		roundBulletB = imageLoader("bullet/roundBulletB.png");
+		roundBulletY = imageLoader("bullet/roundBulletY.png");
+		roundBulletR = imageLoader("bullet/roundBulletR.png");
+		roundBulletP = imageLoader("bullet/roundBulletP.png");
+		beamSmallG = imageLoader("bullet/beamSmallG.png");
+		beamSmallY = imageLoader("bullet/beamSmallY.png");
 		
-		background = imageLoader("res/background/BackSpace.jpg");
-		backgroundMM = imageLoader("res/background/BackMenu.png");
-		backgroundW = imageLoader("res/background/BackWinner.jpg");
+		background = imageLoader("background/BackSpace.jpg");
+		backgroundMM = imageLoader("background/BackMenu.png");
+		backgroundW = imageLoader("background/BackWinner.jpg");
 
-		attackBox = imageLoader("res/items/attackbox.gif");
-		triplefirebox = imageLoader("res/items/triple.png");
-		powerattackBox = imageLoader("res/items/SUPERPOWER.png");
-		healthpack = imageLoader("res/items/health.png");
-		shieldmax = imageLoader("res/items/shieldmax.gif");
-		shieldregen = imageLoader("res/items/shieldregen.gif");
+		attackBox = imageLoader("items/attackbox.gif");
+		triplefirebox = imageLoader("items/triple.png");
+		powerattackBox = imageLoader("items/SUPERPOWER.png");
+		healthpack = imageLoader("items/health.png");
+		shieldmax = imageLoader("items/shieldmax.gif");
+		shieldregen = imageLoader("items/shieldregen.gif");
 
-		bgm = mediaPlayerLoader("res/song/GameScreen.mp3");
-		fireBall = audioClipLoader("res/song/Fire_Ball.mp3");
-		laser = audioClipLoader("res/song/laser.wav");
-		hit =  audioClipLoader("res/song/hit.wav");
-		hit2 =  audioClipLoader("res/song/hit2.wav");
-		gameWinnerMusic = mediaPlayerLoader("res/song/GameWinner.mp3");
-		gameOverMusic = mediaPlayerLoader("res/song/GameLoser.mp3");
-		mainMenuMusic = mediaPlayerLoader("res/song/MenuSound.mp3");
-		explosion = audioClipLoader("res/song/Explosion.wav");
-		explosion2 = audioClipLoader("res/song/Explosion2.wav");
-		powerAttackLaunch = audioClipLoader("res/song/PowerAttack.mp3");
+		bgm = mediaPlayerLoader("song/GameScreen.mp3");
+		fireBall = audioClipLoader("song/Fire_Ball.mp3");
+		laser = audioClipLoader("song/laser.wav");
+		hit =  audioClipLoader("song/hit.wav");
+		hit2 =  audioClipLoader("song/hit2.wav");
+		gameWinnerMusic = mediaPlayerLoader("song/GameWinner.mp3");
+		gameOverMusic = mediaPlayerLoader("song/GameLoser.mp3");
+		mainMenuMusic = mediaPlayerLoader("song/MenuSound.mp3");
+		explosion = audioClipLoader("song/Explosion.wav");
+		explosion2 = audioClipLoader("song/Explosion2.wav");
+		powerAttackLaunch = audioClipLoader("song/PowerAttack.mp3");
 
 		fireBall.setVolume(0.35);
 		laser.setVolume(0.2);
@@ -115,8 +115,12 @@ public class RenderableHolder {
 		hits = new AudioClip[] { hit,hit2 };
 		explosions = new AudioClip[] { explosion, explosion2 };
 
-		inGameFont = fontLoader("res/font/Astrobia.ttf", 40);
-		inGameFontSmall = fontLoader("res/font/Astrobia.ttf", 22.5);
+		inGameFont = fontLoader("font/Astrobia.ttf", 40);
+		inGameFontSmall = fontLoader("font/Astrobia.ttf", 22.5);
+		titleFont = fontLoader("font/Astrobia.ttf", 70);
+		menuFont = fontLoader("font/Astrobia.ttf", 35);
+		tutorialFont = fontLoader("font/Astrobia.ttf", 22);
+		
 	}
 
 	public void add(IRenderable entity) {

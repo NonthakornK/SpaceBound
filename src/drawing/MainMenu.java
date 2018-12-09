@@ -15,12 +15,10 @@ import sharedObject.RenderableHolder;
 import window.SceneManager;
 
 public class MainMenu extends Canvas {
-	private static final Font TITLE_FONT = Font
-			.loadFont(ClassLoader.getSystemResource("res/font/Astrobia.ttf").toString(), 70);
-	private static final Font MENU_FONT = Font
-			.loadFont(ClassLoader.getSystemResource("res/font/Astrobia.ttf").toString(), 35);
-	private static final Font TUTORIAL_FONT = Font
-			.loadFont(ClassLoader.getSystemResource("res/font/Astrobia.ttf").toString(), 22);
+	private static final Font TITLE_FONT = RenderableHolder.titleFont;
+	private static final Font MENU_FONT = RenderableHolder.menuFont;
+	private static final Font TUTORIAL_FONT = RenderableHolder.tutorialFont;
+	
 	private MediaPlayer music = RenderableHolder.mainMenuMusic;
 	private boolean inTutorial;
 
@@ -82,7 +80,7 @@ public class MainMenu extends Canvas {
 		gc.drawImage(RenderableHolder.triplefirebox, SceneManager.SCENE_WIDTH/7 + 3, SceneManager.SCENE_HEIGHT * 1 / 9 + 470, 36, 36);
 		gc.fillText("Triple The Fun", SceneManager.SCENE_WIDTH * 0.3, SceneManager.SCENE_HEIGHT * 1 / 9 + 495);
 		
-		gc.drawImage(RenderableHolder.healthpack, SceneManager.SCENE_WIDTH/7 + 5, SceneManager.SCENE_HEIGHT * 1 / 9 + 515, 32, 38);
+		gc.drawImage(RenderableHolder.healthpack, SceneManager.SCENE_WIDTH/7 + 5, SceneManager.SCENE_HEIGHT * 1 / 9 + 517, 32, 38);
 		gc.fillText("Increases Health", SceneManager.SCENE_WIDTH * 0.3, SceneManager.SCENE_HEIGHT * 1 / 9 + 545);
 		
 	}

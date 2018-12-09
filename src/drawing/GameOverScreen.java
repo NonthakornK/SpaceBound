@@ -17,10 +17,8 @@ import window.SceneManager;
 
 public class GameOverScreen extends Canvas {
 
-	private static final Font TITLE_FONT = Font
-			.loadFont(ClassLoader.getSystemResource("res/font/Astrobia.ttf").toString(), 70);
-	private static final Font Distance_FONT = Font
-			.loadFont(ClassLoader.getSystemResource("res/font/Astrobia.ttf").toString(), 40);
+	private static final Font TITLE_FONT = RenderableHolder.titleFont;
+	private static final Font Distance_FONT = RenderableHolder.inGameFont;
 	private MediaPlayer music = RenderableHolder.gameOverMusic;
 
 	public GameOverScreen() {
